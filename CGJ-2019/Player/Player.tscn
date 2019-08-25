@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player.png" type="Texture" id=2]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=3]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -28,3 +30,14 @@ drag_margin_bottom = 0.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 16, 16 )
 shape = SubResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -72.3018
+margin_top = -19.918
+margin_right = 107.698
+margin_bottom = 0.081974
+theme = ExtResource( 3 )
+custom_fonts/font = ExtResource( 4 )
+align = 1
+valign = 1
+max_lines_visible = 1

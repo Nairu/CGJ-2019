@@ -19,14 +19,19 @@ func _input(event):
 		try_move(0, -1)
 	if event.is_action("down"):
 		try_move(0, 1)
+		
+	game_world.process_turn()
 
 # Function that checks whether we can move into the square we want.
 func try_move(dx, dy):
+	$Label.text = ""
 	var target_position = Vector2(position.x + dx*game_world.TILE_SIZE, position.y + dy*game_world.TILE_SIZE)
 	var feature = game_world.get_feature(target_position.x, target_position.y)
 	if feature:
 		# Clear the feature, then return.
-		print(game_world.feature_interact(target_position.x, target_position.y))
+		var ret = game_world.feature_interact(target_position.x, target_position.y)
+		if ret != "":
+			$Label.text = ret
 		return
 		
 	if game_world.get_tile(position.x + dx, position.y + dy) != -1:

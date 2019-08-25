@@ -5,6 +5,9 @@ export(bool) var locked = false
 var keep_pushing = 0
 var amount_to_beat = randi() % 5
 
+func set_sprite(sprite):
+	.set_sprite(sprite)
+
 func unlock():
 	locked = false
 
