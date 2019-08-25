@@ -4,7 +4,7 @@ extends Node2D
 const TILE_SIZE = 32
 const PLAYER_VISIBILITY = 3
 const PLAYER_IMMEDIATE_VISIBILITY = 2
-enum Tile {Door, Floor, Wall, Stone, Hatch, Ladder}
+enum Tile {Floor, Door, Door2, Door3, Door4, Wall}
 # var map_image = preload("res://Maps/MapTest1.png")
 const EnemyScene = preload("res://Default Enemy/Enemy.tscn")
 
@@ -78,13 +78,14 @@ class Enemy extends Reference:
 # Current Level ---------------------------------------------------
 var level_num = 0
 var map = []
-var level_size = Vector2(0,0)
+var level_size = Vector2(0, 0)
 var enemies = []
 
 # Node References -------------------------------------------------
 onready var tile_map = $TileMap
 onready var visibility_map = $VisibilityMap
 onready var player = $Player
+onready var door_map = $TileMap/Doors
 
 # Game State ------------------------------------------------------
 var player_tile = Vector2(0,0)
@@ -97,18 +98,37 @@ func _ready():
 	OS.set_window_size(Vector2(1280, 720))
 	build_level()
 	call_deferred("update_visuals")
+	player_tile = player.position/TILE_SIZE
 	
 func build_level():
 	map.clear()
-	tile_map.clear()
+	#tile_map.clear().
 	for enemy in enemies:
 		enemy.remove()
 	enemies.clear()
 	
 	enemy_pathfinding = AStar.new()
+	var bounds = tile_map.get_used_rect()
+	level_size.x = bounds.size.x + bounds.position.x
+	level_size.y = bounds.size.y + bounds.position.y
 	
-	var level_size_x = 30
-	var level_size_y = 30
+	for x in range(bounds.size.x+bounds.position.x):
+		map.append([])
+		for y in range(bounds.size.y+bounds.position.y):
+			map[x].append(Tile.Wall)
+		
+	for cell in tile_map.get_used_cells():
+		var x = cell.x
+		var y = cell.y
+		set_tile(x, y, Tile.Floor)
+		#print ("X: " + str(x) + " - Y: " + str(y))
+		#map[x][y] = Tile.Floor
+		
+	for cell in door_map.get_used_cells():
+		var x = cell.x
+		var y = cell.y
+		map[x][y] = Tile.Door
+			
 	# Load the image as pixel data.
 #	map_image = Image.new()
 #	map_image.load("res://Maps/MapTest1.png")
@@ -159,8 +179,6 @@ func build_level():
 #
 #		map_image.unlock()
 	
-	level_size = calculate_bounds()
-	
 #	for x in range(level_size.x):
 #		for y in range(level_size.y):
 			
@@ -183,7 +201,7 @@ func calculate_bounds():
 		elif pos.y > max_y:
 			max_y = int(pos.y)
 			
-	return Vector2(max_x - min_x, max_y - min_y)
+	return Vector2((max_x), (max_y))
 	
 func _input(event):
 	if !event.is_pressed():
@@ -219,7 +237,7 @@ func try_move(dx, dy):
 	var x = player_tile.x + dx
 	var y = player_tile.y + dy
 	
-	var tile_type = Tile.Stone
+	var tile_type = Tile.Wall
 	if x >= 0 and x < level_size.x and y >= 0 and y < level_size.y:
 		tile_type = map[x][y]
 	
@@ -237,12 +255,28 @@ func try_move(dx, dy):
 			
 			if !blocked:
 				player_tile = Vector2(x, y)
-		Tile.Hatch:
-			player_tile = Vector2(x, y)
-		Tile.Ladder:
-			player_tile = Vector2(x, y)			
 		Tile.Door:
+			print("Walking through door!")
 			set_tile(x, y, Tile.Floor)
+			door_map.set_cell(x, y, -1)
+		Tile.Door2:
+			print("Walking through door!")
+			set_tile(x, y, Tile.Floor)
+			door_map.set_cell(x, y, -1)
+		Tile.Door3:
+			print("Walking through door!")
+			set_tile(x, y, Tile.Floor)
+			door_map.set_cell(x, y, -1)
+		Tile.Door4:
+			print("Walking through door!")
+			set_tile(x, y, Tile.Floor)
+			door_map.set_cell(x, y, -1)
+#		Tile.Hatch:
+#			player_tile = Vector2(x, y)
+#		Tile.Ladder:
+#			player_tile = Vector2(x, y)			
+#		Tile.Door:
+#			set_tile(x, y, Tile.Floor)
 		
 	for enemy in enemies:
 		enemy.act(self)
@@ -252,6 +286,7 @@ func try_move(dx, dy):
 func set_tile(x, y, tile_type):
 	map[x][y] = tile_type
 	tile_map.set_cell(x, y, tile_type)
+	tile_map.update_bitmask_area(Vector2(x,y))
 	
 	if tile_type == Tile.Floor:
 		clear_path(Vector2(x, y))

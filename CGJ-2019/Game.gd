@@ -2,8 +2,8 @@ extends Node2D
 
 # Constant Values -------------------------------------------------
 const TILE_SIZE = 32
-const PLAYER_VISIBILITY = 3
-const PLAYER_IMMEDIATE_VISIBILITY = 2
+const PLAYER_VISIBILITY = 10
+const PLAYER_IMMEDIATE_VISIBILITY = 3
 enum Tile {Door, Floor, Wall, Stone, Hatch, Ladder}
 var map_image = preload("res://Maps/MapTest1.png")
 const EnemyScene = preload("res://Default Enemy/Enemy.tscn")
@@ -246,7 +246,7 @@ func update_visuals():
 				var test_point = tile_to_pixel_center(x, y) + Vector2(x_dir, y_dir) * TILE_SIZE / 2
 				var occlusion = space_state.intersect_ray(player_center, test_point)
 				if !occlusion || (occlusion.position - test_point).length() < 1:
-					if player_center.distance_to(tile_to_pixel_center(x, y))/TILE_SIZE <= PLAYER_IMMEDIATE_VISIBILITY:
+					if player_center.distance_to(tile_to_pixel_center(x, y))/TILE_SIZE <= PLAYER_IMMEDIATE_VISIBILITY-0.2:
 						visibility_map.set_cell(x, y, -1)
 					else:
 						visibility_map.set_cell(x, y, 2)
