@@ -1,0 +1,6 @@
+[gd_scene format=2]
+
+[node name="GameScene" type="Node2D"]
+
+[node name="GameWorld" type="TileMap" parent="."]
+cell_size = Vector2( 32, 32 )
