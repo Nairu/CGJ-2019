@@ -1,14 +1,11 @@
 extends TileMap
 
 onready var astar = AStar.new()
-
 onready var traversable_tiles = get_used_cells()
-
 onready var used_rect = get_used_rect()
 
 func _ready():
 	_add_traversable_tiles(traversable_tiles)
-	
 	_connect_traversable_tiles(traversable_tiles)
 	
 func _add_traversable_tiles(traversable_tiles):
@@ -40,26 +37,22 @@ func _connect_traversable_tiles(traversable_tiles):
 		if tile != target and astar.has_point(target_id):
 			astar.connect_points(id, target_id, true)
 		
-#		for x in range(3):
-#			for y in range(3):
-#				var target = tile + Vector2(x - 1, y - 1)
-#
-#				var target_id = _get_id_for_point(target)
-#
-#				if tile == target or not astar.has_point(target_id):
-#					continue
-#
-#				astar.connect_points(id, target_id, true)
-				
 func _get_id_for_point(point):
 	var x = point.x - used_rect.position.x
 	var y = point.y - used_rect.position.y
 	
 	return x + y * used_rect.size.x
-
 	
-func get_astar_path(start, end):
+func enable_points():
+	for point in astar.get_points():
+		astar.set_point_disabled(point, false)
+	
+func set_point_disabled(point, disabled):
+	var id = _get_id_for_point(point)
+	if astar.has_point(id):
+		astar.set_point_disabled(id, disabled)
 
+func get_astar_path(start, end):
 	# Convert positions to cell coordinates
 	var start_tile = world_to_map(start)
 	var end_tile = world_to_map(end)

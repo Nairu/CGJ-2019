@@ -1,5 +1,5 @@
 extends KinematicBody2D
-class_name EnemyBase
+class_name EnemyBookcase
 
 export(int) var max_health = 10
 
@@ -15,7 +15,9 @@ onready var tile = position / Globals.TILE_SIZE
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Sprite/AnimationPlayer.play("Idle")
+	$Sprite/AnimationPlayer.set_blend_time("rise", "idle_float", 0.4)
+	$Sprite/AnimationPlayer.queue("rise")
+	$Sprite/AnimationPlayer.queue("idle_float")
 	
 var cur_turn = 0
 func take_turn(player):
@@ -28,7 +30,6 @@ func take_turn(player):
 					update_position(path[1].x, path[1].y)
 					path.remove(1)
 			else:
-				# check to see if the next tile is still the players.
 				player.take_damage(1)
 		cur_turn=0
 	else:

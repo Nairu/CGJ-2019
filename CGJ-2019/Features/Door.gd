@@ -15,10 +15,10 @@ func interact():
 	if locked:
 		keep_pushing += 1
 		if keep_pushing < amount_to_beat:
-			return "This is a strong door"
+			return "This object appears sturdy, but repeated pushes might open it"
 		else:
 			unlock()
 			return "The lock gives out!"
 	else:
 		destroy = true
-		return "The door opens at your push..."
+		return "It moves at your push..."

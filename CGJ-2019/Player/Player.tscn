@@ -41,3 +41,10 @@ custom_fonts/font = ExtResource( 4 )
 align = 1
 valign = 1
 max_lines_visible = 1
+
+[node name="HPBar" type="ColorRect" parent="."]
+margin_right = 32.0
+margin_bottom = 2.0
+color = Color( 0.14902, 1, 0, 1 )
+
+[node name="MovementTween" type="Tween" parent="."]

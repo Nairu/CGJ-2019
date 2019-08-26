@@ -9,12 +9,24 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "EnemyBase",
+"language": "GDScript",
+"path": "res://Enemy/Enemy.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "EnemyBookcase",
+"language": "GDScript",
+"path": "res://Enemy/EnemyBookcase.gd"
+}, {
 "base": "Node",
 "class": "Globals",
 "language": "GDScript",
 "path": "res://Globals/Globals.gd"
 } ]
 _global_script_class_icons={
+"EnemyBase": "",
+"EnemyBookcase": "",
 "Globals": ""
 }
 

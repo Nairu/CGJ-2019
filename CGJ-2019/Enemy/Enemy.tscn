@@ -30,6 +30,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 centered = false
 hframes = 4
+frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Idle = SubResource( 2 )
@@ -37,3 +38,10 @@ anims/Idle = SubResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 16, 16 )
 shape = SubResource( 1 )
+
+[node name="HPBar" type="ColorRect" parent="."]
+margin_right = 32.0
+margin_bottom = 2.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="AnimationTween" type="Tween" parent="."]
