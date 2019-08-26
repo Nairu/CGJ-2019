@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/trap-down.png-70374a2921a1e1b37868983a064185ed.stex"
+path="res://.import/bed.png-19c9e9d50f9754af3a234ebe2ac86142.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/trap-down.png"
-dest_files=[ "res://.import/trap-down.png-70374a2921a1e1b37868983a064185ed.stex" ]
+source_file="res://Sprites/bed.png"
+dest_files=[ "res://.import/bed.png-19c9e9d50f9754af3a234ebe2ac86142.stex" ]
 
 [params]
 
@@ -20,11 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-<<<<<<< HEAD
-flags/filter=true
-=======
 flags/filter=false
->>>>>>> 986178f62ed8d105d2a81dae43bf59c1f78a088d
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -34,9 +30,5 @@ process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-<<<<<<< HEAD
-detect_3d=true
-=======
 detect_3d=false
->>>>>>> 986178f62ed8d105d2a81dae43bf59c1f78a088d
 svg/scale=1.0
