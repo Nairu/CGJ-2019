@@ -29,10 +29,6 @@ script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 
-[node name="Player2" parent="." instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 832, 192 )
-
 [node name="Features" type="Node2D" parent="."]
 script = ExtResource( 5 )
 sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]

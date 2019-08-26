@@ -28,6 +28,7 @@ tile_data = PoolIntArray( -2, 0, 0, -1, 0, 1, -65536, 0, 1, -65535, 0, 1, -65534
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+debug = true
 
 [node name="Features" type="Node2D" parent="."]
 script = ExtResource( 5 )

@@ -9,8 +9,10 @@ export(int) var max_health = 10
 export(int) var dam_min = 1
 export(int) var dam_max = 4
 
+export(bool) var debug = false
+
 onready var current_health = max_health
-	
+
 func _input(event):
 	#return if we're not a pressed event.
 	if !event.is_pressed():
@@ -53,8 +55,8 @@ func try_move(dx, dy):
 		enemy.take_damage(int(rand_range(dam_min, dam_max)))
 		#print ("Dealing " + str() + " damage to enemy: " + enemy.name)
 		return
-		
-	if game_world.get_tile(position.x + dx, position.y + dy) != -1:
+			
+	if game_world.get_tile(target_position.x, target_position.y) != -1:
 		tile = target_position / Globals.TILE_SIZE
 		tween.interpolate_property(self, "position", position, target_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
