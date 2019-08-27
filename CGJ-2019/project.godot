@@ -10,11 +10,6 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "KinematicBody2D",
-"class": "EnemyBase",
-"language": "GDScript",
-"path": "res://Enemies/Enemy.gd"
-}, {
-"base": "KinematicBody2D",
 "class": "EnemyBookcase",
 "language": "GDScript",
 "path": "res://Enemies/EnemyBookcase.gd"
@@ -25,7 +20,6 @@ _global_script_classes=[ {
 "path": "res://Globals/ProjectGlobals.gd"
 } ]
 _global_script_class_icons={
-"EnemyBase": "",
 "EnemyBookcase": "",
 "ProjectGlobals": ""
 }
@@ -33,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CGJ-2019"
-run/main_scene="res://NiallGameScene.tscn"
+run/main_scene="res://GameScene.tscn"
 
 [autoload]
 
@@ -93,5 +87,4 @@ right={
 
 [rendering]
 
-environment/default_clear_color=Color( 0.0666667, 0.0666667, 0.0666667, 1 )
 environment/default_environment="res://default_env.tres"
