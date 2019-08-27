@@ -6,10 +6,12 @@ var feature_list = {}
 # var a = 2
 # var b = "text"
 var type_map = {}
-var interacted_map = {}
+var description_map = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	set_type_descriptions()
+	
 	# do a mapping of type to sprite, so we don't pick random things for the various features.
 	var random = RandomNumberGenerator.new()
 	random.randomize()
@@ -20,27 +22,36 @@ func _ready():
 	
 	for i in Globals.FEATURE_TYPE.values():
 		type_map[i] = sprites[data[i]]
-		interacted_map[i] = false
 	
 	for feature in get_children():
 		feature.set_sprite(type_map[feature.type])
 		feature_list[feature.tile] = feature
+
+func set_type_descriptions():
+	description_map[Globals.FEATURE_TYPE.Door] = "This wooden portal set into the wall appears to have a handle..."
+	description_map[Globals.FEATURE_TYPE.Wardrobe] = "This large wooden structure seems to hold clothes..."
+	description_map[Globals.FEATURE_TYPE.Chest] = "This squat wooden box contains interesting items..."
+	description_map[Globals.FEATURE_TYPE.ChestDrawer] = "This wooden structure contains many hats..."
+	description_map[Globals.FEATURE_TYPE.Bookcase] = "This tall wooden object seems to be stacked with books..."	
 
 func feature_interact(x, y):
 	var feature = get_feature(x, y)
 	
 	var return_string = ""
 	if feature:
-		return_string = feature.interact()
-		if interacted_map[feature.type]:
-			return_string = ""
+		if feature.type in description_map:
+			return_string = description_map[feature.type]
+			description_map.erase(feature.type)
 		else:
-			interacted_map[feature.type] = true
-		
-		if feature.destroy:
-			clear_feature(x,y)
+			return_string = feature.interact()
+			
+			if feature.destroy:
+				clear_feature(x,y)
 	
 	return return_string
+
+func feature_exists(x, y):
+	return (Vector2(x,y) in feature_list)
 
 func get_feature(x, y):
 	if Vector2(x,y) in feature_list:
