@@ -20,7 +20,7 @@ func _ready():
 	for i in random.randi_range(2, 5):
 		data.shuffle()
 	
-	for i in Globals.FEATURE_TYPE.values():
+	for i in ProjectGlobals.FEATURE_TYPE.values():
 		type_map[i] = sprites[data[i]]
 	
 	for feature in get_children():
@@ -28,11 +28,11 @@ func _ready():
 		feature_list[feature.tile] = feature
 
 func set_type_descriptions():
-	description_map[Globals.FEATURE_TYPE.Door] = "This wooden portal set into the wall appears to have a handle..."
-	description_map[Globals.FEATURE_TYPE.Wardrobe] = "This large wooden structure seems to hold clothes..."
-	description_map[Globals.FEATURE_TYPE.Chest] = "This squat wooden box contains interesting items..."
-	description_map[Globals.FEATURE_TYPE.ChestDrawer] = "This wooden structure contains many hats..."
-	description_map[Globals.FEATURE_TYPE.Bookcase] = "This tall wooden object seems to be stacked with books..."	
+	description_map[ProjectGlobals.FEATURE_TYPE.Door] = "This wooden portal set into the wall appears to have a handle..."
+	description_map[ProjectGlobals.FEATURE_TYPE.Wardrobe] = "This large wooden structure seems to hold clothes..."
+	description_map[ProjectGlobals.FEATURE_TYPE.Chest] = "This squat wooden box contains interesting items..."
+	description_map[ProjectGlobals.FEATURE_TYPE.ChestDrawer] = "This wooden structure contains many hats..."
+	description_map[ProjectGlobals.FEATURE_TYPE.Bookcase] = "This tall wooden object seems to be stacked with books..."	
 
 func feature_interact(x, y):
 	var feature = get_feature(x, y)

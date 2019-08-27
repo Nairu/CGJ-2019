@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
 onready var game_world = get_parent()
-onready var tile = position / Globals.TILE_SIZE
+onready var tile = position / ProjectGlobals.TILE_SIZE
 onready var health_bar = $HPBar
 onready var tween = $MovementTween
+onready var ui = get_parent().get_node("CanvasLayer/UI")
 
 export(int) var max_health = 10
 export(int) var dam_min = 1
@@ -39,7 +40,7 @@ func _input(event):
 # Function that checks whether we can move into the square we want.
 func try_move(dx, dy):
 	$Label.text = ""
-	var offset = Vector2(dx, dy) * Globals.TILE_SIZE
+	var offset = Vector2(dx, dy) * ProjectGlobals.TILE_SIZE
 	var target_position = position + offset
 	var feature = game_world.get_feature(target_position.x, target_position.y)
 	if feature:
@@ -57,13 +58,15 @@ func try_move(dx, dy):
 		return
 			
 	if game_world.get_tile(target_position.x, target_position.y) != -1:
-		tile = target_position / Globals.TILE_SIZE
+		tile = target_position / ProjectGlobals.TILE_SIZE
 		tween.interpolate_property(self, "position", position, target_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		
 func take_damage(damage):
 	current_health = max(0, current_health - damage)
-	health_bar.rect_size.x = Globals.TILE_SIZE * current_health / max_health
+	var health_percentage = float(current_health) / float(max_health)
+	ui.set_health(health_percentage)
+	
 	if (current_health == 0):
 		print("Game over boyos!")
 		game_world.game_over()

@@ -12,22 +12,22 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "EnemyBase",
 "language": "GDScript",
-"path": "res://Enemy/Enemy.gd"
+"path": "res://Enemies/Enemy.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "EnemyBookcase",
 "language": "GDScript",
-"path": "res://Enemy/EnemyBookcase.gd"
+"path": "res://Enemies/EnemyBookcase.gd"
 }, {
 "base": "Node",
-"class": "Globals",
+"class": "ProjectGlobals",
 "language": "GDScript",
-"path": "res://Globals/Globals.gd"
+"path": "res://Globals/ProjectGlobals.gd"
 } ]
 _global_script_class_icons={
 "EnemyBase": "",
 "EnemyBookcase": "",
-"Globals": ""
+"ProjectGlobals": ""
 }
 
 [application]
@@ -37,7 +37,7 @@ run/main_scene="res://NiallGameScene.tscn"
 
 [autoload]
 
-Globals="*res://Globals/Globals.gd"
+Globals="*res://Globals/ProjectGlobals.gd"
 
 [display]
 

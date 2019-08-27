@@ -11,13 +11,17 @@ var game_over = false
 func process_turn():
 	game_map.enable_points()
 	enemies.handle_turns(self, player)
-	
+
 func tile_coord(x,y):
 	return game_map.world_to_map(Vector2(x,y))
 
 func get_tile(x, y):
 	var cell_position = game_map.world_to_map(Vector2(x, y))
 	return game_map.get_cell(cell_position.x, cell_position.y)
+	
+func set_tile_visible(x, y, visible):
+	game_map.set_cell(x, y, 0 if visible else -1)
+	game_map.update_bitmask_area(Vector2(x, y))
 	
 func get_feature(x,y):
 	var tile_space = tile_coord(x, y)
