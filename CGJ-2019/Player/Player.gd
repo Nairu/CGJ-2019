@@ -1,41 +1,82 @@
 extends KinematicBody2D
 
+export(bool) var debug = false
+export(int) var max_health = 10
+export(int) var dam_min = 1
+export(int) var dam_max = 4
+export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
+
 onready var game_world = get_parent()
 onready var tile = position / ProjectGlobals.TILE_SIZE
 onready var health_bar = $HPBar
 onready var tween = $MovementTween
 onready var ui = get_parent().get_node("CanvasLayer/UI")
-
-export(int) var max_health = 10
-export(int) var dam_min = 1
-export(int) var dam_max = 4
-
-export(bool) var debug = false
-
+onready var screen_shake = $Sprite/Camera2D/ScreenShake
 onready var current_health = max_health
 
+var cur_item = null
+
+func _ready():
+	ui.visible = true
+
 func _input(event):
+	var triggered_enemies = false
+	
 	#return if we're not a pressed event.
 	if !event.is_pressed():
 		return
 	
+	if ui.inventory_open:
+		if event.is_action("space"):
+			if cur_item == null:
+				# This is where the logic to use items will go, for now just print
+				cur_item = ui.get_selected_item()
+				if cur_item:
+					ui.set_item_icon(cur_item.icon)
+					ui.set_inventory_visible(false)
+					triggered_enemies = true
+			else:
+				# We return the item we've got to the inventory after we've got the old one.
+				var new_item = ui.get_selected_item()
+				ui.add_item(cur_item)
+				cur_item = new_item
+				if cur_item:
+					ui.set_item_icon(cur_item.icon)
+					ui.set_inventory_visible(false)
+					triggered_enemies = true
+		return
+	
 	if tween.is_active():
 		return
+		
+	if event.is_action("space"):
+		if cur_item:
+			cur_item.use_item(self, game_world)
+			
+			if cur_item.consumed:
+				ui.set_item_icon(null)
+				cur_item = null
+				triggered_enemies = true
 		
 	if game_world.game_over:
 		print("Resetting the world!")
 		game_world.reset()
 	
 	if event.is_action("left"):
+		triggered_enemies = true
 		try_move(-1, 0)
 	if event.is_action("right"):
+		triggered_enemies = true
 		try_move(1, 0)
 	if event.is_action("up"):
+		triggered_enemies = true
 		try_move(0, -1)
 	if event.is_action("down"):
+		triggered_enemies = true
 		try_move(0, 1)
 		
-	game_world.process_turn()
+	if triggered_enemies:
+		game_world.process_turn()
 
 # Function that checks whether we can move into the square we want.
 func try_move(dx, dy):
@@ -47,7 +88,8 @@ func try_move(dx, dy):
 		# Clear the feature, then return.
 		var ret = game_world.feature_interact(target_position.x, target_position.y)
 		if ret != "":
-			$Label.text = ret
+			ui.set_description(ret)
+#			$Label.text = ret
 		return
 	
 	var enemy = game_world.get_enemy(target_position.x, target_position.y)
@@ -59,10 +101,26 @@ func try_move(dx, dy):
 			
 	if game_world.get_tile(target_position.x, target_position.y) != -1:
 		tile = target_position / ProjectGlobals.TILE_SIZE
+		# check to see if we get an item from that tile too.
+		var item = game_world.get_item(tile.x, tile.y)
+		if item:
+			ui.add_item(item)
+		
 		tween.interpolate_property(self, "position", position, target_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		
 func take_damage(damage):
+	var label_instance = pop_label.instance()
+	label_instance.position = position + Vector2(rand_range(0,16) - 8, rand_range(0,8) - 4)
+	label_instance.text = str(damage)
+	label_instance.duration = 0.5
+	label_instance.float_distance = 3
+	label_instance.final_scale = Vector2(1.2, 1.2)
+	get_parent().add_child(label_instance)
+	label_instance.pop()
+	
+	screen_shake.start(0.2, 16, 4)
+	
 	current_health = max(0, current_health - damage)
 	var health_percentage = float(current_health) / float(max_health)
 	ui.set_health(health_percentage)

@@ -2,6 +2,7 @@ extends Node2D
 
 onready var game_map = $GameWorld
 onready var features = $Features
+onready var items = $Items
 onready var enemies = $Enemies
 onready var player = $Player
 onready var game_over_screen = $CanvasLayer/GameOver
@@ -34,6 +35,13 @@ func get_enemy(x,y):
 func clear_feature(x, y):
 	var tile_space = tile_coord(x, y)
 	features.clear_feature(tile_space.x, tile_space.y)
+	
+func get_item(x, y):
+	var tile_space = tile_coord(x, y)
+	var item = items.get_item(x, y)
+	if item:
+		items.clear_item(x, y)
+	return item
 		
 func feature_interact(x, y):
 	var tile_space = tile_coord(x, y)

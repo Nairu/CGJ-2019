@@ -10,31 +10,68 @@ anchor_bottom = 1.0
 anchor_right = 1.0
 margin_bottom = 32.0
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="Control" type="Control" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Container" type="HBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Health" type="Control" parent="Panel/Container"]
+margin_right = 192.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 192, 0 )
+
+[node name="Label" type="Label" parent="Panel/Container/Health"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
+margin_right = 64.0
 custom_fonts/font = ExtResource( 1 )
 text = "Health - "
 valign = 1
 
-[node name="DamagedHealth" type="ColorRect" parent="Panel"]
+[node name="DamagedHealth" type="ColorRect" parent="Panel/Container/Health"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0
 margin_top = 8.0
-margin_right = -448.0
 margin_bottom = -8.0
 color = Color( 1, 0, 0, 1 )
 
-[node name="FullHealth" type="ColorRect" parent="Panel"]
+[node name="FullHealth" type="ColorRect" parent="Panel/Container/Health"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0
 margin_top = 8.0
-margin_right = -448.0
 margin_bottom = -8.0
 color = Color( 0.266667, 1, 0, 1 )
+
+[node name="Item" type="Control" parent="Panel/Container"]
+margin_left = 196.0
+margin_right = 228.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
+
+[node name="Item2" type="Control" parent="Panel/Container"]
+margin_left = 232.0
+margin_right = 424.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 192, 32 )
+
+[node name="Label" type="Label" parent="Panel/Container/Item2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 1 )
+text = "Current Item - "
+valign = 1
+
+[node name="ItemSprite" type="TextureRect" parent="Panel/Container/Item2"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 88.0
+margin_right = -72.0
 
 [node name="Popup" type="Popup" parent="."]
 anchor_right = 1.0
@@ -53,24 +90,10 @@ margin_right = 444.0
 margin_bottom = 60.0
 color = Color( 0.217896, 0.217896, 0.234375, 1 )
 
-[node name="Label" type="Label" parent="Popup/Panel/Panel3"]
+[node name="DescriptionLabel" type="Label" parent="Popup/Panel/Panel3"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 align = 1
+valign = 1
 autowrap = true
 clip_text = true
-
-[node name="Panel2" type="Panel" parent="Popup"]
-margin_left = 256.0
-margin_top = 128.0
-margin_right = 384.0
-margin_bottom = 160.0
-
-[node name="Button" type="Button" parent="Popup/Panel2"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 4.0
-margin_right = -4.0
-margin_bottom = -2.0
-text = "OK"

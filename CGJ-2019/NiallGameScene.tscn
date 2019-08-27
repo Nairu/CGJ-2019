@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://GameLoop.gd" type="Script" id=1]
 [ext_resource path="res://TileSets/BasicTileset.tres" type="TileSet" id=2]
@@ -14,9 +14,12 @@
 [ext_resource path="res://EnemyManager.gd" type="Script" id=12]
 [ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Enemies/EnemyBookcase.tscn" type="PackedScene" id=14]
-[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Themes/Themes.tres" type="Theme" id=16]
-[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=17]
+[ext_resource path="res://ItemManager.gd" type="Script" id=15]
+[ext_resource path="res://Items/Item.tscn" type="PackedScene" id=16]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=18]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=19]
+[ext_resource path="res://Audio/Music/The_Liar_Wizzard_OG_1.ogg" type="AudioStream" id=20]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -64,6 +67,7 @@ locked = true
 position = Vector2( 96, 128 )
 
 [node name="Enemies" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 12 )
 
 [node name="Enemy" parent="Enemies" instance=ExtResource( 13 )]
@@ -84,9 +88,23 @@ position = Vector2( 352, 96 )
 [node name="Enemy6" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 416, 192 )
 
+[node name="Items" type="Node2D" parent="."]
+script = ExtResource( 15 )
+
+[node name="Item" parent="Items" instance=ExtResource( 16 )]
+position = Vector2( 0, 128 )
+
+[node name="Item2" parent="Items" instance=ExtResource( 16 )]
+position = Vector2( 64, 32 )
+
+[node name="Item3" parent="Items" instance=ExtResource( 16 )]
+position = Vector2( -64, -32 )
+consumable = false
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 15 )]
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 17 )]
+visible = false
 
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
 editor/display_folded = true
@@ -98,8 +116,12 @@ color = Color( 0, 0, 0, 1 )
 [node name="Label" type="Label" parent="CanvasLayer/GameOver"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 16 )
-custom_fonts/font = ExtResource( 17 )
+theme = ExtResource( 18 )
+custom_fonts/font = ExtResource( 19 )
 text = "YOU DIED"
 align = 1
 valign = 1
+
+[node name="Song" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+autoplay = true
