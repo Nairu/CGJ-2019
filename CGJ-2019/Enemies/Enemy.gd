@@ -3,6 +3,7 @@ class_name EnemyBase
 
 export(int) var max_health = 10
 export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
+export(PackedScene) var item = load("res://Items/Item.tscn")
 
 onready var GameManager = get_node("/root/GameScene")
 onready var tween = $AnimationTween
@@ -52,6 +53,12 @@ func take_damage(damage):
 	current_health = max(0, current_health - damage)
 	health_bar.rect_size.x = ProjectGlobals.TILE_SIZE * current_health / max_health
 	dead = current_health == 0
+	
+	if dead:
+		var item_inst = item.instance()
+		item_inst.position = position
+		item_inst._ready()
+		get_node("/root/GameScene/Items").add_item(item_inst)
 	
 func update_position(x, y):	
 	tile = Vector2(x,y) / ProjectGlobals.TILE_SIZE

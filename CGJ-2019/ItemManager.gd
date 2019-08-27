@@ -7,6 +7,10 @@ func _ready():
 	for item in get_children():
 		item_list[item.tile] = item
 
+func add_item(item):
+	item_list[item.tile] = item
+	add_child(item)
+
 func item_exists(x, y):
 	return (Vector2(x,y) in item_list)
 
