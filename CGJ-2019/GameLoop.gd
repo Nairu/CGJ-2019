@@ -15,6 +15,30 @@ func process_turn():
 
 func tile_coord(x,y):
 	return game_map.world_to_map(Vector2(x,y))
+	
+func adjacent_tile_world_coord(x, y, direction):
+	match direction:
+		ProjectGlobals.CARDINALITY.North:
+			return Vector2(x,y-32)
+		ProjectGlobals.CARDINALITY.East:
+			return Vector2(x+32,y)
+		ProjectGlobals.CARDINALITY.South:
+			return Vector2(x,y+32)
+		ProjectGlobals.CARDINALITY.West:
+			return Vector2(x-32,y)
+	return Vector2(x,y)
+	
+func adjacent_tile_coord(x, y, direction):
+	match direction:
+		ProjectGlobals.CARDINALITY.North:
+			return tile_coord(x,y-32)
+		ProjectGlobals.CARDINALITY.East:
+			return tile_coord(x+32,y)
+		ProjectGlobals.CARDINALITY.South:
+			return tile_coord(x,y+32)
+		ProjectGlobals.CARDINALITY.West:
+			return tile_coord(x-32,y)
+	return tile_coord(x,y)
 
 func get_tile(x, y):
 	var cell_position = game_map.world_to_map(Vector2(x, y))

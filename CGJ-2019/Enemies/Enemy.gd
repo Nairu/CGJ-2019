@@ -58,6 +58,8 @@ func take_damage(damage):
 		var item_inst = item.instance()
 		item_inst.position = position
 		item_inst._ready()
+		item_inst.set_sprite(load("res://Sprites/bed.png"))
+		item_inst.name = "bed"
 		get_node("/root/GameScene/Items").add_item(item_inst)
 	
 func update_position(x, y):	

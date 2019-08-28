@@ -19,6 +19,7 @@ texture = ExtResource( 2 )
 centered = false
 vframes = 8
 hframes = 6
+frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 

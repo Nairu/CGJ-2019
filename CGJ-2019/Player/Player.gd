@@ -6,6 +6,8 @@ export(int) var dam_min = 1
 export(int) var dam_max = 4
 export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
 
+export(ProjectGlobals.CARDINALITY) var direction = ProjectGlobals.CARDINALITY.South
+
 onready var game_world = get_parent()
 onready var tile = position / ProjectGlobals.TILE_SIZE
 onready var health_bar = $HPBar
@@ -51,7 +53,9 @@ func _input(event):
 		
 	if event.is_action("space"):
 		if cur_item:
-			cur_item.use_item(self, game_world)
+			var ret = cur_item.use_item(self, game_world)
+			if ret and ret != "":
+				ui.set_description(ret)
 			
 			if cur_item.consumed:
 				ui.set_item_icon(null)
@@ -64,16 +68,32 @@ func _input(event):
 	
 	if event.is_action("left"):
 		triggered_enemies = true
-		try_move(-1, 0)
+		if direction != ProjectGlobals.CARDINALITY.West:
+			direction = ProjectGlobals.CARDINALITY.West
+			$Sprite.frame = 6
+		else:
+			try_move(-1, 0)
 	if event.is_action("right"):
 		triggered_enemies = true
-		try_move(1, 0)
+		if direction != ProjectGlobals.CARDINALITY.East:
+			direction = ProjectGlobals.CARDINALITY.East
+			$Sprite.frame = 18
+		else:
+			try_move(1, 0)
 	if event.is_action("up"):
 		triggered_enemies = true
-		try_move(0, -1)
+		if direction != ProjectGlobals.CARDINALITY.North:
+			direction = ProjectGlobals.CARDINALITY.North
+			$Sprite.frame = 12
+		else:
+			try_move(0, -1)
 	if event.is_action("down"):
 		triggered_enemies = true
-		try_move(0, 1)
+		if direction != ProjectGlobals.CARDINALITY.South:
+			direction = ProjectGlobals.CARDINALITY.South
+			$Sprite.frame = 24
+		else:
+			try_move(0, 1)
 		
 	if triggered_enemies:
 		game_world.process_turn()
