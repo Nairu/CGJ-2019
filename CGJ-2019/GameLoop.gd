@@ -64,7 +64,7 @@ func get_item(x, y):
 	var tile_space = tile_coord(x, y)
 	var item_list = items.get_items(x, y)
 	if item_list and item_list.size() > 0:
-		item_list.clear_items(x, y)
+		items.clear_items(x, y)
 	return item_list
 	
 func feature_interact(x, y):

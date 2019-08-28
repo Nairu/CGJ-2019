@@ -123,9 +123,10 @@ func try_move(dx, dy):
 	if game_world.get_tile(target_position.x, target_position.y) != -1:
 		tile = target_position / ProjectGlobals.TILE_SIZE
 		# check to see if we get an item from that tile too.
-		var item = game_world.get_item(tile.x, tile.y)
-		if item:
-			ui.add_item(item)
+		var items = game_world.get_item(tile.x, tile.y)
+		if items and items.size() > 0:
+			for item in items:
+				ui.add_item(item)
 		
 		tween.interpolate_property(self, "position", position, target_position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()

@@ -21,7 +21,10 @@ func _ready():
 		data.shuffle()
 	
 	for i in ProjectGlobals.FEATURE_TYPE.values():
-		type_map[i] = sprites[data[i]]
+		if i == ProjectGlobals.FEATURE_TYPE.Lever:
+			type_map[i] = load("res://Sprites/lever-up-front.png")
+		else:
+			type_map[i] = sprites[data[i]]
 	
 	for feature in get_children():
 		feature.set_sprite(type_map[feature.type])
@@ -32,7 +35,8 @@ func set_type_descriptions():
 	description_map[ProjectGlobals.FEATURE_TYPE.Wardrobe] = "This large wooden structure seems to hold clothes..."
 	description_map[ProjectGlobals.FEATURE_TYPE.Chest] = "This squat wooden box contains interesting items..."
 	description_map[ProjectGlobals.FEATURE_TYPE.ChestDrawer] = "This wooden structure contains many hats..."
-	description_map[ProjectGlobals.FEATURE_TYPE.Bookcase] = "This tall wooden object seems to be stacked with books..."	
+	description_map[ProjectGlobals.FEATURE_TYPE.Bookcase] = "This tall wooden object seems to be stacked with books..."
+	description_map[ProjectGlobals.FEATURE_TYPE.Stairs] = "The floor goes upwards here, taking me to another floor..."
 
 func feature_interact(x, y):
 	var feature = get_feature(x, y)

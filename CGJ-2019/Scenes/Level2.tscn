@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://GameLoop.gd" type="Script" id=1]
 [ext_resource path="res://TileSets/BasicTileset.tres" type="TileSet" id=2]
@@ -10,15 +10,16 @@
 [ext_resource path="res://Sprites/chest-of-drawers-front.png" type="Texture" id=8]
 [ext_resource path="res://Sprites/wardrobe-front.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/door-front.png" type="Texture" id=10]
-[ext_resource path="res://Features/Door.tscn" type="PackedScene" id=11]
-[ext_resource path="res://ItemManager.gd" type="Script" id=12]
-[ext_resource path="res://EnemyManager.gd" type="Script" id=13]
-[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Enemies/EnemyBookcase.tscn" type="PackedScene" id=15]
-[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Themes/Themes.tres" type="Theme" id=17]
-[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=18]
-[ext_resource path="res://Audio/Music/The_Liar_Wizzard_OG_1.ogg" type="AudioStream" id=19]
+[ext_resource path="res://Sprites/stairs-side-1.png" type="Texture" id=11]
+[ext_resource path="res://Features/Door.tscn" type="PackedScene" id=12]
+[ext_resource path="res://ItemManager.gd" type="Script" id=13]
+[ext_resource path="res://EnemyManager.gd" type="Script" id=14]
+[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Enemies/EnemyBookcase.tscn" type="PackedScene" id=16]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=18]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=19]
+[ext_resource path="res://Audio/Music/The_Liar_Wizzard_OG_1.ogg" type="AudioStream" id=20]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -36,76 +37,76 @@ debug = true
 [node name="Features" type="Node2D" parent="."]
 editor/display_folded = true
 script = ExtResource( 5 )
-sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
+sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
 
-[node name="DoorLocked" parent="Features" instance=ExtResource( 11 )]
+[node name="DoorLocked" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( 0, -128 )
 locked = true
 
-[node name="DoorJammedLeft" parent="Features" instance=ExtResource( 11 )]
+[node name="DoorJammedLeft" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( -64, 0 )
 stuck = true
 
-[node name="DoorJammedRight" parent="Features" instance=ExtResource( 11 )]
+[node name="DoorJammedRight" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( 64, 0 )
 stuck = true
 
-[node name="DoorLockedSouth" parent="Features" instance=ExtResource( 11 )]
+[node name="DoorLockedSouth" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( 0, 64 )
 locked = true
 
-[node name="DoorLocked2" parent="Features" instance=ExtResource( 11 )]
+[node name="DoorLocked2" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( 0, -96 )
 locked = true
 
-[node name="DoorLocked3" parent="Features" instance=ExtResource( 11 )]
+[node name="DoorLocked3" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( 0, -160 )
 locked = true
 
 [node name="Items" type="Node2D" parent="."]
-script = ExtResource( 12 )
+script = ExtResource( 13 )
 
 [node name="Enemies" type="Node2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 13 )
+script = ExtResource( 14 )
 
-[node name="Splooge1" parent="Enemies" instance=ExtResource( 14 )]
+[node name="Splooge1" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( -224, 128 )
 max_health = 3
 damage = 2
 potential_item_drops = [ "res://Items/Potion.tscn" ]
 item_drop_chance = 0.5
 
-[node name="Splooge2" parent="Enemies" instance=ExtResource( 14 )]
+[node name="Splooge2" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 448, 0 )
 max_health = 3
 damage = 2
 potential_item_drops = [ "res://Items/Key.tscn" ]
 item_drop_chance = 1.0
 
-[node name="Splooge3" parent="Enemies" instance=ExtResource( 14 )]
+[node name="Splooge3" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 448, -32 )
 max_health = 3
 damage = 2
 
-[node name="Splooge4" parent="Enemies" instance=ExtResource( 14 )]
+[node name="Splooge4" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 448, 32 )
 max_health = 3
 damage = 2
 
-[node name="Bookcase1" parent="Enemies" instance=ExtResource( 15 )]
+[node name="Bookcase1" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 0, 192 )
 max_health = 15
 potential_item_drops = [ "res://Items/Key.tscn" ]
 item_drop_chance = 1.0
 
-[node name="Bookcase2" parent="Enemies" instance=ExtResource( 15 )]
+[node name="Bookcase2" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( 32, 224 )
 max_health = 15
 potential_item_drops = [ "res://Items/Key.tscn" ]
 item_drop_chance = 1.0
 
-[node name="Bookcase3" parent="Enemies" instance=ExtResource( 15 )]
+[node name="Bookcase3" parent="Enemies" instance=ExtResource( 16 )]
 position = Vector2( -32, 224 )
 max_health = 15
 potential_item_drops = [ "res://Items/Key.tscn" ]
@@ -113,7 +114,7 @@ item_drop_chance = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 16 )]
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 17 )]
 visible = false
 
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
@@ -126,12 +127,12 @@ color = Color( 0, 0, 0, 1 )
 [node name="Label" type="Label" parent="CanvasLayer/GameOver"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 17 )
-custom_fonts/font = ExtResource( 18 )
+theme = ExtResource( 18 )
+custom_fonts/font = ExtResource( 19 )
 text = "YOU DIED"
 align = 1
 valign = 1
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
+stream = ExtResource( 20 )
 autoplay = true

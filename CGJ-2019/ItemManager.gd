@@ -28,13 +28,17 @@ func items_exists(x, y):
 func get_items(x, y):
 	var items = []
 	if items_exists(x,y):
+		print ("Item at " + str(Vector2(x,y)))
 		for item in item_list[Vector2(x,y)]:
 			var cur_item = item.duplicate()
 			cur_item.tile = item.tile
 			cur_item.icon = item.icon
-			items.append(item)
-	return null
+			items.append(cur_item)
+	return items
 	
 func clear_items(x, y):
+	var removed_items = []
 	if items_exists(x,y):
-		item_list[Vector2(x,y)].front().queue_free()
+		for i in item_list[Vector2(x,y)]:
+			i.queue_free()
+		item_list[Vector2(x,y)].clear()

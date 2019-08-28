@@ -66,7 +66,8 @@ func take_damage(damage):
 	health_bar.rect_size.x = ProjectGlobals.TILE_SIZE * current_health / max_health
 	dead = current_health == 0
 	
-	if randf() <= item_drop_chance and potential_item_drops.size() > 0:
+	if dead:
+		if randf() <= item_drop_chance and potential_item_drops.size() > 0:
 			potential_item_drops.shuffle()
 			var item_inst = load(potential_item_drops[0]).instance()
 			item_inst.position = position
