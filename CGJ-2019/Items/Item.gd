@@ -1,4 +1,5 @@
 extends Node2D
+class_name Item
 
 onready var tile = position / ProjectGlobals.TILE_SIZE
 onready var icon = $Sprite.texture
@@ -18,20 +19,11 @@ func set_sprite(sprite):
 	icon = sprite
 
 func use_item(player, game_world):
-	# we can get the players direction, check if it is using this on a 
-	# door and unlock it.
-	var ret_text = "Player is using item: " + name
-	var tile_coord = game_world.adjacent_tile_world_coord(player.position.x, player.position.y, player.direction)
-	var feature = game_world.get_feature(tile_coord.x, tile_coord.y)
-	if feature:
-		if feature.type == ProjectGlobals.FEATURE_TYPE.Door:
-			ret_text = feature.unlock(self)
-			if feature.locked == true || feature.stuck == true:
-				return ret_text
-	
 	if consumable:
 		usages -= 1
 		
 		if usages == 0:
 			consumed = true
-	return ret_text
+	# we can get the players direction, check if it is using this on a 
+	# door and unlock it.
+	return "Player used item " + name

@@ -44,3 +44,6 @@ color = Color( 0.803922, 1, 0, 1 )
 [node name="AnimationTween" type="Tween" parent="."]
 
 [node name="MoveBarTween" type="Tween" parent="."]
+
+[node name="OnScreen" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( 0, 0, 32, 32 )

@@ -39,7 +39,7 @@ sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9
 
 [node name="DoorStuck" parent="Features" instance=ExtResource( 11 )]
 position = Vector2( 224, 128 )
-stuck = true
+locked = true
 
 [node name="DoorLocked" parent="Features" instance=ExtResource( 11 )]
 position = Vector2( 512, 128 )
@@ -59,18 +59,25 @@ position = Vector2( 160, 128 )
 
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 160, 96 )
+potential_item_drops = [ "res://Items/Potion.tscn" ]
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 192, 160 )
+potential_item_drops = [ "res://Items/Key.tscn" ]
+item_drop_chance = 1.0
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 352, 128 )
+potential_item_drops = [ "res://Items/Potion.tscn" ]
 
 [node name="Enemy5" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 352, 96 )
+potential_item_drops = [ "res://Items/Potion.tscn" ]
 
 [node name="Enemy6" parent="Enemies" instance=ExtResource( 15 )]
 position = Vector2( 416, 192 )
+potential_item_drops = [ "res://Items/Key.tscn" ]
+item_drop_chance = 1.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -95,3 +102,4 @@ valign = 1
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
+autoplay = true

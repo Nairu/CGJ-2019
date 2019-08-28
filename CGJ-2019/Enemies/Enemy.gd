@@ -2,14 +2,17 @@ extends KinematicBody2D
 class_name EnemyBase
 
 export(int) var max_health = 10
+export(int) var damage = 1
 export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
-export(PackedScene) var item = load("res://Items/Item.tscn")
+export(Array) var potential_item_drops
+export(float) var item_drop_chance = 0.2
 
 onready var GameManager = get_node("/root/GameScene")
 onready var tween = $AnimationTween
 onready var tween_move = $MoveBarTween
 onready var health_bar = $HPBar
 onready var move_bar = $MoveBar
+onready var visibility = $OnScreen
 onready var current_health = max_health
 
 var dead = false
@@ -18,12 +21,29 @@ var turn_speed = 2
 var path
 onready var tile = position / ProjectGlobals.TILE_SIZE
 
+var on_screen = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite/AnimationPlayer.play("Idle")
+	visibility.connect("viewport_entered", self, "viewport_entered")
+	visibility.connect("viewport_exited", self, "viewport_exited")
+	
+func viewport_entered(viewport):
+	#print("In view!")
+	#print(viewport.get_visible_rect())
+	on_screen = true
+	
+func viewport_exited(viewport):
+	#print("Not in view!")
+	#print(viewport.get_visible_rect())
+	on_screen = false
 	
 var cur_turn = 0
 func take_turn(player):
+	if !on_screen:
+		return
+	
 	#GameManager.set_point_disabled(position.x, position.y, true)
 	if cur_turn >= turn_speed:
 		if path:
@@ -33,7 +53,7 @@ func take_turn(player):
 					path.remove(1)
 			else:
 				# check to see if the next tile is still the players.
-				player.take_damage(1)
+				player.take_damage(damage)
 		cur_turn=0
 	else:
 		cur_turn+=1
@@ -55,10 +75,12 @@ func take_damage(damage):
 	dead = current_health == 0
 	
 	if dead:
-		var item_inst = item.instance()
-		item_inst.position = position
-		item_inst._ready()
-		get_node("/root/GameScene/Items").add_item(item_inst)
+		if randf() <= item_drop_chance and potential_item_drops.size() > 0:
+			potential_item_drops.shuffle()
+			var item_inst = load(potential_item_drops[0]).instance()
+			item_inst.position = position
+			item_inst._ready()
+			get_node("/root/GameScene/Items").add_item(item_inst)
 	
 func update_position(x, y):	
 	tile = Vector2(x,y) / ProjectGlobals.TILE_SIZE

@@ -3,6 +3,7 @@ extends Node2D
 export (Vector2) var final_scale = Vector2(1.5, 1.5)
 export (float) var float_distance = 6
 export (float) var duration = 0.2
+export (Color) var label_color = Color.red
 export var text = ""
 
 func _ready():
@@ -10,6 +11,7 @@ func _ready():
 	
 func pop():
 	$label.text = self.text
+	$label.add_color_override("font_color", label_color)
 #	$tween.interpolate_property(self, "scale", scale, final_scale,
 #			duration, Tween.TRANS_BACK, Tween.EASE_IN_OUT)
 #
