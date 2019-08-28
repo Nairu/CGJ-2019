@@ -34,6 +34,7 @@ script = ExtResource( 3 )
 debug = true
 
 [node name="Features" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 5 )
 sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ]
 
@@ -65,6 +66,7 @@ locked = true
 script = ExtResource( 12 )
 
 [node name="Enemies" type="Node2D" parent="."]
+editor/display_folded = true
 script = ExtResource( 13 )
 
 [node name="Splooge1" parent="Enemies" instance=ExtResource( 14 )]

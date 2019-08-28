@@ -126,7 +126,7 @@ func try_move(dx, dy):
 		if item:
 			ui.add_item(item)
 		
-		tween.interpolate_property(self, "position", position, target_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.interpolate_property(self, "position", position, target_position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		
 func take_damage(damage):
