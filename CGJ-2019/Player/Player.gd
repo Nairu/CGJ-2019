@@ -21,10 +21,11 @@ var cur_item = null
 func _ready():
 	ui.visible = true
 	
-func _process(delta):
-	if not tween.is_active() and $Sprite/AnimationPlayer.current_animation != "idle_down":
-		$Sprite/AnimationPlayer.play("idle-down")
 
+func _process(delta):
+	if not tween.is_active():
+		set_idle()
+	
 func _input(event):
 	var triggered_enemies = false
 	
@@ -74,28 +75,24 @@ func _input(event):
 		triggered_enemies = true
 		if direction != ProjectGlobals.CARDINALITY.West:
 			direction = ProjectGlobals.CARDINALITY.West
-			$Sprite.frame = 6
 		else:
 			try_move(-1, 0)
 	if event.is_action("right"):
 		triggered_enemies = true
 		if direction != ProjectGlobals.CARDINALITY.East:
 			direction = ProjectGlobals.CARDINALITY.East
-			$Sprite.frame = 18
 		else:
 			try_move(1, 0)
 	if event.is_action("up"):
 		triggered_enemies = true
 		if direction != ProjectGlobals.CARDINALITY.North:
 			direction = ProjectGlobals.CARDINALITY.North
-			$Sprite.frame = 12
 		else:
 			try_move(0, -1)
 	if event.is_action("down"):
 		triggered_enemies = true
 		if direction != ProjectGlobals.CARDINALITY.South:
 			direction = ProjectGlobals.CARDINALITY.South
-			$Sprite.frame = 24
 		else:
 			try_move(0, 1)
 		
@@ -132,7 +129,7 @@ func try_move(dx, dy):
 		
 		tween.interpolate_property(self, "position", position, target_position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
-		$Sprite/AnimationPlayer.play("move-down")
+		set_walking()
 		
 func take_damage(damage):
 	var label_instance = pop_label.instance()
@@ -170,3 +167,33 @@ func heal_damage(damage):
 	current_health = min(max_health, current_health + damage)
 	var health_percentage = float(current_health) / float(max_health)
 	ui.set_health(health_percentage)
+
+func set_idle():
+	match direction:
+		ProjectGlobals.CARDINALITY.North:
+			if $Sprite/AnimationPlayer.current_animation != "idle-up":
+				$Sprite/AnimationPlayer.play("idle-up")
+		ProjectGlobals.CARDINALITY.South:
+			if $Sprite/AnimationPlayer.current_animation != "idle_down":
+				$Sprite/AnimationPlayer.play("idle-down")
+		ProjectGlobals.CARDINALITY.East:
+			if $Sprite/AnimationPlayer.current_animation != "idle-right":
+				$Sprite/AnimationPlayer.play("idle-right")
+		ProjectGlobals.CARDINALITY.West:
+			if $Sprite/AnimationPlayer.current_animation != "idle-left":
+				$Sprite/AnimationPlayer.play("idle-left")
+				
+func set_walking():
+	match direction:
+		ProjectGlobals.CARDINALITY.North:
+			if $Sprite/AnimationPlayer.current_animation != "move-up":
+				$Sprite/AnimationPlayer.play("move-up")
+		ProjectGlobals.CARDINALITY.South:
+			if $Sprite/AnimationPlayer.current_animation != "move_down":
+				$Sprite/AnimationPlayer.play("move-down")
+		ProjectGlobals.CARDINALITY.East:
+			if $Sprite/AnimationPlayer.current_animation != "move-right":
+				$Sprite/AnimationPlayer.play("move-right")
+		ProjectGlobals.CARDINALITY.West:
+			if $Sprite/AnimationPlayer.current_animation != "move-left":
+				$Sprite/AnimationPlayer.play("move-left")
