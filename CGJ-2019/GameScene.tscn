@@ -17,7 +17,6 @@
 [ext_resource path="res://Themes/Themes.tres" type="Theme" id=15]
 [ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=16]
 
-
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
 

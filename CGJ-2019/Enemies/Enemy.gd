@@ -84,7 +84,7 @@ func take_damage(damage):
 	
 func update_position(x, y):	
 	tile = Vector2(x,y) / ProjectGlobals.TILE_SIZE
-	tween.interpolate_property(self, "position", position, Vector2(x,y), 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, "position", position, Vector2(x,y), 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	#self.position = path[1]
 	

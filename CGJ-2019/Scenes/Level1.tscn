@@ -102,4 +102,3 @@ valign = 1
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
-autoplay = true
