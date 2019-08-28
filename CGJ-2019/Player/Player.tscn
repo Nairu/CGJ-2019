@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player.png" type="Texture" id=2]
@@ -6,7 +6,42 @@
 [ext_resource path="res://Themes/Themes.tres" type="Theme" id=4]
 [ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Animation" id=1]
+resource_name = "idle-down"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 2 ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "move-down"
+length = 0.35
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 26, 27, 28, 27 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 16, 16 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -19,9 +54,11 @@ texture = ExtResource( 2 )
 centered = false
 vframes = 8
 hframes = 6
-frame = 24
+frame = 27
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/idle-down = SubResource( 1 )
+anims/move-down = SubResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="Sprite"]
 position = Vector2( 16, 16 )
@@ -37,7 +74,7 @@ position = Vector2( -16, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 16, 16 )
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -72.3018

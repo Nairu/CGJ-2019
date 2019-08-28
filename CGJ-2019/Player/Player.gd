@@ -20,6 +20,10 @@ var cur_item = null
 
 func _ready():
 	ui.visible = true
+	
+func _process(delta):
+	if not tween.is_active() and $Sprite/AnimationPlayer.current_animation != "idle_down":
+		$Sprite/AnimationPlayer.play("idle-down")
 
 func _input(event):
 	var triggered_enemies = false
@@ -128,6 +132,7 @@ func try_move(dx, dy):
 		
 		tween.interpolate_property(self, "position", position, target_position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
+		$Sprite/AnimationPlayer.play("move-down")
 		
 func take_damage(damage):
 	var label_instance = pop_label.instance()
