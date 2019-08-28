@@ -60,6 +60,7 @@ position = Vector2( 160, 128 )
 [node name="Enemy2" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 160, 96 )
 potential_item_drops = [ "res://Items/Potion.tscn" ]
+item_drop_chance = 1.0
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource( 14 )]
 position = Vector2( 192, 160 )
@@ -102,3 +103,5 @@ valign = 1
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
+pitch_scale = 1.5
+autoplay = true

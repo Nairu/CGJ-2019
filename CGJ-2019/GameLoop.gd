@@ -62,11 +62,11 @@ func clear_feature(x, y):
 	
 func get_item(x, y):
 	var tile_space = tile_coord(x, y)
-	var item = items.get_item(x, y)
-	if item:
-		items.clear_item(x, y)
-	return item
-		
+	var item_list = items.get_items(x, y)
+	if item_list and item_list.size() > 0:
+		item_list.clear_items(x, y)
+	return item_list
+	
 func feature_interact(x, y):
 	var tile_space = tile_coord(x, y)
 	return features.feature_interact(tile_space.x, tile_space.y)
