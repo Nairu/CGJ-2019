@@ -2,7 +2,10 @@ extends KinematicBody2D
 class_name EnemyBookcase
 
 export(int) var max_health = 10
+export(int) var damage = 1
 export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
+export(Array) var potential_item_drops
+export(float) var item_drop_chance = 0.2
 
 onready var GameManager = get_node("/root/GameScene")
 onready var tween = $AnimationTween
@@ -36,7 +39,7 @@ func take_turn(player):
 					update_position(path[1].x, path[1].y)
 					path.remove(1)
 			else:
-				player.take_damage(1)
+				player.take_damage(damage)
 		cur_turn=0
 	else:
 		cur_turn+=1
@@ -57,6 +60,13 @@ func take_damage(damage):
 	current_health = max(0, current_health - damage)
 	health_bar.rect_size.x = ProjectGlobals.TILE_SIZE * current_health / max_health
 	dead = current_health == 0
+	
+	if randf() <= item_drop_chance and potential_item_drops.size() > 0:
+			potential_item_drops.shuffle()
+			var item_inst = load(potential_item_drops[0]).instance()
+			item_inst.position = position
+			item_inst._ready()
+			get_node("/root/GameScene/Items").add_item(item_inst)
 	
 func update_position(x, y):	
 	tile = Vector2(x,y) / ProjectGlobals.TILE_SIZE

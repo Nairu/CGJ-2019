@@ -51,11 +51,13 @@ func feature_interact(x, y):
 	return return_string
 
 func feature_exists(x, y):
-	return (Vector2(x,y) in feature_list)
+	return (Vector2(x,y) in feature_list) and feature_list[Vector2(x,y)].visible
 
 func get_feature(x, y):
 	if Vector2(x,y) in feature_list:
-		return feature_list[Vector2(x,y)]
+		var feature = feature_list[Vector2(x,y)]
+		if feature.visible:
+			return feature
 	return null
 	
 func clear_feature(x, y):
