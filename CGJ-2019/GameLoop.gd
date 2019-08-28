@@ -2,6 +2,7 @@ extends Node2D
 
 onready var game_map = $GameWorld
 onready var features = $Features
+onready var items = $Items
 onready var enemies = $Enemies
 onready var player = $Player
 onready var game_over_screen = $CanvasLayer/GameOver
@@ -11,13 +12,41 @@ var game_over = false
 func process_turn():
 	game_map.enable_points()
 	enemies.handle_turns(self, player)
-	
+
 func tile_coord(x,y):
 	return game_map.world_to_map(Vector2(x,y))
+	
+func adjacent_tile_world_coord(x, y, direction):
+	match direction:
+		ProjectGlobals.CARDINALITY.North:
+			return Vector2(x,y-32)
+		ProjectGlobals.CARDINALITY.East:
+			return Vector2(x+32,y)
+		ProjectGlobals.CARDINALITY.South:
+			return Vector2(x,y+32)
+		ProjectGlobals.CARDINALITY.West:
+			return Vector2(x-32,y)
+	return Vector2(x,y)
+	
+func adjacent_tile_coord(x, y, direction):
+	match direction:
+		ProjectGlobals.CARDINALITY.North:
+			return tile_coord(x,y-32)
+		ProjectGlobals.CARDINALITY.East:
+			return tile_coord(x+32,y)
+		ProjectGlobals.CARDINALITY.South:
+			return tile_coord(x,y+32)
+		ProjectGlobals.CARDINALITY.West:
+			return tile_coord(x-32,y)
+	return tile_coord(x,y)
 
 func get_tile(x, y):
 	var cell_position = game_map.world_to_map(Vector2(x, y))
 	return game_map.get_cell(cell_position.x, cell_position.y)
+	
+func set_tile_visible(x, y, visible):
+	game_map.set_cell(x, y, 0 if visible else -1)
+	game_map.update_bitmask_area(Vector2(x, y))
 	
 func get_feature(x,y):
 	var tile_space = tile_coord(x, y)
@@ -30,6 +59,13 @@ func get_enemy(x,y):
 func clear_feature(x, y):
 	var tile_space = tile_coord(x, y)
 	features.clear_feature(tile_space.x, tile_space.y)
+	
+func get_item(x, y):
+	var tile_space = tile_coord(x, y)
+	var item = items.get_item(x, y)
+	if item:
+		items.clear_item(x, y)
+	return item
 		
 func feature_interact(x, y):
 	var tile_space = tile_coord(x, y)

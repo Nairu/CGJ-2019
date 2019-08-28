@@ -10,22 +10,29 @@ func _ready():
         enemy_list.append(enemy)
 
 func handle_turns(game_manager, player):
+	# This gets us the min and max position of the camera, so we can check to see if enemies are in view.
+	var ctrans = get_canvas_transform()
+	var min_pos = -ctrans.get_origin() / ctrans.get_scale()
+	var view_size = get_viewport_rect().size / ctrans.get_scale()
+	var max_pos = min_pos + view_size
+	
 	var dead_enemies = []
 	for enemy in enemy_list:
 		if enemy.dead:
 			dead_enemies.append(enemy)
 			continue
-			
-		var previous_pos = enemy.position
-		var path = get_traversable_path(enemy, game_manager, player)
-		if path:
-			enemy.path = path
-		else:
-			enemy.path = [enemy.position]
 		
-		enemy.take_turn(player)
-		if enemy.tile == player.tile:
-			enemy.position = previous_pos
+		if enemy.position > min_pos and enemy.position < max_pos:
+			var previous_pos = enemy.position
+			var path = get_traversable_path(enemy, game_manager, player)
+			if path:
+				enemy.path = path
+			else:
+				enemy.path = [enemy.position]
+			
+			enemy.take_turn(player)
+			if enemy.tile == player.tile:
+				enemy.position = previous_pos
 	
 	for enemy in dead_enemies:
 		remove_enemy(enemy)

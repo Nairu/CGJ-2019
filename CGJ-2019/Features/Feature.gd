@@ -1,13 +1,9 @@
 extends KinematicBody2D
 
-var tile = Vector2(0,0)
+onready var tile = position / ProjectGlobals.TILE_SIZE
 var destroy = false
-export(Globals.FEATURE_TYPE) var type
+export(ProjectGlobals.FEATURE_TYPE) var type
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	tile = position / Globals.TILE_SIZE
-	
 func set_sprite(sprite):
 	$Sprite.texture = sprite
 	

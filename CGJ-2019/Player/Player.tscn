@@ -2,9 +2,9 @@
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Player/player.png" type="Texture" id=2]
-[ext_resource path="res://Themes/Themes.tres" type="Theme" id=3]
-[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=4]
-[ext_resource path="res://Sprites/light_mask.png" type="Texture" id=5]
+[ext_resource path="res://Util/ScreenShake.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=4]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -19,16 +19,21 @@ texture = ExtResource( 2 )
 centered = false
 vframes = 8
 hframes = 6
+frame = 24
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 
 [node name="Camera2D" type="Camera2D" parent="Sprite"]
 position = Vector2( 16, 16 )
 current = true
+zoom = Vector2( 0.5, 0.5 )
 drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
+
+[node name="ScreenShake" parent="Sprite/Camera2D" instance=ExtResource( 3 )]
+position = Vector2( -16, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 16, 16 )
@@ -39,23 +44,16 @@ margin_left = -72.3018
 margin_top = -19.918
 margin_right = 107.698
 margin_bottom = 0.081974
-theme = ExtResource( 3 )
-custom_fonts/font = ExtResource( 4 )
+theme = ExtResource( 4 )
+custom_fonts/font = ExtResource( 5 )
 align = 1
 valign = 1
 max_lines_visible = 1
 
 [node name="HPBar" type="ColorRect" parent="."]
+visible = false
 margin_right = 32.0
 margin_bottom = 2.0
 color = Color( 0.14902, 1, 0, 1 )
 
 [node name="MovementTween" type="Tween" parent="."]
-
-[node name="Light2D" type="Light2D" parent="."]
-position = Vector2( 16, 16 )
-texture = ExtResource( 5 )
-texture_scale = 5.0
-mode = 3
-shadow_enabled = true
-shadow_color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
