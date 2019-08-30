@@ -1,7 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Enemies/EnemySplooge.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/splooge.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Audio/SFX/Slime Damage 1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SFX/Slime Damage 2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Audio/SFX/Slime Damage 3.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/Slime Damage 4.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Audio/SFX/Slime Damage 5.ogg" type="AudioStream" id=6]
+[ext_resource path="res://Audio/SFX/Slime Damage 6.ogg" type="AudioStream" id=7]
+[ext_resource path="res://Audio/SFX/Slime Damage 7.ogg" type="AudioStream" id=8]
+[ext_resource path="res://Audio/SFX/Slime Damage 8.ogg" type="AudioStream" id=9]
+[ext_resource path="res://Sprites/splooge.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -25,9 +33,10 @@ extents = Vector2( 16, 16 )
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
+damage_noises = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 10 )
 centered = false
 hframes = 4
 frame = 3
@@ -54,8 +63,5 @@ color = Color( 0.803922, 1, 0, 1 )
 [node name="AnimationTween" type="Tween" parent="."]
 
 [node name="MoveBarTween" type="Tween" parent="."]
-
-[node name="OnScreen" type="VisibilityNotifier2D" parent="."]
-rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]

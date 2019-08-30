@@ -139,7 +139,7 @@ func try_move(dx, dy):
 #			$Label.text = ret
 		return
 			
-	if game_world.get_tile(target_position.x, target_position.y) != -1:
+	if game_world.traversable(target_position.x, target_position.y):
 		tile = target_position / ProjectGlobals.TILE_SIZE
 		# check to see if we get an item from that tile too.
 		var items = game_world.get_item(tile.x, tile.y)

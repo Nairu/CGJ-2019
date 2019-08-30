@@ -1,7 +1,7 @@
 extends Node
 
 const TILE_SIZE = 32
-enum FEATURE_TYPE {Door, Wardrobe, Chest, ChestDrawer, Bookcase, Stairs, Lever}
+enum FEATURE_TYPE {Door, Wardrobe, Chest, ChestDrawer, Bookcase, Stairs, Bed, Barrel, Lever}
 enum ITEM_TYPE {Key, Potion}
 enum CARDINALITY {North,East,South,West}
 

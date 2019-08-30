@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Enemies/EnemySplooge.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/splooge.png" type="Texture" id=2]
+[ext_resource path="res://Enemies/EnemyMimfle.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/mimfle-sheet.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
-length = 0.6
+length = 0.75
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -14,10 +14,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.152284, 0.3, 0.451844 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.152284, 0.3, 0.451844, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 3 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -25,12 +25,14 @@ extents = Vector2( 16, 16 )
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
+max_health = 5
+damage = 3
+turn_speed = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 centered = false
-hframes = 4
-frame = 3
+hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Idle = SubResource( 1 )
@@ -54,8 +56,5 @@ color = Color( 0.803922, 1, 0, 1 )
 [node name="AnimationTween" type="Tween" parent="."]
 
 [node name="MoveBarTween" type="Tween" parent="."]
-
-[node name="OnScreen" type="VisibilityNotifier2D" parent="."]
-rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]

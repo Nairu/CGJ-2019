@@ -19,6 +19,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Enemies/EnemyBookcase.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "EnemyMimfle",
+"language": "GDScript",
+"path": "res://Enemies/EnemyMimfle.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "EnemySplooge",
+"language": "GDScript",
+"path": "res://Enemies/EnemySplooge.gd"
+}, {
 "base": "Node2D",
 "class": "Item",
 "language": "GDScript",
@@ -32,6 +42,8 @@ _global_script_classes=[ {
 _global_script_class_icons={
 "EnemyBase": "",
 "EnemyBookcase": "",
+"EnemyMimfle": "",
+"EnemySplooge": "",
 "Item": "",
 "ScreenShake": ""
 }

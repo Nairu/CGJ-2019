@@ -16,15 +16,19 @@ func _ready():
 	var random = RandomNumberGenerator.new()
 	random.randomize()
 	
-	var data = range(sprites.size())
+	var sprite_list = sprites.duplicate()
+	
 	for i in random.randi_range(2, 5):
-		data.shuffle()
+		sprite_list.shuffle()
 	
 	for i in ProjectGlobals.FEATURE_TYPE.values():
+		print("Current index: " + str(i))
 		if i == ProjectGlobals.FEATURE_TYPE.Lever:
 			type_map[i] = load("res://Sprites/lever-up-front.png")
 		else:
-			type_map[i] = sprites[data[i]]
+			var sprite = sprites.pop_front()
+			print(sprite)
+			type_map[i] = sprite_list.pop_back()
 	
 	for feature in get_children():
 		feature.set_sprite(type_map[feature.type])
