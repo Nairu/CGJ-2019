@@ -19,20 +19,24 @@ func handle_turns(game_manager, player):
 	var dead_enemies = []
 	for enemy in enemy_list:
 		if enemy.dead:
-			dead_enemies.append(enemy)
 			continue
 		
+		var previous_pos = enemy.position
 		if enemy.position > min_pos and enemy.position < max_pos:
-			var previous_pos = enemy.position
-			var path = get_traversable_path(enemy, game_manager, player)
-			if path:
-				enemy.path = path
-			else:
-				enemy.path = [enemy.position]
+			if not enemy.ignores_path:
+				var path = get_traversable_path(enemy, game_manager, player)
+				if path:
+					enemy.path = path
+				else:
+					enemy.path = [enemy.position]
 			
-			enemy.take_turn(player)
+			enemy.take_turn(game_manager, player)
 			if enemy.tile == player.tile:
 				enemy.position = previous_pos
+		
+	for enemy in enemy_list:
+		if enemy.dead:
+			dead_enemies.append(enemy)
 	
 	for enemy in dead_enemies:
 		remove_enemy(enemy)
@@ -66,3 +70,7 @@ func get_enemy(x, y):
 func remove_enemy(enemy):
 	enemy_list.erase(enemy)
 	enemy.queue_free()
+	
+func add_enemy(enemy):
+	enemy_list.append(enemy)
+	add_child(enemy)

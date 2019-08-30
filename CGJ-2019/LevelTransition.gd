@@ -7,6 +7,6 @@ export(bool) var flip
 func _ready():
 	$Sprite.flip_h = flip
 
-func interact():
+func interact(player):
 	# Go to the next level!
 	get_tree().change_scene_to(next_level)

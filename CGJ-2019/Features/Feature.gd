@@ -7,5 +7,5 @@ export(ProjectGlobals.FEATURE_TYPE) var type
 func set_sprite(sprite):
 	$Sprite.texture = sprite
 	
-func interact():
+func interact(player):
 	return "Doesn't look like anything to me"

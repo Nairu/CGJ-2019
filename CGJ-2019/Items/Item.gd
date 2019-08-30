@@ -13,6 +13,7 @@ export(int) var usages = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tile = position / ProjectGlobals.TILE_SIZE
+	icon = $Sprite.texture
 
 func set_sprite(sprite):
 	$Sprite.texture = sprite

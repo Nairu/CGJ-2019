@@ -74,20 +74,25 @@ margin_left = 88.0
 margin_right = -72.0
 
 [node name="Popup" type="Popup" parent="."]
+visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 
 [node name="Panel" type="Panel" parent="Popup"]
-margin_left = 96.0
-margin_top = 64.0
-margin_right = 544.0
-margin_bottom = 128.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 416.0
+margin_top = 196.0
+margin_right = -416.0
+margin_bottom = -396.0
 
 [node name="Panel3" type="ColorRect" parent="Popup/Panel"]
-margin_left = 4.0
-margin_top = 4.0
-margin_right = 444.0
-margin_bottom = 60.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
 color = Color( 0.217896, 0.217896, 0.234375, 1 )
 
 [node name="DescriptionLabel" type="Label" parent="Popup/Panel/Panel3"]

@@ -38,7 +38,7 @@ func set_type_descriptions():
 	description_map[ProjectGlobals.FEATURE_TYPE.Bookcase] = "This tall wooden object seems to be stacked with books..."
 	description_map[ProjectGlobals.FEATURE_TYPE.Stairs] = "The floor goes upwards here, taking me to another floor..."
 
-func feature_interact(x, y):
+func feature_interact(player, x, y):
 	var feature = get_feature(x, y)
 	
 	var return_string = ""
@@ -47,7 +47,7 @@ func feature_interact(x, y):
 			return_string = description_map[feature.type]
 			description_map.erase(feature.type)
 		else:
-			return_string = feature.interact()
+			return_string = feature.interact(player)
 			
 			if feature.destroy:
 				clear_feature(x,y)

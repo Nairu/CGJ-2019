@@ -18,6 +18,7 @@ onready var current_health = max_health
 var dead = false
 
 var turn_speed = 2
+var ignores_path = false
 var path
 onready var tile = position / ProjectGlobals.TILE_SIZE
 
@@ -40,7 +41,7 @@ func viewport_exited(viewport):
 	on_screen = false
 	
 var cur_turn = 0
-func take_turn(player):
+func take_turn(game_manager, player):
 	if !on_screen:
 		return
 	
@@ -48,6 +49,10 @@ func take_turn(player):
 	if cur_turn >= turn_speed:
 		if path:
 			if path.size() > 2:
+				if GameManager.path_blocked_by_feature(path):
+					cur_turn=0
+					return
+						
 				if (GameManager.traversable(path[1].x, path[1].y)):
 					update_position(path[1].x, path[1].y)
 					path.remove(1)
@@ -65,7 +70,7 @@ func take_damage(damage):
 	label_instance.position = position + Vector2(rand_range(0,16) - 8, rand_range(0,8) - 4)
 	label_instance.text = str(damage)
 	label_instance.duration = 0.5
-	label_instance.float_distance = 3
+	label_instance.float_distance = 100
 	label_instance.final_scale = Vector2(1.2, 1.2)
 	get_parent().add_child(label_instance)
 	label_instance.pop()

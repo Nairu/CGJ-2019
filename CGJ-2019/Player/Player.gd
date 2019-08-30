@@ -65,7 +65,9 @@ func _input(event):
 			if cur_item.consumed:
 				ui.set_item_icon(null)
 				cur_item = null
-				triggered_enemies = true
+			triggered_enemies = true
+			tween.interpolate_property(self, "position", position, position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			tween.start()
 		
 	if game_world.game_over:
 		print("Resetting the world!")
@@ -175,7 +177,7 @@ func set_idle():
 			if $Sprite/AnimationPlayer.current_animation != "idle-up":
 				$Sprite/AnimationPlayer.play("idle-up")
 		ProjectGlobals.CARDINALITY.South:
-			if $Sprite/AnimationPlayer.current_animation != "idle_down":
+			if $Sprite/AnimationPlayer.current_animation != "idle-down":
 				$Sprite/AnimationPlayer.play("idle-down")
 		ProjectGlobals.CARDINALITY.East:
 			if $Sprite/AnimationPlayer.current_animation != "idle-right":
@@ -190,7 +192,7 @@ func set_walking():
 			if $Sprite/AnimationPlayer.current_animation != "move-up":
 				$Sprite/AnimationPlayer.play("move-up")
 		ProjectGlobals.CARDINALITY.South:
-			if $Sprite/AnimationPlayer.current_animation != "move_down":
+			if $Sprite/AnimationPlayer.current_animation != "move-down":
 				$Sprite/AnimationPlayer.play("move-down")
 		ProjectGlobals.CARDINALITY.East:
 			if $Sprite/AnimationPlayer.current_animation != "move-right":
