@@ -65,7 +65,9 @@ func _input(event):
 			if cur_item.consumed:
 				ui.set_item_icon(null)
 				cur_item = null
-				triggered_enemies = true
+			triggered_enemies = true
+			tween.interpolate_property(self, "position", position, position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+			tween.start()
 		
 	if game_world.game_over:
 		print("Resetting the world!")
@@ -123,9 +125,10 @@ func try_move(dx, dy):
 	if game_world.get_tile(target_position.x, target_position.y) != -1:
 		tile = target_position / ProjectGlobals.TILE_SIZE
 		# check to see if we get an item from that tile too.
-		var item = game_world.get_item(tile.x, tile.y)
-		if item:
-			ui.add_item(item)
+		var items = game_world.get_item(tile.x, tile.y)
+		if items and items.size() > 0:
+			for item in items:
+				ui.add_item(item)
 		
 		tween.interpolate_property(self, "position", position, target_position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
@@ -174,7 +177,7 @@ func set_idle():
 			if $Sprite/AnimationPlayer.current_animation != "idle-up":
 				$Sprite/AnimationPlayer.play("idle-up")
 		ProjectGlobals.CARDINALITY.South:
-			if $Sprite/AnimationPlayer.current_animation != "idle_down":
+			if $Sprite/AnimationPlayer.current_animation != "idle-down":
 				$Sprite/AnimationPlayer.play("idle-down")
 		ProjectGlobals.CARDINALITY.East:
 			if $Sprite/AnimationPlayer.current_animation != "idle-right":
@@ -189,7 +192,7 @@ func set_walking():
 			if $Sprite/AnimationPlayer.current_animation != "move-up":
 				$Sprite/AnimationPlayer.play("move-up")
 		ProjectGlobals.CARDINALITY.South:
-			if $Sprite/AnimationPlayer.current_animation != "move_down":
+			if $Sprite/AnimationPlayer.current_animation != "move-down":
 				$Sprite/AnimationPlayer.play("move-down")
 		ProjectGlobals.CARDINALITY.East:
 			if $Sprite/AnimationPlayer.current_animation != "move-right":

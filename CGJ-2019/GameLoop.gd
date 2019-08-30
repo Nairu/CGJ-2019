@@ -52,6 +52,9 @@ func get_feature(x,y):
 	var tile_space = tile_coord(x, y)
 	return features.get_feature(tile_space.x, tile_space.y)
 	
+func add_enemy(enemy):
+	enemies.add_enemy(enemy)
+	
 func get_enemy(x,y):
 	var tile_space = tile_coord(x, y)
 	return enemies.get_enemy(tile_space.x, tile_space.y)
@@ -62,14 +65,14 @@ func clear_feature(x, y):
 	
 func get_item(x, y):
 	var tile_space = tile_coord(x, y)
-	var item = items.get_item(x, y)
-	if item:
-		items.clear_item(x, y)
-	return item
-		
+	var item_list = items.get_items(x, y)
+	if item_list and item_list.size() > 0:
+		items.clear_items(x, y)
+	return item_list
+	
 func feature_interact(x, y):
 	var tile_space = tile_coord(x, y)
-	return features.feature_interact(tile_space.x, tile_space.y)
+	return features.feature_interact(player, tile_space.x, tile_space.y)
 	
 func path(start, end):
 	return game_map.get_astar_path(start, end)
@@ -80,14 +83,27 @@ func path_to_player(start):
 func set_point_disabled(x, y, disabled):
 	game_map.set_point_disabled(tile_coord(x, y), disabled)
 
-func traversable(x, y):
+func path_blocked_by_feature(path):
+	for point in path:
+		var tile_space = tile_coord(point.x, point.y)
+		if features.feature_exists(tile_space.x, tile_space.y):
+			return true
+	return false
+
+func traversable(x, y, ignore_enemies=false):
 	var traversable = true
 	var tile_space = tile_coord(x, y)
 	if features.feature_exists(tile_space.x, tile_space.y):
+		print("Can't move because of feature")
 		traversable = false
 	if tile_space == player.tile:
+		print("Can't move because of player")
 		traversable = false
-	if enemies.get_enemy(tile_space.x, tile_space.y):
+	if ignore_enemies == false and enemies.get_enemy(tile_space.x, tile_space.y):
+		print("Can't move because of enemy")
+		traversable = false
+	if get_tile(x, y) == -1:
+		print("Can't move because of wall")
 		traversable = false
 	return traversable
 	

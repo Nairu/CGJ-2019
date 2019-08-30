@@ -18,6 +18,7 @@ onready var move_bar = $MoveBar
 var dead = false
 
 var turn_speed = 1
+var ignores_path = false
 var path
 onready var tile = position / ProjectGlobals.TILE_SIZE
 var pixel_snapping = false
@@ -31,15 +32,18 @@ func _ready():
 	#tween.start()
 
 var cur_turn = 0
-func take_turn(player):
-	print (visibility.is_on_screen())
+func take_turn(game_manager, player):
 	if visibility.is_on_screen() == false:
 		return
 		
 	#GameManager.set_point_disabled(position.x, position.y, true)
 	if cur_turn >= turn_speed:
-		if path:
+		if path:			
 			if path.size() > 2:
+				if GameManager.path_blocked_by_feature(path):
+					cur_turn=0
+					return
+				
 				if (GameManager.traversable(path[1].x, path[1].y)):
 					update_position(path[1].x, path[1].y)
 					path.remove(1)
@@ -66,7 +70,8 @@ func take_damage(damage):
 	health_bar.rect_size.x = ProjectGlobals.TILE_SIZE * current_health / max_health
 	dead = current_health == 0
 	
-	if randf() <= item_drop_chance and potential_item_drops.size() > 0:
+	if dead:
+		if randf() <= item_drop_chance and potential_item_drops.size() > 0:
 			potential_item_drops.shuffle()
 			var item_inst = load(potential_item_drops[0]).instance()
 			item_inst.position = position

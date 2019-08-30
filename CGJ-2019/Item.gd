@@ -15,6 +15,7 @@ func _ready():
 
 func set_sprite(sprite):
 	$Sprite.texture = sprite
+	$Sprite.position += Vector2(rand_range(-3, 4), rand_range(-3, 4))
 	icon = sprite
 
 func use_item(player, game_world):

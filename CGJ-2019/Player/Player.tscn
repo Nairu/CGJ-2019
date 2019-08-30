@@ -6,7 +6,7 @@
 [ext_resource path="res://Themes/Themes.tres" type="Theme" id=4]
 [ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=5]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=9]
 resource_name = "idle-down"
 length = 0.7
 loop = true
@@ -20,10 +20,10 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 2, 2 ]
+"values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=1]
 resource_name = "idle-left"
 length = 0.7
 tracks/0/type = "value"
@@ -39,7 +39,7 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=2]
 resource_name = "idle-right"
 length = 0.7
 tracks/0/type = "value"
@@ -55,7 +55,7 @@ tracks/0/keys = {
 "values": [ 18, 19, 20, 21 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=3]
 resource_name = "idle-up"
 length = 0.7
 tracks/0/type = "value"
@@ -71,8 +71,7 @@ tracks/0/keys = {
 "values": [ 12, 13, 14, 15 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "move-down"
+[sub_resource type="Animation" id=4]
 length = 0.35
 loop = true
 step = 0.05
@@ -89,8 +88,7 @@ tracks/0/keys = {
 "values": [ 26, 27, 28, 27 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "move-left"
+[sub_resource type="Animation" id=5]
 length = 0.35
 loop = true
 tracks/0/type = "value"
@@ -106,8 +104,7 @@ tracks/0/keys = {
 "values": [ 32, 33, 34, 32 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "move-right"
+[sub_resource type="Animation" id=6]
 length = 0.35
 loop = true
 tracks/0/type = "value"
@@ -123,8 +120,7 @@ tracks/0/keys = {
 "values": [ 44, 45, 46, 45, 40 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "move-up"
+[sub_resource type="Animation" id=7]
 length = 0.35
 loop = true
 tracks/0/type = "value"
@@ -140,7 +136,7 @@ tracks/0/keys = {
 "values": [ 38, 39, 40, 39 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=8]
 extents = Vector2( 16, 16 )
 
 [node name="Player" type="KinematicBody2D"]
@@ -153,17 +149,17 @@ texture = ExtResource( 2 )
 centered = false
 vframes = 8
 hframes = 6
-frame = 21
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/idle-down = SubResource( 1 )
-anims/idle-left = SubResource( 7 )
-anims/idle-right = SubResource( 8 )
-anims/idle-up = SubResource( 9 )
-anims/move-down = SubResource( 3 )
-anims/move-left = SubResource( 4 )
-anims/move-right = SubResource( 5 )
-anims/move-up = SubResource( 6 )
+anims/idle-down = SubResource( 9 )
+anims/idle-left = SubResource( 1 )
+anims/idle-right = SubResource( 2 )
+anims/idle-up = SubResource( 3 )
+anims/move-down = SubResource( 4 )
+anims/move-left = SubResource( 5 )
+anims/move-right = SubResource( 6 )
+anims/move-up = SubResource( 7 )
 
 [node name="Camera2D" type="Camera2D" parent="Sprite"]
 position = Vector2( 16, 16 )
@@ -179,7 +175,7 @@ position = Vector2( -16, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 16, 16 )
-shape = SubResource( 2 )
+shape = SubResource( 8 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -72.3018

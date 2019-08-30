@@ -53,8 +53,8 @@ Globals="*res://Globals/ProjectGlobals.gd"
 
 [display]
 
-window/size/width=640
-window/size/height=320
+window/size/width=1280
+window/size/height=720
 window/stretch/mode="viewport"
 
 [importer_defaults]
