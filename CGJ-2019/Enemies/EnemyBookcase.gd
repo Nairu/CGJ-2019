@@ -6,6 +6,7 @@ export(int) var damage = 1
 export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
 export(Array) var potential_item_drops
 export(float) var item_drop_chance = 0.2
+export(Array) var damage_noises
 
 onready var GameManager = get_node("/root/GameScene")
 onready var tween = $AnimationTween
@@ -14,6 +15,7 @@ onready var health_bar = $HPBar
 onready var visibility = $OnScreen
 onready var current_health = max_health
 onready var move_bar = $MoveBar
+onready var noise = $Noise
 
 var dead = false
 
@@ -57,6 +59,10 @@ func take_turn(game_manager, player):
 	tween_move.start()
 
 func take_damage(damage):
+	damage_noises.shuffle()
+	noise.stream = damage_noises.front()
+	noise.play()
+	
 	var label_instance = pop_label.instance()
 	label_instance.position = position + Vector2(rand_range(0,16) - 8, rand_range(0,8) - 4)
 	label_instance.text = str(damage)

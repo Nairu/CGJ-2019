@@ -19,7 +19,7 @@
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Themes/Themes.tres" type="Theme" id=18]
 [ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=19]
-[ext_resource path="res://Audio/Music/The_Liar_Wizzard_OG_1.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Audio/Music/The Liar Wizzard-Loop.ogg" type="AudioStream" id=20]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -135,4 +135,4 @@ valign = 1
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
-autoplay = true
+volume_db = -10.0

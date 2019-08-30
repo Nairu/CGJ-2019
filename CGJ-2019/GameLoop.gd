@@ -9,6 +9,9 @@ onready var game_over_screen = $CanvasLayer/GameOver
 
 var game_over = false
 
+func _ready():
+	$Song.play(ProjectGlobals.music_seconds)
+
 func process_turn():
 	game_map.enable_points()
 	enemies.handle_turns(self, player)
@@ -113,4 +116,5 @@ func game_over():
 	
 func reset():
 	game_over = false
+	ProjectGlobals.music_seconds = $Song.get_playback_position()
 	get_tree().reload_current_scene()

@@ -1,12 +1,16 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
-[ext_resource path="res://Player/player.png" type="Texture" id=2]
-[ext_resource path="res://Util/ScreenShake.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Themes/Themes.tres" type="Theme" id=4]
-[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Audio/SFX/Player Damage 1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SFX/Player Damage 2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Audio/SFX/Player Damage 3.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/Player Damage 4.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Player/player.png" type="Texture" id=6]
+[ext_resource path="res://Util/ScreenShake.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=8]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=9]
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=1]
 resource_name = "idle-down"
 length = 0.7
 loop = true
@@ -23,8 +27,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "idle-left"
+[sub_resource type="Animation" id=2]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -39,8 +42,7 @@ tracks/0/keys = {
 "values": [ 6, 7, 8, 9 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle-right"
+[sub_resource type="Animation" id=3]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -55,8 +57,7 @@ tracks/0/keys = {
 "values": [ 18, 19, 20, 21 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle-up"
+[sub_resource type="Animation" id=4]
 length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
@@ -71,7 +72,7 @@ tracks/0/keys = {
 "values": [ 12, 13, 14, 15 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.35
 loop = true
 step = 0.05
@@ -88,7 +89,7 @@ tracks/0/keys = {
 "values": [ 26, 27, 28, 27 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 0.35
 loop = true
 tracks/0/type = "value"
@@ -104,7 +105,7 @@ tracks/0/keys = {
 "values": [ 32, 33, 34, 32 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.35
 loop = true
 tracks/0/type = "value"
@@ -120,7 +121,7 @@ tracks/0/keys = {
 "values": [ 44, 45, 46, 45, 40 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 0.35
 loop = true
 tracks/0/type = "value"
@@ -136,30 +137,31 @@ tracks/0/keys = {
 "values": [ 38, 39, 40, 39 ]
 }
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 16, 16 )
 
 [node name="Player" type="KinematicBody2D"]
 light_mask = 2
 script = ExtResource( 1 )
+player_hit_noises = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
 light_mask = 0
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 centered = false
 vframes = 8
 hframes = 6
 frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/idle-down = SubResource( 9 )
-anims/idle-left = SubResource( 1 )
-anims/idle-right = SubResource( 2 )
-anims/idle-up = SubResource( 3 )
-anims/move-down = SubResource( 4 )
-anims/move-left = SubResource( 5 )
-anims/move-right = SubResource( 6 )
-anims/move-up = SubResource( 7 )
+anims/idle-down = SubResource( 1 )
+anims/idle-left = SubResource( 2 )
+anims/idle-right = SubResource( 3 )
+anims/idle-up = SubResource( 4 )
+anims/move-down = SubResource( 5 )
+anims/move-left = SubResource( 6 )
+anims/move-right = SubResource( 7 )
+anims/move-up = SubResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="Sprite"]
 position = Vector2( 16, 16 )
@@ -170,20 +172,20 @@ drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
-[node name="ScreenShake" parent="Sprite/Camera2D" instance=ExtResource( 3 )]
+[node name="ScreenShake" parent="Sprite/Camera2D" instance=ExtResource( 7 )]
 position = Vector2( -16, -16 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 16, 16 )
-shape = SubResource( 8 )
+shape = SubResource( 9 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -72.3018
 margin_top = -19.918
 margin_right = 107.698
 margin_bottom = 0.081974
-theme = ExtResource( 4 )
-custom_fonts/font = ExtResource( 5 )
+theme = ExtResource( 8 )
+custom_fonts/font = ExtResource( 9 )
 align = 1
 valign = 1
 max_lines_visible = 1
@@ -195,3 +197,5 @@ margin_bottom = 2.0
 color = Color( 0.14902, 1, 0, 1 )
 
 [node name="MovementTween" type="Tween" parent="."]
+
+[node name="Noise" type="AudioStreamPlayer2D" parent="."]

@@ -24,11 +24,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Items/Item.gd"
 }, {
-"base": "Node",
-"class": "ProjectGlobals",
-"language": "GDScript",
-"path": "res://Globals/ProjectGlobals.gd"
-}, {
 "base": "Node2D",
 "class": "ScreenShake",
 "language": "GDScript",
@@ -38,7 +33,6 @@ _global_script_class_icons={
 "EnemyBase": "",
 "EnemyBookcase": "",
 "Item": "",
-"ProjectGlobals": "",
 "ScreenShake": ""
 }
 
@@ -49,7 +43,7 @@ run/main_scene="res://Scenes/Level1.tscn"
 
 [autoload]
 
-Globals="*res://Globals/ProjectGlobals.gd"
+ProjectGlobals="*res://Globals/ProjectGlobals.gd"
 
 [display]
 

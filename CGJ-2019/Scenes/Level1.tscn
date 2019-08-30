@@ -22,7 +22,7 @@
 [ext_resource path="res://UI/UI.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Themes/Themes.tres" type="Theme" id=21]
 [ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=22]
-[ext_resource path="res://Audio/Music/The_Liar_Wizzard_OG_1.ogg" type="AudioStream" id=23]
+[ext_resource path="res://Audio/Music/The Liar Wizzard-Loop.ogg" type="AudioStream" id=23]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -59,9 +59,9 @@ next_level = ExtResource( 14 )
 flip = true
 
 [node name="Chest" parent="Features" instance=ExtResource( 15 )]
-position = Vector2( 32, 0 )
+position = Vector2( 160, 32 )
 type = 2
-items = [ "res://Items/Bow.tscn", "res://Items/Dagger.tscn" ]
+items = [ "res://Items/Potion.tscn", "res://Items/Potion.tscn" ]
 
 [node name="Items" type="Node2D" parent="."]
 script = ExtResource( 16 )
@@ -119,4 +119,4 @@ valign = 1
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
-autoplay = true
+volume_db = -10.0

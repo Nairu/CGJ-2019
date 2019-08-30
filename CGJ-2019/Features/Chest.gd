@@ -14,7 +14,7 @@ func open():
 	locked = false
 
 func unlock(item):
-	if item.type == Globals.ITEM_TYPE.Key:
+	if item.type == ProjectGlobals.ITEM_TYPE.Key:
 		# return that we've unlocked, and unlock it.
 		open()
 		return "The key slides nicely into the lock, and you hear a loud click!"

@@ -1,16 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Enemies/EnemyBookcase.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/furniture-shadow.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/bookcase-front-floating.png" type="Texture" id=3]
-[ext_resource path="res://Enemies/idle_float.tres" type="Animation" id=4]
-[ext_resource path="res://Enemies/rise.tres" type="Animation" id=5]
+[ext_resource path="res://Audio/SFX/Wood damage 1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SFX/Wood damage 2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Audio/SFX/Wood damage 3.ogg" type="AudioStream" id=4]
+[ext_resource path="res://Audio/SFX/Wood damage 4.ogg" type="AudioStream" id=5]
+[ext_resource path="res://Sprites/furniture-shadow.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/bookcase-front-floating.png" type="Texture" id=7]
+[ext_resource path="res://Enemies/idle_float.tres" type="Animation" id=8]
+[ext_resource path="res://Enemies/rise.tres" type="Animation" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 1 )
+damage_noises = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ]
 
 [node name="HPBar" type="ColorRect" parent="."]
 margin_top = -3.0
@@ -19,17 +24,17 @@ margin_bottom = -1.0
 color = Color( 1, 0, 0, 1 )
 
 [node name="Shadow" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 6 )
 centered = false
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 3 )
+texture = ExtResource( 7 )
 centered = false
 offset = Vector2( 0, 0.977737 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/idle_float = ExtResource( 4 )
-anims/rise = ExtResource( 5 )
+anims/idle_float = ExtResource( 8 )
+anims/rise = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -47,3 +52,5 @@ color = Color( 0.803922, 1, 0, 1 )
 
 [node name="OnScreen" type="VisibilityNotifier2D" parent="."]
 rect = Rect2( 0, 0, 32, 32 )
+
+[node name="Noise" type="AudioStreamPlayer2D" parent="."]

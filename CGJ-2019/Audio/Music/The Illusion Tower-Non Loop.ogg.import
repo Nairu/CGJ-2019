@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/The Illusion Tower-Non Loop.ogg-29acd62f253a9851bb7693bad9c8d8b9.oggstr"
+
+[deps]
+
+source_file="res://Audio/Music/The Illusion Tower-Non Loop.ogg"
+dest_files=[ "res://.import/The Illusion Tower-Non Loop.ogg-29acd62f253a9851bb7693bad9c8d8b9.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

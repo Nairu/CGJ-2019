@@ -22,6 +22,12 @@ func set_description(description):
 func add_item(item):
 	$Inventory.add_item(item)
 	
+func get_items():
+	return $Inventory.get_items()
+	
+func set_items(items):
+	$Inventory.set_items(items)
+	
 func get_selected_item():
 	var item = $Inventory.use_item(current_idx)
 	return item
@@ -32,6 +38,7 @@ func set_item_icon(icon):
 func set_inventory_visible(visible):
 	$Inventory.visible = visible
 	inventory_open = visible
+	$Inventory/Panel/ItemList.select(0)
 	
 func _input(event):
 	if !event.is_pressed():
@@ -40,20 +47,24 @@ func _input(event):
 	if event.is_action("esc"):
 		# toggle the inventory.
 		$Inventory.visible = !$Inventory.visible
-	inventory_open = $Inventory.visible
+		inventory_open = $Inventory.visible
+		return
 	
-	if description_popup.visible:
-		description_popup.visible = false
+	if event.is_action("space"):
+		if description_popup.visible:
+			description_popup.visible = false
+			return
+
+	if inventory_open:
+		if event.is_action("left"):
+			current_idx -= 1
+		if event.is_action("right"):
+			current_idx += 1
+		if event.is_action("up"):
+			current_idx -= $Inventory/Panel/ItemList.max_columns-1
+		if event.is_action("down"):
+			current_idx += $Inventory/Panel/ItemList.max_columns-1
 		
-	if event.is_action("left"):
-		current_idx -= 1
-	if event.is_action("right"):
-		current_idx += 1
-	if event.is_action("up"):
-		current_idx -= $Inventory/Panel/ItemList.max_columns-1
-	if event.is_action("down"):
-		current_idx += $Inventory/Panel/ItemList.max_columns-1
-	
-	current_idx = max(0, min($Inventory.item_count()-1, current_idx))
-	$Inventory/Panel/ItemList.select(current_idx)
+		current_idx = max(0, min($Inventory.item_count()-1, current_idx))
+		$Inventory/Panel/ItemList.select(current_idx)
 	

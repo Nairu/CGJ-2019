@@ -39,12 +39,15 @@ sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9
 
 [node name="Door1" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( -64, -96 )
+locked = true
 
 [node name="Door2" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( 0, -96 )
+locked = true
 
 [node name="Door3" parent="Features" instance=ExtResource( 12 )]
 position = Vector2( 64, -96 )
+locked = true
 
 [node name="Lever1" parent="Features" instance=ExtResource( 13 )]
 position = Vector2( -64, -32 )
