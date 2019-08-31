@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes/GameCompleted.gd" type="Script" id=1]
+[ext_resource path="res://Themes/TitleFont.tres" type="DynamicFont" id=2]
+
+[node name="GameCompleted" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -594.5
+margin_top = -150.5
+margin_right = 594.5
+margin_bottom = 150.5
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 2 )
+text = "Thanks for playing, Sorry about the bugs!
+
+Press 'Escape' to close."
+align = 1
+valign = 1

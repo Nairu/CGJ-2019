@@ -12,7 +12,7 @@ func use_item(player, game_world):
 	var tile_coord = game_world.adjacent_tile_world_coord(player.position.x, player.position.y, player.direction)
 	var feature = game_world.get_feature(tile_coord.x, tile_coord.y)
 	if feature:
-		if feature.type == ProjectGlobals.FEATURE_TYPE.Door:
+		if feature.type == ProjectGlobals.FEATURE_TYPE.Door or feature.type == ProjectGlobals.FEATURE_TYPE.Chest:
 			if feature.locked == false:
 				return ""
 			

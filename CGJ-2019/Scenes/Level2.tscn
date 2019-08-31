@@ -1,7 +1,7 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://GameLoop.gd" type="Script" id=1]
-[ext_resource path="res://TileSets/BasicTileset.tres" type="TileSet" id=2]
+[ext_resource path="res://TileSets/BasicTileset4.tres" type="TileSet" id=2]
 [ext_resource path="res://NavigationMap.gd" type="Script" id=3]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://FeatureManager.gd" type="Script" id=5]
@@ -11,15 +11,28 @@
 [ext_resource path="res://Sprites/wardrobe-front.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/door-front.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/stairs-side-1.png" type="Texture" id=11]
-[ext_resource path="res://Features/Door.tscn" type="PackedScene" id=12]
-[ext_resource path="res://ItemManager.gd" type="Script" id=13]
-[ext_resource path="res://EnemyManager.gd" type="Script" id=14]
-[ext_resource path="res://Enemies/Enemy.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Enemies/EnemyBookcase.tscn" type="PackedScene" id=16]
-[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Themes/Themes.tres" type="Theme" id=18]
-[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=19]
-[ext_resource path="res://Audio/Music/The Liar Wizzard-Loop.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Sprites/barrel.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/bed.png" type="Texture" id=13]
+[ext_resource path="res://Features/Door.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Features/Stairs.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Level4.tscn" type="PackedScene" id=16]
+[ext_resource path="res://Sprites/stairs-side-3.png" type="Texture" id=17]
+[ext_resource path="res://Features/Chest.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Items/Dagger.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Items/GoldCoins.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Items/Gems.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Items/Key.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Features/Bookcase.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Features/Barrel.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Items/Food.tscn" type="PackedScene" id=26]
+[ext_resource path="res://ItemManager.gd" type="Script" id=27]
+[ext_resource path="res://EnemyManager.gd" type="Script" id=28]
+[ext_resource path="res://Enemies/EnemyBookcase.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Enemies/EnemySplooge.tscn" type="PackedScene" id=30]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=31]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=32]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=33]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -28,93 +41,103 @@ script = ExtResource( 1 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -458753, 0, 0, -524288, 0, 1, -524287, 0, 2, -393217, 0, 65536, -458752, 0, 65537, -458751, 0, 65538, -327681, 0, 131072, -393216, 0, 196608, -393215, 0, 131074, -327680, 0, 262149, -262144, 0, 262149, -196608, 0, 262147, -131072, 0, 262149, -131059, 0, 0, -131058, 0, 1, -131057, 0, 2, -10, 0, 196611, -9, 0, 327684, -8, 0, 196612, -7, 0, 196612, -6, 0, 196612, -5, 0, 196613, -1, 0, 0, -65536, 0, 262145, -65535, 0, 2, -65531, 0, 196611, -65530, 0, 327684, -65529, 0, 327684, -65528, 0, 327684, -65527, 0, 327684, -65526, 0, 196613, -65523, 0, 65536, -65522, 0, 65537, -65521, 0, 65538, 65524, 0, 196611, 65525, 0, 196612, 65526, 0, 327682, 65531, 0, 393217, 65532, 0, 327684, 65533, 0, 327684, 65534, 0, 327684, 65535, 0, 196609, 0, 0, 65537, 1, 0, 262144, 2, 0, 327684, 3, 0, 327684, 4, 0, 196612, 5, 0, 327682, 10, 0, 393217, 11, 0, 196612, 12, 0, 327684, 13, 0, 196609, 14, 0, 65537, 15, 0, 65538, 131060, 0, 262147, 131062, 0, 327683, 131063, 0, 327684, 131064, 0, 327684, 131065, 0, 196612, 131066, 0, 196612, 131067, 0, 327685, 131071, 0, 131072, 65536, 0, 196608, 65537, 0, 131074, 65541, 0, 327683, 65542, 0, 196612, 65543, 0, 327684, 65544, 0, 327684, 65545, 0, 196612, 65546, 0, 327685, 65549, 0, 65536, 65550, 0, 65537, 65551, 0, 65538, 196596, 0, 262149, 131072, 0, 262149, 131085, 0, 131072, 131086, 0, 131073, 131087, 0, 131074, 262132, 0, 327683, 262133, 0, 196612, 262134, 0, 327684, 262135, 0, 196612, 262136, 0, 524289, 262137, 0, 1, 262138, 0, 2, 196608, 0, 262149, 327672, 0, 65536, 327673, 0, 65537, 327674, 0, 65538, 262144, 0, 262147, 393208, 0, 131072, 393209, 0, 131073, 393210, 0, 131074, 393214, 0, 0, 393215, 0, 1, 327680, 0, 262145, 327681, 0, 1, 327682, 0, 2, 458750, 0, 65536, 458751, 0, 65537, 393216, 0, 65537, 393217, 0, 65537, 393218, 0, 65538, 524286, 0, 65536, 524287, 0, 65537, 458752, 0, 65537, 458753, 0, 65537, 458754, 0, 65538, 589822, 0, 131072, 589823, 0, 131073, 524288, 0, 131073, 524289, 0, 131073, 524290, 0, 131074 )
+tile_data = PoolIntArray( -131072, 0, 262146, -1, 0, 0, -65536, 0, 262145, -65535, 0, 2, -65533, 0, 262146, 65535, 0, 65536, 0, 0, 65537, 1, 0, 65538, 3, 0, 262149, 131071, 0, 131072, 65536, 0, 196608, 65537, 0, 589824, 65538, 0, 196612, 65539, 0, 327685, 131072, 0, 262147, 262138, 0, 196611, 262139, 0, 196612, 262140, 0, 327684, 262141, 0, 196613, 196608, 0, 262149, 196610, 0, 196611, 196611, 0, 196612, 196612, 0, 196613, 327672, 0, 196611, 327673, 0, 327684, 327674, 0, 327682, 327677, 0, 262149, 262144, 0, 262149, 262146, 0, 262147, 262148, 0, 655360, 262149, 0, 1, 262150, 0, 1, 262151, 0, 1, 262152, 0, 2, 393208, 0, 262147, 393210, 0, 327683, 393211, 0, 327684, 393212, 0, 327684, 393213, 0, 393218, 393214, 0, 327684, 393215, 0, 327684, 327680, 0, 458754, 327681, 0, 327684, 327682, 0, 327685, 327684, 0, 131072, 327685, 0, 131073, 327686, 0, 131073, 327687, 0, 131073, 327688, 0, 131074, 458744, 0, 262149, 393216, 0, 262149, 524280, 0, 262149, 524282, 0, 0, 524283, 0, 1, 524284, 0, 1, 524285, 0, 2, 524287, 0, 0, 458752, 0, 262145, 458753, 0, 1, 458754, 0, 1, 458755, 0, 2, 589816, 0, 262149, 589818, 0, 65536, 589819, 0, 65537, 589820, 0, 65537, 589821, 0, 65538, 589823, 0, 65536, 524288, 0, 65537, 524289, 0, 65537, 524290, 0, 65537, 524291, 0, 65538, 655352, 0, 262149, 655354, 0, 524288, 655355, 0, 131073, 655356, 0, 131073, 655357, 0, 131074, 655359, 0, 65536, 589824, 0, 65537, 589825, 0, 65537, 589826, 0, 65537, 589827, 0, 65538, 720888, 0, 327683, 720889, 0, 327684, 720890, 0, 327685, 720895, 0, 131072, 655360, 0, 131073, 655361, 0, 131073, 655362, 0, 131073, 655363, 0, 131074 )
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
 debug = true
 
 [node name="Features" type="Node2D" parent="."]
-editor/display_folded = true
 script = ExtResource( 5 )
-sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
+sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ]
 
-[node name="DoorLocked" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( 0, -128 )
+[node name="DoorExitLocked" parent="Features" instance=ExtResource( 14 )]
+position = Vector2( 96, 0 )
 locked = true
 
-[node name="DoorJammedLeft" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( -64, 0 )
+[node name="DoorEntrance" parent="Features" instance=ExtResource( 14 )]
+position = Vector2( 0, -64 )
+entrance = true
+
+[node name="DoorJammedRight" parent="Features" instance=ExtResource( 14 )]
+position = Vector2( 64, 128 )
 stuck = true
 
-[node name="DoorJammedRight" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( 64, 0 )
-stuck = true
-
-[node name="DoorLockedSouth" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( 0, 64 )
+[node name="DoorLockedTreasure" parent="Features" instance=ExtResource( 14 )]
+position = Vector2( 0, 192 )
 locked = true
 
-[node name="DoorLocked2" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( 0, -96 )
+[node name="Stairs" parent="Features" instance=ExtResource( 15 )]
+editor/display_folded = true
+position = Vector2( 96, -32 )
+next_level = ExtResource( 16 )
+
+[node name="Sprite" parent="Features/Stairs" index="0"]
+texture = ExtResource( 17 )
+
+[node name="ChestEmpty" parent="Features" instance=ExtResource( 18 )]
+position = Vector2( -96, 224 )
+
+[node name="ChestTreasure1" parent="Features" instance=ExtResource( 18 )]
+position = Vector2( -96, 256 )
+items = [ ExtResource( 19 ), ExtResource( 20 ) ]
+
+[node name="ChestTreasure2" parent="Features" instance=ExtResource( 18 )]
+position = Vector2( -96, 288 )
+items = [ ExtResource( 21 ), ExtResource( 21 ), ExtResource( 22 ) ]
 locked = true
 
-[node name="DoorLocked3" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( 0, -160 )
-locked = true
+[node name="ChestTreasure3" parent="Features" instance=ExtResource( 18 )]
+position = Vector2( 32, 320 )
+items = [ ExtResource( 23 ) ]
+
+[node name="BookcaseEmpty1" parent="Features" instance=ExtResource( 24 )]
+position = Vector2( 160, 128 )
+ignore_resprite = true
+
+[node name="BookcaseEmpty2" parent="Features" instance=ExtResource( 24 )]
+position = Vector2( 256, 128 )
+ignore_resprite = true
+
+[node name="Barrel" parent="Features" instance=ExtResource( 25 )]
+position = Vector2( 256, 160 )
+food = ExtResource( 26 )
+spawn_chance = 1.0
 
 [node name="Items" type="Node2D" parent="."]
-script = ExtResource( 13 )
+script = ExtResource( 27 )
 
 [node name="Enemies" type="Node2D" parent="."]
-editor/display_folded = true
-script = ExtResource( 14 )
+script = ExtResource( 28 )
 
-[node name="Splooge1" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( -224, 128 )
-max_health = 3
-damage = 2
-potential_item_drops = [ "res://Items/Potion.tscn" ]
-item_drop_chance = 0.5
-
-[node name="Splooge2" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 448, 0 )
-max_health = 3
-damage = 2
-potential_item_drops = [ "res://Items/Key.tscn" ]
-item_drop_chance = 1.0
-
-[node name="Splooge3" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 448, -32 )
-max_health = 3
-damage = 2
-
-[node name="Splooge4" parent="Enemies" instance=ExtResource( 15 )]
-position = Vector2( 448, 32 )
-max_health = 3
-damage = 2
-
-[node name="Bookcase1" parent="Enemies" instance=ExtResource( 16 )]
-position = Vector2( 0, 192 )
+[node name="Bookcase1" parent="Enemies" instance=ExtResource( 29 )]
+position = Vector2( 192, 128 )
 max_health = 15
 potential_item_drops = [ "res://Items/Key.tscn" ]
 item_drop_chance = 1.0
 
-[node name="Bookcase2" parent="Enemies" instance=ExtResource( 16 )]
-position = Vector2( 32, 224 )
+[node name="Bookcase2" parent="Enemies" instance=ExtResource( 29 )]
+position = Vector2( 224, 128 )
 max_health = 15
+item_drop_chance = 1.0
+
+[node name="Splooge1" parent="Enemies" instance=ExtResource( 30 )]
+position = Vector2( 64, 320 )
 potential_item_drops = [ "res://Items/Key.tscn" ]
 item_drop_chance = 1.0
 
-[node name="Bookcase3" parent="Enemies" instance=ExtResource( 16 )]
-position = Vector2( -32, 224 )
-max_health = 15
-potential_item_drops = [ "res://Items/Key.tscn" ]
-item_drop_chance = 1.0
+[node name="Splooge2" parent="Enemies" instance=ExtResource( 30 )]
+position = Vector2( 0, 320 )
+
+[node name="Splooge3" parent="Enemies" instance=ExtResource( 30 )]
+position = Vector2( 64, 256 )
+
+[node name="Splooge4" parent="Enemies" instance=ExtResource( 30 )]
+position = Vector2( 0, 256 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 17 )]
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 31 )]
 visible = false
 
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
@@ -127,12 +150,10 @@ color = Color( 0, 0, 0, 1 )
 [node name="Label" type="Label" parent="CanvasLayer/GameOver"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 18 )
-custom_fonts/font = ExtResource( 19 )
+theme = ExtResource( 32 )
+custom_fonts/font = ExtResource( 33 )
 text = "YOU DIED"
 align = 1
 valign = 1
 
-[node name="Song" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
-volume_db = -10.0
+[editable path="Features/Stairs"]

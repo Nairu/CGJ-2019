@@ -59,3 +59,4 @@ color = Color( 0.803922, 1, 0, 1 )
 rect = Rect2( 0, 0, 32, 32 )
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]
+bus = "sfx"

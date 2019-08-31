@@ -7,6 +7,8 @@ export(bool) var transformed = false
 func _ready():
 	$HPBar.visible = false
 	$MoveBar.visible = false
+	$Sprite.offset = Vector2(0, 4)
+	$Shadow.offset = Vector2(0, 2)
 
 func take_turn(game_manager, player):
 	if path.size() == 2:

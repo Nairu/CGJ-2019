@@ -57,11 +57,12 @@ _global_script_class_icons={
 [application]
 
 config/name="CGJ-2019"
-run/main_scene="res://Scenes/Level1.tscn"
+run/main_scene="res://Scenes/TitleScreen.tscn"
 
 [autoload]
 
 ProjectGlobals="*res://Globals/ProjectGlobals.gd"
+MusicPlayer="*res://Globals/MusicPlayer.tscn"
 
 [display]
 

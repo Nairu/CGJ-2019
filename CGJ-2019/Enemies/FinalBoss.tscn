@@ -3,7 +3,7 @@
 [ext_resource path="res://Enemies/FinalBoss.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/candle-sheet.png" type="Texture" id=2]
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=1]
 resource_name = "Appear"
 length = 1.7
 tracks/0/type = "value"
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "Blow_Begin"
 length = 0.3
 tracks/0/type = "value"
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "values": [ 28, 29, 30 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "Blow_End"
 length = 0.3
 tracks/0/type = "value"
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ 30, 29, 28 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Blow_Repeat"
 length = 0.4
 loop = true
@@ -68,8 +68,7 @@ tracks/0/keys = {
 "values": [ 31, 32, 33, 34 ]
 }
 
-[sub_resource type="Animation" id=1]
-resource_name = "Idle"
+[sub_resource type="Animation" id=5]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -85,8 +84,7 @@ tracks/0/keys = {
 "values": [ 1, 2, 3, 4 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Idle_Enemy"
+[sub_resource type="Animation" id=6]
 length = 0.6
 loop = true
 tracks/0/type = "value"
@@ -102,8 +100,7 @@ tracks/0/keys = {
 "values": [ 23, 23, 24, 25, 26, 27 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "Inactive"
+[sub_resource type="Animation" id=7]
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1
@@ -117,7 +114,7 @@ tracks/0/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=8]
 resource_name = "Shrink"
 length = 1.7
 tracks/0/type = "value"
@@ -150,7 +147,7 @@ tracks/0/keys = {
 "values": [ 21, 20, 19, 18, 17, 16, 15, 14, 14, 15, 16, 17, 18, 19, 20, 21 ]
 }
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=10]
 extents = Vector2( 16, 16 )
 
 [node name="CandleBoss" type="KinematicBody2D"]
@@ -165,20 +162,20 @@ hframes = 5
 frame = 25
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-anims/Appear = SubResource( 4 )
-anims/Blow_Begin = SubResource( 6 )
-anims/Blow_End = SubResource( 8 )
-anims/Blow_Repeat = SubResource( 7 )
-anims/Idle = SubResource( 1 )
-anims/Idle_Enemy = SubResource( 5 )
-anims/Inactive = SubResource( 3 )
-anims/Shrink = SubResource( 10 )
+anims/Appear = SubResource( 1 )
+anims/Blow_Begin = SubResource( 2 )
+anims/Blow_End = SubResource( 3 )
+anims/Blow_Repeat = SubResource( 4 )
+anims/Idle = SubResource( 5 )
+anims/Idle_Enemy = SubResource( 6 )
+anims/Inactive = SubResource( 7 )
+anims/Shrink = SubResource( 8 )
 anims/Taunt = SubResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 16, 16 )
-shape = SubResource( 2 )
+shape = SubResource( 10 )
 
 [node name="HPBar" type="ColorRect" parent="."]
 anchor_right = 1.0
@@ -200,3 +197,4 @@ color = Color( 0.803922, 1, 0, 1 )
 [node name="MoveBarTween" type="Tween" parent="."]
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]
+bus = "sfx"

@@ -199,3 +199,4 @@ color = Color( 0.14902, 1, 0, 1 )
 [node name="MovementTween" type="Tween" parent="."]
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]
+bus = "sfx"

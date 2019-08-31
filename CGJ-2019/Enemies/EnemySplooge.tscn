@@ -46,7 +46,6 @@ hframes = 5
 anims/Idle = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 16, 16 )
 shape = SubResource( 2 )
 
@@ -66,3 +65,4 @@ color = Color( 0.803922, 1, 0, 1 )
 [node name="MoveBarTween" type="Tween" parent="."]
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]
+bus = "sfx"

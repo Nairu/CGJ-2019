@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Enemies/EnemyBookcase.gd" type="Script" id=1]
 [ext_resource path="res://Audio/SFX/Wood damage 1.ogg" type="AudioStream" id=2]
@@ -9,6 +9,9 @@
 [ext_resource path="res://Sprites/bookcase-front-floating.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/idle_float.tres" type="Animation" id=8]
 [ext_resource path="res://Enemies/rise.tres" type="Animation" id=9]
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
@@ -33,14 +36,13 @@ flip_v = true
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 7 )
 centered = false
-offset = Vector2( 0, 0.726276 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/default = SubResource( 2 )
 anims/idle_float = ExtResource( 8 )
 anims/rise = ExtResource( 9 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2( 16, 16 )
 shape = SubResource( 1 )
 
@@ -54,3 +56,4 @@ color = Color( 0.803922, 1, 0, 1 )
 [node name="MoveBarTween" type="Tween" parent="."]
 
 [node name="Noise" type="AudioStreamPlayer2D" parent="."]
+bus = "sfx"

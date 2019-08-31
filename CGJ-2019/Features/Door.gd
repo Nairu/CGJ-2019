@@ -4,6 +4,7 @@ export(Array) var door_open_sounds
 export(Array) var door_locked_sounds
 export(bool) var locked = false
 export(bool) var stuck = false
+export(bool) var entrance = false
 
 var keep_pushing = 0
 var amount_to_beat = randi() % 5
@@ -28,7 +29,12 @@ func unlock(item):
 		return "You don't this you can use " + item.name + " on this object."
 
 func interact(player):
-	if stuck:
+	if entrance:
+		if not default_description.empty():
+			return default_description
+		else:
+			return "That's the way I came, lets press on for that treasure"
+	elif stuck:
 		keep_pushing += 1
 		if keep_pushing < amount_to_beat:
 			return "This object appears sturdy, but repeated pushes might open it"

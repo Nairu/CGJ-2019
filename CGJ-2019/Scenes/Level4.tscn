@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://GameLoop.gd" type="Script" id=1]
 [ext_resource path="res://TileSets/BasicTileset3.tres" type="TileSet" id=2]
@@ -7,42 +7,33 @@
 [ext_resource path="res://EnemyManager.gd" type="Script" id=5]
 [ext_resource path="res://Enemies/EnemyMimfle.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Enemies/EnemyBookcase.tscn" type="PackedScene" id=7]
-[ext_resource path="res://FeatureManager.gd" type="Script" id=8]
-[ext_resource path="res://Sprites/bookcase-front.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/chest-closed-front.png" type="Texture" id=10]
-[ext_resource path="res://Sprites/chest-of-drawers-front.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/wardrobe-front.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/door-front.png" type="Texture" id=13]
-[ext_resource path="res://Sprites/stairs-side-1.png" type="Texture" id=14]
-[ext_resource path="res://Sprites/bed.png" type="Texture" id=15]
-[ext_resource path="res://Sprites/barrel.png" type="Texture" id=16]
-[ext_resource path="res://Features/Bed.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Features/ChestOfDrawers.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Features/Bookcase.tscn" type="PackedScene" id=19]
-[ext_resource path="res://ItemManager.gd" type="Script" id=20]
-[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Themes/Themes.tres" type="Theme" id=22]
-[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=23]
-[ext_resource path="res://Audio/Music/The Liar Wizzard-Loop.ogg" type="AudioStream" id=24]
-
-[sub_resource type="GDScript" id=1]
-script/source = "extends \"res://Features/Feature.gd\"
-
-export(PackedScene) var food
-export(float) var spawn_chance
-
-func set_sprite(sprite):
-	.set_sprite(sprite)
-
-func interact(player):
-	if randf() <= spawn_chance:
-		var item = food.instance()
-		item.icon = item.get_node(\"Sprite\").texture
-		player.ui.add_item(item)
-		spawn_chance = -1
-		return \"The stout wooden object contains some old food, which still looks edible...\"
-	else:
-		return \"The barrel is empty.\""
+[ext_resource path="res://Enemies/EnemySplooge.tscn" type="PackedScene" id=8]
+[ext_resource path="res://FeatureManager.gd" type="Script" id=9]
+[ext_resource path="res://Sprites/bookcase-front.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/chest-closed-front.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/chest-of-drawers-front.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/wardrobe-front.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/door-front.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/stairs-side-1.png" type="Texture" id=15]
+[ext_resource path="res://Sprites/bed.png" type="Texture" id=16]
+[ext_resource path="res://Sprites/barrel.png" type="Texture" id=17]
+[ext_resource path="res://Features/Bed.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Features/ChestOfDrawers.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Features/Door.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Features/Stairs.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Scenes/BossRoom.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Features/Chest.tscn" type="PackedScene" id=23]
+[ext_resource path="res://Items/Key.tscn" type="PackedScene" id=24]
+[ext_resource path="res://Items/GoldCoins.tscn" type="PackedScene" id=25]
+[ext_resource path="res://Items/Gems.tscn" type="PackedScene" id=26]
+[ext_resource path="res://Items/Broadsword.tscn" type="PackedScene" id=27]
+[ext_resource path="res://Features/Barrel.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Items/Food.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Items/Potion.tscn" type="PackedScene" id=30]
+[ext_resource path="res://ItemManager.gd" type="Script" id=31]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=32]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=33]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=34]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -52,100 +43,108 @@ z_index = -1
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( -131065, 0, 0, -131064, 0, 1, -131063, 0, 1, -131062, 0, 1, -131061, 0, 1, -131060, 0, 2, -1, 0, 0, -65536, 0, 1, -65535, 0, 1, -65534, 0, 1, -65533, 0, 2, -65529, 0, 65536, -65528, 0, 65537, -65527, 0, 65537, -65526, 0, 65537, -65525, 0, 65537, -65524, 0, 65538, -65520, 0, 0, -65519, 0, 1, -65518, 0, 1, -65517, 0, 1, -65516, 0, 1, -65515, 0, 1, -65514, 0, 2, 65535, 0, 65536, 0, 0, 65537, 1, 0, 65537, 2, 0, 65537, 3, 0, 262144, 4, 0, 196612, 5, 0, 196612, 6, 0, 196612, 7, 0, 196609, 8, 0, 65537, 9, 0, 65537, 10, 0, 65537, 11, 0, 65537, 12, 0, 262144, 13, 0, 327684, 14, 0, 196612, 15, 0, 196612, 16, 0, 196609, 17, 0, 65537, 18, 0, 65537, 19, 0, 65537, 20, 0, 65537, 21, 0, 65537, 22, 0, 65538, 131071, 0, 131072, 65536, 0, 131073, 65537, 0, 131073, 65538, 0, 131073, 65539, 0, 131074, 65543, 0, 131072, 65544, 0, 131073, 65545, 0, 131073, 65546, 0, 131073, 65547, 0, 131073, 65548, 0, 131074, 65552, 0, 131072, 65553, 0, 131073, 65554, 0, 131073, 65555, 0, 131073, 65556, 0, 131073, 65557, 0, 131073, 65558, 0, 131074 )
+tile_data = PoolIntArray( -720879, 0, 262146, -655344, 0, 0, -655343, 0, 262145, -655342, 0, 2, -589808, 0, 65536, -589807, 0, 65537, -589806, 0, 65538, -524272, 0, 131072, -524271, 0, 196608, -524270, 0, 131074, -458735, 0, 262149, -393199, 0, 262149, -327665, 0, 196611, -327664, 0, 327684, -327663, 0, 393218, -327662, 0, 196613, -262129, 0, 262149, -262126, 0, 327683, -262125, 0, 196613, -196593, 0, 262149, -196589, 0, 262147, -131064, 0, 0, -131063, 0, 1, -131062, 0, 1, -131061, 0, 2, -131058, 0, 196611, -131057, 0, 393218, -131056, 0, 196613, -131054, 0, 196611, -131053, 0, 393218, -131052, 0, 196613, -131050, 0, 196611, -131049, 0, 196612, -131048, 0, 196613, -65531, 0, 262146, -65529, 0, 0, -65528, 0, 65540, -65527, 0, 65537, -65526, 0, 65537, -65525, 0, 65539, -65524, 0, 2, -65522, 0, 262149, -65520, 0, 262149, -65518, 0, 262149, -65516, 0, 262149, -65514, 0, 262147, -65512, 0, 262147, 5, 0, 655360, 6, 0, 1, 7, 0, 65540, 8, 0, 65537, 9, 0, 65537, 10, 0, 65537, 11, 0, 3, 12, 0, 589824, 13, 0, 196612, 14, 0, 327685, 16, 0, 262149, 18, 0, 262149, 20, 0, 262149, 22, 0, 262149, 24, 0, 262147, 65541, 0, 131072, 65542, 0, 131073, 65543, 0, 131073, 65544, 0, 131073, 65545, 0, 131073, 65546, 0, 131073, 65547, 0, 131074, 65552, 0, 327683, 65553, 0, 327681, 65554, 0, 327685, 65556, 0, 327683, 65557, 0, 196612, 65558, 0, 327685, 65560, 0, 262147, 131089, 0, 262149, 131096, 0, 262147, 196625, 0, 327683, 196626, 0, 196612, 196627, 0, 196612, 196628, 0, 327684, 196629, 0, 327684, 196630, 0, 196612, 196631, 0, 196612, 196632, 0, 327685 )
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 160, 0 )
 debug = true
 
 [node name="Enemies" type="Node2D" parent="."]
 script = ExtResource( 5 )
 
-[node name="Enemy" parent="Enemies" instance=ExtResource( 6 )]
+[node name="Mimfle1" parent="Enemies" instance=ExtResource( 6 )]
 visible = false
 position = Vector2( 288, -64 )
 
-[node name="Enemy2" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 320, -64 )
+[node name="Mimfle2" parent="Enemies" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 544, -352 )
+potential_item_drops = [ "res://Items/Key.tscn" ]
+item_drop_chance = 1.0
 
-[node name="Enemy3" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 672, -32 )
-turn_speed = 1
+[node name="BookcaseEnemy1" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 384, -32 )
+potential_item_drops = [ "res://Items/Key.tscn" ]
+item_drop_chance = 1.0
 
-[node name="Enemy4" parent="Enemies" instance=ExtResource( 7 )]
-position = Vector2( 576, 32 )
-turn_speed = 1
+[node name="Splooge1" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 608, 96 )
+
+[node name="BookcaseEnemy2" parent="Enemies" instance=ExtResource( 7 )]
+position = Vector2( 640, 96 )
+
+[node name="Splooge2" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 672, 96 )
+
+[node name="Mimfle3" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 704, 96 )
+potential_item_drops = [ "res://Items/Potion.tscn" ]
+item_drop_chance = 1.0
+
+[node name="Mimfle4" parent="Enemies" instance=ExtResource( 6 )]
+position = Vector2( 736, 96 )
+potential_item_drops = [ "res://Items/Potion.tscn" ]
+item_drop_chance = 0.5
 
 [node name="Features" type="Node2D" parent="."]
-editor/display_folded = true
-script = ExtResource( 8 )
-sprites = [ ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ]
+script = ExtResource( 9 )
+sprites = [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ) ]
 
-[node name="Bed" parent="Features" instance=ExtResource( 17 )]
+[node name="Bed" parent="Features" instance=ExtResource( 18 )]
 position = Vector2( 288, -64 )
 
-[node name="ChestDrawers" parent="Features" instance=ExtResource( 18 )]
+[node name="ChestDrawers" parent="Features" instance=ExtResource( 19 )]
 position = Vector2( 256, -64 )
 
-[node name="ChestDrawers2" parent="Features" instance=ExtResource( 18 )]
+[node name="ChestDrawers2" parent="Features" instance=ExtResource( 19 )]
 position = Vector2( 352, -64 )
 
-[node name="Bookcase" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 512, -32 )
-ignore_resprite = true
+[node name="DoorEntrance" parent="Features" instance=ExtResource( 20 )]
+position = Vector2( 160, -32 )
+entrance = true
 
-[node name="Bookcase14" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 512, 32 )
-script = SubResource( 1 )
-type = 0
-ignore_resprite = true
-
-[node name="Bookcase2" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 544, -32 )
-ignore_resprite = true
-
-[node name="Bookcase10" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 544, 32 )
-ignore_resprite = true
-
-[node name="Bookcase3" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 576, -32 )
-ignore_resprite = true
-
-[node name="Bookcase4" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 608, -32 )
-ignore_resprite = true
-
-[node name="Bookcase11" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 608, 32 )
-ignore_resprite = true
-
-[node name="Bookcase5" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 640, -32 )
-ignore_resprite = true
-
-[node name="Bookcase9" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 640, 32 )
-ignore_resprite = true
-
-[node name="Bookcase12" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 672, 32 )
-ignore_resprite = true
-
-[node name="Bookcase7" parent="Features" instance=ExtResource( 19 )]
+[node name="DoorExit" parent="Features" instance=ExtResource( 20 )]
 position = Vector2( 704, -32 )
-ignore_resprite = true
+locked = true
+stuck = true
 
-[node name="Bookcase13" parent="Features" instance=ExtResource( 19 )]
-position = Vector2( 704, 32 )
-ignore_resprite = true
+[node name="DoorLockedLeft" parent="Features" instance=ExtResource( 20 )]
+position = Vector2( 480, -96 )
+locked = true
+
+[node name="DoorLockedRight" parent="Features" instance=ExtResource( 20 )]
+position = Vector2( 608, -96 )
+locked = true
+
+[node name="DoorSidePassage" parent="Features" instance=ExtResource( 20 )]
+position = Vector2( 544, 64 )
+stuck = true
+
+[node name="StairsExit" parent="Features" instance=ExtResource( 21 )]
+position = Vector2( 704, -64 )
+next_level = ExtResource( 22 )
+
+[node name="ChestRewards" parent="Features" instance=ExtResource( 23 )]
+position = Vector2( 544, -352 )
+items = [ ExtResource( 24 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 27 ) ]
+
+[node name="BarrelFood" parent="Features" instance=ExtResource( 28 )]
+position = Vector2( 576, -320 )
+food = ExtResource( 29 )
+spawn_chance = 1.0
+
+[node name="ChestPotions" parent="Features" instance=ExtResource( 23 )]
+position = Vector2( 512, -320 )
+items = [ ExtResource( 30 ), ExtResource( 30 ) ]
 
 [node name="Items" type="Node2D" parent="."]
-script = ExtResource( 20 )
+script = ExtResource( 31 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+editor/display_folded = true
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 21 )]
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 32 )]
 visible = false
 
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
@@ -158,12 +157,8 @@ color = Color( 0, 0, 0, 1 )
 [node name="Label" type="Label" parent="CanvasLayer/GameOver"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 22 )
-custom_fonts/font = ExtResource( 23 )
+theme = ExtResource( 33 )
+custom_fonts/font = ExtResource( 34 )
 text = "YOU DIED"
 align = 1
 valign = 1
-
-[node name="Song" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 24 )
-volume_db = -10.0

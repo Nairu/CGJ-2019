@@ -10,7 +10,8 @@ onready var game_over_screen = $CanvasLayer/GameOver
 var game_over = false
 
 func _ready():
-	$Song.play(ProjectGlobals.music_seconds)
+	if not $"/root/MusicPlayer".get_child(1).playing:
+		$"/root/MusicPlayer".get_child(1).play()
 
 func process_turn():
 	game_map.enable_points()
