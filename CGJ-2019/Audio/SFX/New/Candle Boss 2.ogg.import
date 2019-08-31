@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Candle Boss 2.ogg-b729f1cc0c3dd6fb03c3778df5c7af29.oggstr"
+
+[deps]
+
+source_file="res://Audio/SFX/New/Candle Boss 2.ogg"
+dest_files=[ "res://.import/Candle Boss 2.ogg-b729f1cc0c3dd6fb03c3778df5c7af29.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

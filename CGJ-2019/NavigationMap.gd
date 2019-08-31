@@ -13,30 +13,45 @@ func _add_traversable_tiles(traversable_tiles):
 		var id = _get_id_for_point(tile)
 		astar.add_point(id, Vector3(tile.x, tile.y, 0))
 		
+export(bool) var final_room = false
 func _connect_traversable_tiles(traversable_tiles):
-	for tile in traversable_tiles:
-		var id = _get_id_for_point(tile)
-		# Do north, south, east and west
-		var target = tile + Vector2(-1, 0)
-		var target_id = _get_id_for_point(target)
-		if tile != target and astar.has_point(target_id):
-			astar.connect_points(id, target_id, true)
-		
-		target = tile + Vector2(1, 0)
-		target_id = _get_id_for_point(target)
-		if tile != target and astar.has_point(target_id):
-			astar.connect_points(id, target_id, true)
-		
-		target = tile + Vector2(0, 1)
-		target_id = _get_id_for_point(target)
-		if tile != target and astar.has_point(target_id):
-			astar.connect_points(id, target_id, true)
-		
-		target = tile + Vector2(0, 1)
-		target_id = _get_id_for_point(target)
-		if tile != target and astar.has_point(target_id):
-			astar.connect_points(id, target_id, true)
-		
+	if !final_room:
+		for tile in traversable_tiles:
+			var id = _get_id_for_point(tile)
+			# Do north, south, east and west
+			var target = tile + Vector2(-1, 0)
+			var target_id = _get_id_for_point(target)
+			if tile != target and astar.has_point(target_id):
+				astar.connect_points(id, target_id, true)
+			
+			target = tile + Vector2(1, 0)
+			target_id = _get_id_for_point(target)
+			if tile != target and astar.has_point(target_id):
+				astar.connect_points(id, target_id, true)
+			
+			target = tile + Vector2(0, 1)
+			target_id = _get_id_for_point(target)
+			if tile != target and astar.has_point(target_id):
+				astar.connect_points(id, target_id, true)
+			
+			target = tile + Vector2(0, 1)
+			target_id = _get_id_for_point(target)
+			if tile != target and astar.has_point(target_id):
+				astar.connect_points(id, target_id, true)
+	else:
+		for tile in traversable_tiles:
+			var id = _get_id_for_point(tile)
+			
+			for x in range(3):
+				for y in range(3):
+					if tile.x == x and tile.y == y:
+						pass
+					else:
+						var target = tile + Vector2(x - 1, y - 1)
+						var target_id = _get_id_for_point(target)
+						if tile != target and astar.has_point(target_id):
+							astar.connect_points(id, target_id, true)
+
 func _get_id_for_point(point):
 	var x = point.x - used_rect.position.x
 	var y = point.y - used_rect.position.y

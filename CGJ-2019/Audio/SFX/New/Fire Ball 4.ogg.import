@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Fire Ball 4.ogg-896ca85877361dee77335cda88f66b81.oggstr"
+
+[deps]
+
+source_file="res://Audio/SFX/New/Fire Ball 4.ogg"
+dest_files=[ "res://.import/Fire Ball 4.ogg-896ca85877361dee77335cda88f66b81.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

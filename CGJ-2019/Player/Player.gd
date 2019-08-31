@@ -22,6 +22,7 @@ var cur_item = null
 var current_text = ""
 var heal_turns = 0
 var heal_amount = 0
+var attack_width = 1
 
 func _ready():
 	ui.visible = true
@@ -101,7 +102,6 @@ func _input(event):
 				# deal some damage to it, and return.
 				var attack_anim_inst = attack_anim.instance()
 				attack_anim_inst.set_direction(direction)
-				#attack_anim_inst.position = position
 				add_child(attack_anim_inst)
 				enemy.take_damage(int(rand_range(dam_min, dam_max)))
 				triggered_enemies = true

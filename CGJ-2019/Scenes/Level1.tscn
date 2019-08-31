@@ -16,12 +16,12 @@
 [ext_resource path="res://Features/Door.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Features/Stairs.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Level2.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Features/Chest.tscn" type="PackedScene" id=17]
-[ext_resource path="res://Features/Barrel.tscn" type="PackedScene" id=18]
-[ext_resource path="res://Items/Food.tscn" type="PackedScene" id=19]
-[ext_resource path="res://Features/Bed.tscn" type="PackedScene" id=20]
-[ext_resource path="res://Features/Wardrobe.tscn" type="PackedScene" id=21]
-[ext_resource path="res://Features/ChestOfDrawers.tscn" type="PackedScene" id=22]
+[ext_resource path="res://Features/Barrel.tscn" type="PackedScene" id=17]
+[ext_resource path="res://Items/Food.tscn" type="PackedScene" id=18]
+[ext_resource path="res://Features/Bed.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Features/Wardrobe.tscn" type="PackedScene" id=20]
+[ext_resource path="res://Features/ChestOfDrawers.tscn" type="PackedScene" id=21]
+[ext_resource path="res://Features/Chest.tscn" type="PackedScene" id=22]
 [ext_resource path="res://ItemManager.gd" type="Script" id=23]
 [ext_resource path="res://EnemyManager.gd" type="Script" id=24]
 [ext_resource path="res://Enemies/EnemySplooge.tscn" type="PackedScene" id=25]
@@ -65,23 +65,23 @@ position = Vector2( 640, 128 )
 next_level = ExtResource( 16 )
 flip = true
 
-[node name="Chest" parent="Features" instance=ExtResource( 17 )]
-position = Vector2( 160, 32 )
-items = [ "res://Items/Potion.tscn", "res://Items/Potion.tscn", "res://Items/Key.tscn" ]
-
-[node name="Feature" parent="Features" instance=ExtResource( 18 )]
+[node name="Feature" parent="Features" instance=ExtResource( 17 )]
 position = Vector2( 160, 224 )
-food = ExtResource( 19 )
+food = ExtResource( 18 )
 spawn_chance = 1.0
 
-[node name="Bed" parent="Features" instance=ExtResource( 20 )]
+[node name="Bed" parent="Features" instance=ExtResource( 19 )]
 position = Vector2( 32, -32 )
 
-[node name="Wardrobe" parent="Features" instance=ExtResource( 21 )]
+[node name="Wardrobe" parent="Features" instance=ExtResource( 20 )]
 position = Vector2( -32, -32 )
 
-[node name="ChestDrawers" parent="Features" instance=ExtResource( 22 )]
+[node name="ChestDrawers" parent="Features" instance=ExtResource( 21 )]
 position = Vector2( 0, -32 )
+
+[node name="Chest" parent="Features" instance=ExtResource( 22 )]
+position = Vector2( 416, 64 )
+items = [ "res://Items/Potion.tscn", "res://Items/Food.tscn" ]
 
 [node name="Items" type="Node2D" parent="."]
 script = ExtResource( 23 )
@@ -97,6 +97,8 @@ position = Vector2( 160, 128 )
 
 [node name="Enemy3" parent="Enemies" instance=ExtResource( 25 )]
 position = Vector2( 192, 160 )
+potential_item_drops = [ "res://Items/Key.tscn" ]
+item_drop_chance = 1.0
 
 [node name="Enemy4" parent="Enemies" instance=ExtResource( 26 )]
 position = Vector2( 352, 128 )

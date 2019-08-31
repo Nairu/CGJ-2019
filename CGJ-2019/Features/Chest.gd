@@ -1,7 +1,6 @@
 extends "res://Features/Feature.gd"
 
 export(Array) var items = []
-
 export(bool) var locked = false
 export(float) var item_delay = 0.1
 

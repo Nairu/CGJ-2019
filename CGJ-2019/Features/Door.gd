@@ -1,5 +1,7 @@
 extends "res://Features/Feature.gd"
 
+export(Array) var door_open_sounds
+export(Array) var door_locked_sounds
 export(bool) var locked = false
 export(bool) var stuck = false
 
@@ -10,6 +12,10 @@ func set_sprite(sprite):
 	.set_sprite(sprite)
 
 func open():
+	if door_locked_sounds.size() > 0:
+		door_locked_sounds.shuffle()
+		$Noise.stream = door_locked_sounds.front()
+		$Noise.play()
 	locked = false
 	stuck = false
 
@@ -32,5 +38,9 @@ func interact(player):
 	elif locked:
 		return "This object is locked firmly, and requires a key to open"
 	else:
+		if door_open_sounds.size() > 0:
+			door_open_sounds.shuffle()
+			$Noise.stream = door_open_sounds.front()
+			$Noise.play()
 		destroy = true
 		return "It moves at your push..."

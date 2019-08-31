@@ -53,15 +53,13 @@ func feature_interact(player, x, y):
 		else:
 			return_string = feature.interact(player)
 			
-			if feature.destroy:
-				clear_feature(x,y)
-	
 	return return_string
 
 func _process(delta):
 	for feature in feature_list:
 		if feature_list[feature].destroy:
-			clear_feature(feature.x, feature.y)
+			if feature_list[feature].get_node("Noise") and feature_list[feature].get_node("Noise").is_playing() == false:
+				clear_feature(feature.x, feature.y)
 
 func feature_exists(x, y):
 	return (Vector2(x,y) in feature_list) and feature_list[Vector2(x,y)].visible

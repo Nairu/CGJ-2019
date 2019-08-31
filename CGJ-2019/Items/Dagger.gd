@@ -3,6 +3,7 @@ extends "res://Items/Item.gd"
 export(int) var dam_min = 1
 export(int) var dam_max = 3
 var enemy = null
+var attack_width = 0.5
 
 func set_sprite(sprite):
 	.set_sprite(sprite)

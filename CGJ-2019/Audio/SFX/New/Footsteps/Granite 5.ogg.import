@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Granite 5.ogg-097772c9fc297956c4acff3d0260ef2d.oggstr"
+
+[deps]
+
+source_file="res://Audio/SFX/New/Footsteps/Granite 5.ogg"
+dest_files=[ "res://.import/Granite 5.ogg-097772c9fc297956c4acff3d0260ef2d.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Enemies/EnemyMimfle.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/mimfle-sheet.png" type="Texture" id=2]
+[ext_resource path="res://Audio/SFX/New/Hairy creature Damage 1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Audio/SFX/New/Hairy creature Damage 2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Sprites/mimfle-sheet.png" type="Texture" id=4]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -28,9 +30,10 @@ script = ExtResource( 1 )
 max_health = 5
 damage = 3
 turn_speed = 0
+damage_noises = [ ExtResource( 2 ), ExtResource( 3 ) ]
 
 [node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+texture = ExtResource( 4 )
 centered = false
 hframes = 5
 

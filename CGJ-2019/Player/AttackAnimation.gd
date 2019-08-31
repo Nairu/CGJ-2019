@@ -1,10 +1,13 @@
 extends Node2D
 
+var attack_scale = 1
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Sprite/AnimationPlayer.play("Play")
 
 func _process(delta):
+	$Sprite.scale.y = attack_scale
 	if not $Sprite/AnimationPlayer.is_playing():
 		queue_free()
 		
