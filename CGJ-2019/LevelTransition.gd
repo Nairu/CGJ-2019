@@ -9,4 +9,9 @@ func _ready():
 
 func interact(player):
 	# Go to the next level!
+	# Load the players inventory into globals.
+	ProjectGlobals.setInventory(player.ui.get_items())
+	ProjectGlobals.music_seconds = $"/root/GameScene/Song".get_playback_position()
+	ProjectGlobals.setHealth(player.current_health)
+	ProjectGlobals.setEquipped(player.cur_item)
 	get_tree().change_scene_to(next_level)

@@ -5,7 +5,8 @@ export(int) var max_health = 10
 export(int) var dam_min = 1
 export(int) var dam_max = 4
 export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
-
+export(PackedScene) var attack_anim = load("res://Player/AttackAnimation.tscn")
+export(Array) var player_hit_noises
 export(ProjectGlobals.CARDINALITY) var direction = ProjectGlobals.CARDINALITY.South
 
 onready var game_world = get_parent()
@@ -15,14 +16,31 @@ onready var tween = $MovementTween
 onready var ui = get_parent().get_node("CanvasLayer/UI")
 onready var screen_shake = $Sprite/Camera2D/ScreenShake
 onready var current_health = max_health
+onready var noise = $Noise
 
 var cur_item = null
+var current_text = ""
+var heal_turns = 0
+var heal_amount = 0
 
 func _ready():
 	ui.visible = true
-	
+
+var initialised = false
 
 func _process(delta):
+	if !initialised:
+		if ui:
+			if ProjectGlobals.getInventory().size() > 0:
+				ui.set_items(ProjectGlobals.getInventory())
+				initialised = true
+		if ProjectGlobals.getHealth() > 0:
+			set_health(ProjectGlobals.getHealth())
+		if ProjectGlobals.getEquipped():
+			cur_item = ProjectGlobals.getEquipped()
+			ui.set_item_icon(cur_item.icon)
+		initialised = true
+	
 	if not tween.is_active():
 		set_idle()
 	
@@ -32,9 +50,16 @@ func _input(event):
 	#return if we're not a pressed event.
 	if !event.is_pressed():
 		return
+		
+	if current_text != "":
+		if not event.is_action_pressed("space"):
+			return
+		else:
+			current_text = ""
+			return
 	
 	if ui.inventory_open:
-		if event.is_action("space"):
+		if event.is_action_pressed("space"):
 			if cur_item == null:
 				# This is where the logic to use items will go, for now just print
 				cur_item = ui.get_selected_item()
@@ -56,11 +81,11 @@ func _input(event):
 	if tween.is_active():
 		return
 		
-	if event.is_action("space"):
+	if event.is_action_pressed("space"):
 		if cur_item:
-			var ret = cur_item.use_item(self, game_world)
-			if ret and ret != "":
-				ui.set_description(ret)
+			current_text = cur_item.use_item(self, game_world)
+			if current_text and current_text != "":
+				ui.set_description(current_text)
 			
 			if cur_item.consumed:
 				ui.set_item_icon(null)
@@ -68,61 +93,70 @@ func _input(event):
 			triggered_enemies = true
 			tween.interpolate_property(self, "position", position, position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 			tween.start()
+		else:
+			# Check to see if we've got an enemy here and attack it.
+			var offset = game_world.adjacent_tile_world_coord(position.x, position.y, direction)
+			var enemy = game_world.get_enemy(offset.x, offset.y)
+			if enemy:
+				# deal some damage to it, and return.
+				var attack_anim_inst = attack_anim.instance()
+				attack_anim_inst.set_direction(direction)
+				#attack_anim_inst.position = position
+				add_child(attack_anim_inst)
+				enemy.take_damage(int(rand_range(dam_min, dam_max)))
+				triggered_enemies = true
+	else:
+		if game_world.game_over:
+			print("Resetting the world!")
+			game_world.reset()
 		
-	if game_world.game_over:
-		print("Resetting the world!")
-		game_world.reset()
-	
-	if event.is_action("left"):
-		triggered_enemies = true
-		if direction != ProjectGlobals.CARDINALITY.West:
-			direction = ProjectGlobals.CARDINALITY.West
-		else:
-			try_move(-1, 0)
-	if event.is_action("right"):
-		triggered_enemies = true
-		if direction != ProjectGlobals.CARDINALITY.East:
-			direction = ProjectGlobals.CARDINALITY.East
-		else:
-			try_move(1, 0)
-	if event.is_action("up"):
-		triggered_enemies = true
-		if direction != ProjectGlobals.CARDINALITY.North:
-			direction = ProjectGlobals.CARDINALITY.North
-		else:
-			try_move(0, -1)
-	if event.is_action("down"):
-		triggered_enemies = true
-		if direction != ProjectGlobals.CARDINALITY.South:
-			direction = ProjectGlobals.CARDINALITY.South
-		else:
-			try_move(0, 1)
+		if event.is_action("left"):
+			triggered_enemies = true
+			if direction != ProjectGlobals.CARDINALITY.West:
+				direction = ProjectGlobals.CARDINALITY.West
+			else:
+				try_move(-1, 0)
+		if event.is_action("right"):
+			triggered_enemies = true
+			if direction != ProjectGlobals.CARDINALITY.East:
+				direction = ProjectGlobals.CARDINALITY.East
+			else:
+				try_move(1, 0)
+		if event.is_action("up"):
+			triggered_enemies = true
+			if direction != ProjectGlobals.CARDINALITY.North:
+				direction = ProjectGlobals.CARDINALITY.North
+			else:
+				try_move(0, -1)
+		if event.is_action("down"):
+			triggered_enemies = true
+			if direction != ProjectGlobals.CARDINALITY.South:
+				direction = ProjectGlobals.CARDINALITY.South
+			else:
+				try_move(0, 1)
 		
 	if triggered_enemies:
 		game_world.process_turn()
 
 # Function that checks whether we can move into the square we want.
 func try_move(dx, dy):
+	if heal_turns > 0:
+		heal_turns -= 1
+		heal_damage(heal_amount)
+	
 	$Label.text = ""
 	var offset = Vector2(dx, dy) * ProjectGlobals.TILE_SIZE
 	var target_position = position + offset
 	var feature = game_world.get_feature(target_position.x, target_position.y)
 	if feature:
 		# Clear the feature, then return.
-		var ret = game_world.feature_interact(target_position.x, target_position.y)
-		if ret != "":
-			ui.set_description(ret)
+		current_text = game_world.feature_interact(target_position.x, target_position.y)
+		if current_text != "":
+			ui.set_description(current_text)
 #			$Label.text = ret
 		return
-	
-	var enemy = game_world.get_enemy(target_position.x, target_position.y)
-	if enemy:
-		# deal some damage to it, and return.
-		enemy.take_damage(int(rand_range(dam_min, dam_max)))
-		#print ("Dealing " + str() + " damage to enemy: " + enemy.name)
-		return
 			
-	if game_world.get_tile(target_position.x, target_position.y) != -1:
+	if game_world.traversable(target_position.x, target_position.y):
 		tile = target_position / ProjectGlobals.TILE_SIZE
 		# check to see if we get an item from that tile too.
 		var items = game_world.get_item(tile.x, tile.y)
@@ -134,7 +168,14 @@ func try_move(dx, dy):
 		tween.start()
 		set_walking()
 		
+func set_regen(healing_amount, healing_turns):
+	heal_turns = healing_turns
+	heal_amount = healing_amount
+		
 func take_damage(damage):
+	player_hit_noises.shuffle()
+	noise.stream = player_hit_noises.front()
+	noise.play()
 	var label_instance = pop_label.instance()
 	label_instance.position = position + Vector2(rand_range(0,16) - 8, rand_range(0,8) - 4)
 	label_instance.text = str(damage)
@@ -169,6 +210,11 @@ func heal_damage(damage):
 	
 	current_health = min(max_health, current_health + damage)
 	var health_percentage = float(current_health) / float(max_health)
+	ui.set_health(health_percentage)
+
+func set_health(health):
+	current_health = health
+	var health_percentage = float(health) / float(max_health)
 	ui.set_health(health_percentage)
 
 func set_idle():

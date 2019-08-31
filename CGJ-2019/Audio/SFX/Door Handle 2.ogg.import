@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Door Handle 2.ogg-93469ca3c5045c5ab2451e4bfd6867e9.oggstr"
+
+[deps]
+
+source_file="res://Audio/SFX/Door Handle 2.ogg"
+dest_files=[ "res://.import/Door Handle 2.ogg-93469ca3c5045c5ab2451e4bfd6867e9.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

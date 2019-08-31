@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://GameLoop.gd" type="Script" id=1]
 [ext_resource path="res://TileSets/BasicTileset.tres" type="TileSet" id=2]
@@ -11,14 +11,12 @@
 [ext_resource path="res://Sprites/wardrobe-front.png" type="Texture" id=9]
 [ext_resource path="res://Sprites/door-front.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/stairs-side-1.png" type="Texture" id=11]
-[ext_resource path="res://Features/Door.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Features/Lever.tscn" type="PackedScene" id=13]
-[ext_resource path="res://ItemManager.gd" type="Script" id=14]
-[ext_resource path="res://EnemyManager.gd" type="Script" id=15]
-[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Themes/Themes.tres" type="Theme" id=17]
-[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=18]
-[ext_resource path="res://Audio/Music/The_Liar_Wizzard_OG_1.ogg" type="AudioStream" id=19]
+[ext_resource path="res://ItemManager.gd" type="Script" id=12]
+[ext_resource path="res://EnemyManager.gd" type="Script" id=13]
+[ext_resource path="res://UI/UI.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Themes/Themes.tres" type="Theme" id=15]
+[ext_resource path="res://Themes/DefaultFont.tres" type="DynamicFont" id=16]
+[ext_resource path="res://Audio/Music/The_Liar_Wizzard_OG_1.ogg" type="AudioStream" id=17]
 
 [node name="GameScene" type="Node2D"]
 script = ExtResource( 1 )
@@ -37,43 +35,15 @@ debug = true
 script = ExtResource( 5 )
 sprites = [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ]
 
-[node name="Door1" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( -64, -96 )
-
-[node name="Door2" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( 0, -96 )
-
-[node name="Door3" parent="Features" instance=ExtResource( 12 )]
-position = Vector2( 64, -96 )
-
-[node name="Lever1" parent="Features" instance=ExtResource( 13 )]
-position = Vector2( -64, -32 )
-toggled_items = [ "/root/GameScene/Features/Door1", "/root/GameScene/Features/Door3" ]
-down = true
-
-[node name="Lever2" parent="Features" instance=ExtResource( 13 )]
-position = Vector2( -32, -32 )
-toggled_items = [ "/root/GameScene/Features/Door2", "/root/GameScene/Features/Door3" ]
-
-[node name="Lever3" parent="Features" instance=ExtResource( 13 )]
-position = Vector2( 0, -32 )
-toggled_items = [ "/root/GameScene/Features/Door1", "/root/GameScene/Features/Door2" ]
-down = true
-
-[node name="Lever4" parent="Features" instance=ExtResource( 13 )]
-position = Vector2( 32, -32 )
-toggled_items = [ "/root/GameScene/Features/Door1", "/root/GameScene/Features/Door2", "/root/GameScene/Features/Door3" ]
-down = true
-
 [node name="Items" type="Node2D" parent="."]
-script = ExtResource( 14 )
+script = ExtResource( 12 )
 
 [node name="Enemies" type="Node2D" parent="."]
-script = ExtResource( 15 )
+script = ExtResource( 13 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="UI" parent="CanvasLayer" instance=ExtResource( 16 )]
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 14 )]
 visible = false
 
 [node name="GameOver" type="ColorRect" parent="CanvasLayer"]
@@ -86,12 +56,12 @@ color = Color( 0, 0, 0, 1 )
 [node name="Label" type="Label" parent="CanvasLayer/GameOver"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-theme = ExtResource( 17 )
-custom_fonts/font = ExtResource( 18 )
+theme = ExtResource( 15 )
+custom_fonts/font = ExtResource( 16 )
 text = "YOU DIED"
 align = 1
 valign = 1
 
 [node name="Song" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 19 )
+stream = ExtResource( 17 )
 autoplay = true

@@ -12,22 +12,16 @@ func _ready():
 	items_gui.set_select_mode(ItemList.SELECT_SINGLE)
 	items_gui.set_same_column_width(true)
 	
-#	var dir = Directory.new()
-#	dir.open("res://Sprites")
-#	dir.list_dir_begin()
-#	var idx = 0
-#	while true:
-#		var file = dir.get_next()
-#		if file == "":
-#			break
-#		elif not file.begins_with(".") and file.ends_with(".png"):
-#			var file_path = "res://Sprites/" + file
-#			print(file_path)
-#			var icon = load(file_path)
-#			if icon:
-#				items_gui.add_item("", icon, true)
-#				items.insert(idx, "test")
-#				idx += 1
+func get_items():
+	return items
+	
+func set_items(items):
+	items_gui.clear()
+	self.items.clear()
+	
+	for item in items:
+		self.items.append(item)
+		items_gui.add_item(item.name, item.icon, true)
 	
 func use_item(idx):
 	var item = null

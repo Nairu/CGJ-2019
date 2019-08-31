@@ -13,7 +13,7 @@ func _ready():
 func _process(delta):
 	$Sprite.texture = lever_down if down else lever_up
 	
-func interact():
+func interact(player):
 	down = !down
 	for item in toggled_items:
 		get_node(item).visible = !get_node(item).visible

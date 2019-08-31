@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Dagger hit 4.ogg-88032c6c6eb7c095dec3162ca5bacca5.oggstr"
+
+[deps]
+
+source_file="res://Audio/SFX/Dagger hit 4.ogg"
+dest_files=[ "res://.import/Dagger hit 4.ogg-88032c6c6eb7c095dec3162ca5bacca5.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

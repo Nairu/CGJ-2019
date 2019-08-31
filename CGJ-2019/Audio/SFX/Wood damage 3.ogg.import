@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Wood damage 3.ogg-d5f31d6deb95c378926454f9f9709d09.oggstr"
+
+[deps]
+
+source_file="res://Audio/SFX/Wood damage 3.ogg"
+dest_files=[ "res://.import/Wood damage 3.ogg-d5f31d6deb95c378926454f9f9709d09.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
