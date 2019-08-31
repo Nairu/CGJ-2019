@@ -5,6 +5,7 @@ export(int) var max_health = 10
 export(int) var dam_min = 1
 export(int) var dam_max = 4
 export(PackedScene) var pop_label = load("res://Util/pop_label.tscn")
+export(PackedScene) var attack_anim = load("res://Player/AttackAnimation.tscn")
 export(Array) var player_hit_noises
 export(ProjectGlobals.CARDINALITY) var direction = ProjectGlobals.CARDINALITY.South
 
@@ -19,6 +20,8 @@ onready var noise = $Noise
 
 var cur_item = null
 var current_text = ""
+var heal_turns = 0
+var heal_amount = 0
 
 func _ready():
 	ui.visible = true
@@ -31,6 +34,11 @@ func _process(delta):
 			if ProjectGlobals.getInventory().size() > 0:
 				ui.set_items(ProjectGlobals.getInventory())
 				initialised = true
+		if ProjectGlobals.getHealth() > 0:
+			set_health(ProjectGlobals.getHealth())
+		if ProjectGlobals.getEquipped():
+			cur_item = ProjectGlobals.getEquipped()
+			ui.set_item_icon(cur_item.icon)
 		initialised = true
 	
 	if not tween.is_active():
@@ -48,6 +56,7 @@ func _input(event):
 			return
 		else:
 			current_text = ""
+			return
 	
 	if ui.inventory_open:
 		if event.is_action_pressed("space"):
@@ -74,9 +83,9 @@ func _input(event):
 		
 	if event.is_action_pressed("space"):
 		if cur_item:
-			var ret = cur_item.use_item(self, game_world)
-			if ret and ret != "":
-				ui.set_description(ret)
+			current_text = cur_item.use_item(self, game_world)
+			if current_text and current_text != "":
+				ui.set_description(current_text)
 			
 			if cur_item.consumed:
 				ui.set_item_icon(null)
@@ -90,6 +99,10 @@ func _input(event):
 			var enemy = game_world.get_enemy(offset.x, offset.y)
 			if enemy:
 				# deal some damage to it, and return.
+				var attack_anim_inst = attack_anim.instance()
+				attack_anim_inst.set_direction(direction)
+				#attack_anim_inst.position = position
+				add_child(attack_anim_inst)
 				enemy.take_damage(int(rand_range(dam_min, dam_max)))
 				triggered_enemies = true
 	else:
@@ -127,6 +140,10 @@ func _input(event):
 
 # Function that checks whether we can move into the square we want.
 func try_move(dx, dy):
+	if heal_turns > 0:
+		heal_turns -= 1
+		heal_damage(heal_amount)
+	
 	$Label.text = ""
 	var offset = Vector2(dx, dy) * ProjectGlobals.TILE_SIZE
 	var target_position = position + offset
@@ -150,6 +167,10 @@ func try_move(dx, dy):
 		tween.interpolate_property(self, "position", position, target_position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		set_walking()
+		
+func set_regen(healing_amount, healing_turns):
+	heal_turns = healing_turns
+	heal_amount = healing_amount
 		
 func take_damage(damage):
 	player_hit_noises.shuffle()
@@ -189,6 +210,11 @@ func heal_damage(damage):
 	
 	current_health = min(max_health, current_health + damage)
 	var health_percentage = float(current_health) / float(max_health)
+	ui.set_health(health_percentage)
+
+func set_health(health):
+	current_health = health
+	var health_percentage = float(health) / float(max_health)
 	ui.set_health(health_percentage)
 
 func set_idle():

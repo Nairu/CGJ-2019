@@ -8,9 +8,23 @@ enum CARDINALITY {North,East,South,West}
 var music_seconds = 0
 
 var Inventory = []
+var player_health = 0
+var player_equipped = null
 
 func getInventory():
 	return Inventory
 	
 func setInventory(inventory):
 	Inventory = inventory
+	
+func getHealth():
+	return player_health
+	
+func setHealth(health):
+	player_health = health
+	
+func getEquipped():
+	return player_equipped
+	
+func setEquipped(equipped):
+	player_equipped = equipped

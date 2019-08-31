@@ -9,7 +9,7 @@
 [ext_resource path="res://Audio/SFX/Slime Damage 6.ogg" type="AudioStream" id=7]
 [ext_resource path="res://Audio/SFX/Slime Damage 7.ogg" type="AudioStream" id=8]
 [ext_resource path="res://Audio/SFX/Slime Damage 8.ogg" type="AudioStream" id=9]
-[ext_resource path="res://Sprites/splooge.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/splooge-sheet.png" type="Texture" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Idle"
@@ -38,8 +38,7 @@ damage_noises = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResou
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 10 )
 centered = false
-hframes = 4
-frame = 3
+hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 anims/Idle = SubResource( 1 )

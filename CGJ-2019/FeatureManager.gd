@@ -58,6 +58,11 @@ func feature_interact(player, x, y):
 	
 	return return_string
 
+func _process(delta):
+	for feature in feature_list:
+		if feature_list[feature].destroy:
+			clear_feature(feature.x, feature.y)
+
 func feature_exists(x, y):
 	return (Vector2(x,y) in feature_list) and feature_list[Vector2(x,y)].visible
 

@@ -23,7 +23,7 @@ margin_right = 192.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 192, 0 )
 
-[node name="Label" type="Label" parent="Panel/Container/Health"]
+[node name="HealthLabel" type="Label" parent="Panel/Container/Health"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 10.0
@@ -48,35 +48,39 @@ margin_top = 8.0
 margin_bottom = -8.0
 color = Color( 0.266667, 1, 0, 1 )
 
-[node name="Item" type="Control" parent="Panel/Container"]
+[node name="ItemHolder" type="Control" parent="Panel/Container"]
+visible = false
 margin_left = 196.0
-margin_right = 228.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 32, 32 )
-
-[node name="Item2" type="Control" parent="Panel/Container"]
-margin_left = 232.0
-margin_right = 424.0
+margin_right = 388.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 192, 32 )
 
-[node name="Label" type="Label" parent="Panel/Container/Item2"]
+[node name="CurrentItemLabel" type="Label" parent="Panel/Container/ItemHolder"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 custom_fonts/font = ExtResource( 1 )
 text = "Current Item - "
 valign = 1
 
-[node name="ItemSprite" type="TextureRect" parent="Panel/Container/Item2"]
+[node name="ItemBackground" type="ColorRect" parent="Panel/Container/ItemHolder"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 88.0
-margin_right = -72.0
+margin_left = 92.0
+margin_right = -68.0
+color = Color( 0.211765, 0.211765, 0.243137, 1 )
+
+[node name="ItemSprite" type="TextureRect" parent="Panel/Container/ItemHolder/ItemBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 
 [node name="Popup" type="Popup" parent="."]
 visible = true
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 0.231964
+margin_top = 0.115982
+margin_right = 0.231934
+margin_bottom = 0.115967
 
 [node name="Panel" type="Panel" parent="Popup"]
 anchor_right = 1.0

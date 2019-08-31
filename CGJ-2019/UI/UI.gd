@@ -33,7 +33,8 @@ func get_selected_item():
 	return item
 	
 func set_item_icon(icon):
-	$HUD/Panel/Container/Item2/ItemSprite.texture = icon
+	$HUD/Panel/Container/ItemHolder.visible = !(icon == null)
+	$HUD/Panel/Container/ItemHolder/ItemBackground/ItemSprite.texture = icon
 
 func set_inventory_visible(visible):
 	$Inventory.visible = visible
