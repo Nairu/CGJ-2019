@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Lever 3-Short.ogg-5fa9403a5304395704fb76ff3b99fa77.oggstr"
+
+[deps]
+
+source_file="res://_archive/Audio/SFX/New/Lever 3-Short.ogg"
+dest_files=[ "res://.import/Lever 3-Short.ogg-5fa9403a5304395704fb76ff3b99fa77.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

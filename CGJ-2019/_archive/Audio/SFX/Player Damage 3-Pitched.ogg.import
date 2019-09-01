@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Player Damage 3-Pitched.ogg-b3fe0d018803a6d5fc1b19803c75c699.oggstr"
+
+[deps]
+
+source_file="res://_archive/Audio/SFX/Player Damage 3-Pitched.ogg"
+dest_files=[ "res://.import/Player Damage 3-Pitched.ogg-b3fe0d018803a6d5fc1b19803c75c699.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

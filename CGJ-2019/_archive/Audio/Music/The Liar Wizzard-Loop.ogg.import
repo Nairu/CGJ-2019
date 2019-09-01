@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/The Liar Wizzard-Loop.ogg-2b64441861471d2d38c9fcc2de3505e7.oggstr"
+
+[deps]
+
+source_file="res://_archive/Audio/Music/The Liar Wizzard-Loop.ogg"
+dest_files=[ "res://.import/The Liar Wizzard-Loop.ogg-2b64441861471d2d38c9fcc2de3505e7.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

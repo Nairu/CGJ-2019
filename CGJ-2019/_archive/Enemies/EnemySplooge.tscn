@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://_archive/Enemies/EnemySplooge.gd" type="Script" id=1]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 3.ogg" type="AudioStream" id=4]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 4.ogg" type="AudioStream" id=5]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 5.ogg" type="AudioStream" id=6]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 6.ogg" type="AudioStream" id=7]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 7.ogg" type="AudioStream" id=8]
+[ext_resource path="res://_archive/Audio/SFX/Slime Damage 8.ogg" type="AudioStream" id=9]
+[ext_resource path="res://_archive/Sprites/splooge-sheet.png" type="Texture" id=10]
+
+
+[sub_resource type="Animation" id=1]
+resource_name = "Idle"
+length = 0.6
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.152284, 0.3, 0.451844 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[node name="Enemy" type="KinematicBody2D"]
+script = ExtResource( 1 )
+max_health = 5
+turn_speed = 1
+damage_noises = [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 10 )
+centered = false
+hframes = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+anims/Idle = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 2 )
+
+[node name="HPBar" type="ColorRect" parent="."]
+margin_top = -3.0
+margin_right = 32.0
+margin_bottom = -1.0
+color = Color( 1, 0, 0, 1 )
+
+[node name="MoveBar" type="ColorRect" parent="."]
+margin_top = -1.0
+margin_bottom = 1.0
+color = Color( 0.803922, 1, 0, 1 )
+
+[node name="AnimationTween" type="Tween" parent="."]
+
+[node name="MoveBarTween" type="Tween" parent="."]
+
+[node name="Noise" type="AudioStreamPlayer2D" parent="."]
+bus = "sfx"

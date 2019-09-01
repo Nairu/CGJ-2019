@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Arrow Whoosh 2.ogg-40e7be1663810787a0a0ce7fc47dc3d6.oggstr"
+
+[deps]
+
+source_file="res://_archive/Audio/SFX/New/Arrow Whoosh 2.ogg"
+dest_files=[ "res://.import/Arrow Whoosh 2.ogg-40e7be1663810787a0a0ce7fc47dc3d6.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

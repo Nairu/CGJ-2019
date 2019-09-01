@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://_archive/Features/Door.gd" type="Script" id=1]
+[ext_resource path="res://_archive/Audio/SFX/Door Open 1.ogg" type="AudioStream" id=2]
+[ext_resource path="res://_archive/Audio/SFX/Door Open 2.ogg" type="AudioStream" id=3]
+[ext_resource path="res://_archive/Audio/SFX/Door Handle 1.ogg" type="AudioStream" id=4]
+[ext_resource path="res://_archive/Audio/SFX/Door Handle 2.ogg" type="AudioStream" id=5]
+[ext_resource path="res://_archive/Sprites/door-front.png" type="Texture" id=6]
+
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="Feature" type="KinematicBody2D"]
+script = ExtResource( 1 )
+door_open_sounds = [ ExtResource( 2 ), ExtResource( 3 ) ]
+door_locked_sounds = [ ExtResource( 4 ), ExtResource( 5 ) ]
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 6 )
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 16, 16 )
+shape = SubResource( 1 )
+
+[node name="Noise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+bus = "sfx"

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Generic hit 6.ogg-96ad0b96c523daac8170ca666b2b5a32.oggstr"
+
+[deps]
+
+source_file="res://_archive/Audio/SFX/Generic hit 6.ogg"
+dest_files=[ "res://.import/Generic hit 6.ogg-96ad0b96c523daac8170ca666b2b5a32.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Slime Damage 2.ogg-ba7cddcea82ec70d77f3207cae3df63f.oggstr"
+
+[deps]
+
+source_file="res://_archive/Audio/SFX/Slime Damage 2.ogg"
+dest_files=[ "res://.import/Slime Damage 2.ogg-ba7cddcea82ec70d77f3207cae3df63f.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/Thump 2.ogg-e1857a2327d748277517d6cf989463e7.oggstr"
+
+[deps]
+
+source_file="res://_archive/Audio/SFX/New/Thump 2.ogg"
+dest_files=[ "res://.import/Thump 2.ogg-e1857a2327d748277517d6cf989463e7.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
