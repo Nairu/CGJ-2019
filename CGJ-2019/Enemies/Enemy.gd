@@ -86,6 +86,6 @@ func spawn_pop_label(position, text, duration, distance, color=Color.red):
 
 func update_position(x, y):	
 	tile = Vector2(x,y) / ProjectGlobals.TILE_SIZE
-	tween.interpolate_property(self, "position", position, Vector2(x,y), 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+	tween.interpolate_property(self, "position", position, Vector2(x,y), 0.1, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 	tween.start()
 	

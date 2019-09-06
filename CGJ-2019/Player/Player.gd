@@ -112,28 +112,28 @@ func _input(event):
 		
 		if event.is_action("left"):
 			triggered_enemies = true
-			if direction != ProjectGlobals.CARDINALITY.West:
-				direction = ProjectGlobals.CARDINALITY.West
-			else:
-				try_move(-1, 0)
+#			if direction != ProjectGlobals.CARDINALITY.West:
+			direction = ProjectGlobals.CARDINALITY.West
+#			else:
+			try_move(-1, 0)
 		if event.is_action("right"):
 			triggered_enemies = true
-			if direction != ProjectGlobals.CARDINALITY.East:
-				direction = ProjectGlobals.CARDINALITY.East
-			else:
-				try_move(1, 0)
+#			if direction != ProjectGlobals.CARDINALITY.East:
+			direction = ProjectGlobals.CARDINALITY.East
+#			else:
+			try_move(1, 0)
 		if event.is_action("up"):
 			triggered_enemies = true
-			if direction != ProjectGlobals.CARDINALITY.North:
-				direction = ProjectGlobals.CARDINALITY.North
-			else:
-				try_move(0, -1)
+#			if direction != ProjectGlobals.CARDINALITY.North:
+			direction = ProjectGlobals.CARDINALITY.North
+#			else:
+			try_move(0, -1)
 		if event.is_action("down"):
 			triggered_enemies = true
-			if direction != ProjectGlobals.CARDINALITY.South:
-				direction = ProjectGlobals.CARDINALITY.South
-			else:
-				try_move(0, 1)
+#			if direction != ProjectGlobals.CARDINALITY.South:
+			direction = ProjectGlobals.CARDINALITY.South
+#			else:
+			try_move(0, 1)
 		
 	if triggered_enemies:
 		game_world.process_turn()
@@ -164,7 +164,7 @@ func try_move(dx, dy):
 			for item in items:
 				ui.add_item(item)
 		
-		tween.interpolate_property(self, "position", position, target_position, 0.35, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
+		tween.interpolate_property(self, "position", position, target_position, 0.2, Tween.TRANS_LINEAR, Tween.EASE_IN_OUT)
 		tween.start()
 		set_walking()
 		
