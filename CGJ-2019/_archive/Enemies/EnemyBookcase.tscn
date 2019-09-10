@@ -5,10 +5,11 @@
 [ext_resource path="res://_archive/Audio/SFX/Wood damage 2.ogg" type="AudioStream" id=3]
 [ext_resource path="res://_archive/Audio/SFX/Wood damage 3.ogg" type="AudioStream" id=4]
 [ext_resource path="res://_archive/Audio/SFX/Wood damage 4.ogg" type="AudioStream" id=5]
-[ext_resource path="res://_archive/Sprites/furniture-shadow.png" type="Texture" id=6]
-[ext_resource path="res://_archive/Sprites/bookcase-front-floating.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/furniture-shadow.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/bookcase-front-floating.png" type="Texture" id=7]
 [ext_resource path="res://_archive/Enemies/idle_float.tres" type="Animation" id=8]
 [ext_resource path="res://_archive/Enemies/rise.tres" type="Animation" id=9]
+
 
 
 [sub_resource type="Animation" id=2]

@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://_archive/Items/GoldCoins.gd" type="Script" id=1]
-[ext_resource path="res://_archive/Sprites/coin-pile.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/coin-pile.png" type="Texture" id=2]
+
 
 
 [node name="GoldCoins" type="Node2D"]

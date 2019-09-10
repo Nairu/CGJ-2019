@@ -5,17 +5,18 @@
 [ext_resource path="res://_archive/NavigationMap.gd" type="Script" id=3]
 [ext_resource path="res://_archive/Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://_archive/FeatureManager.gd" type="Script" id=5]
-[ext_resource path="res://_archive/Sprites/bookcase-front.png" type="Texture" id=6]
-[ext_resource path="res://_archive/Sprites/chest-closed-front.png" type="Texture" id=7]
-[ext_resource path="res://_archive/Sprites/chest-of-drawers-front.png" type="Texture" id=8]
-[ext_resource path="res://_archive/Sprites/wardrobe-front.png" type="Texture" id=9]
-[ext_resource path="res://_archive/Sprites/door-front.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/bookcase-front.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/chest-closed-front.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/chest-of-drawers-front.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/wardrobe-front.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/door-front.png" type="Texture" id=10]
 [ext_resource path="res://_archive/Features/Door.tscn" type="PackedScene" id=11]
 [ext_resource path="res://_archive/EnemyManager.gd" type="Script" id=12]
 [ext_resource path="res://_archive/Enemies/Enemy.tscn" type="PackedScene" id=13]
 [ext_resource path="res://_archive/Enemies/EnemyBookcase.tscn" type="PackedScene" id=14]
 [ext_resource path="res://_archive/Themes/Themes.tres" type="Theme" id=15]
 [ext_resource path="res://_archive/Themes/DefaultFont.tres" type="DynamicFont" id=16]
+
 
 
 

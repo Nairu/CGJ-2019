@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://_archive/Items/Broadsword.gd" type="Script" id=1]
-[ext_resource path="res://_archive/Sprites/broadsword.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/broadsword.png" type="Texture" id=2]
+
 
 
 [node name="Broadsword" type="Node2D"]

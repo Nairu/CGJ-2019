@@ -1,0 +1,78 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Sprites/spooky-skull.png" type="Texture" id=1]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends KinematicBody2D
+
+export var speed : int = 200
+
+var move_direction : Vector2
+
+const MOVE_DELAY := .15
+var move_count : float = 0
+
+func _input(event):
+	pass
+
+func _physics_process(delta):
+	
+	move_count += delta
+	
+	if move_count >= MOVE_DELAY:
+		move_count = 0
+		
+		if Input.is_action_pressed(\"left\"):
+			move_direction.x = -32
+		elif Input.is_action_pressed(\"right\"):
+			move_direction.x = 32
+		else:
+			move_direction.x = 0
+	
+		if Input.is_action_pressed(\"up\"):
+			move_direction.y = -32
+		elif Input.is_action_pressed(\"down\"):
+			move_direction.y = 32
+		else:
+			move_direction.y = 0
+	
+#	if Input.is_action_pressed(\"left\"):
+#		move_direction.x = -speed
+#	elif Input.is_action_pressed(\"right\"):
+#		move_direction.x = speed
+#	else:
+#		move_direction.x = 0
+#
+#	if Input.is_action_pressed(\"up\"):
+#		move_direction.y = -speed
+#	elif Input.is_action_pressed(\"down\"):
+#		move_direction.y = speed
+#	else:
+#		move_direction.y = 0
+	move_and_collide(move_direction)
+	move_direction = Vector2.ZERO"
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 12 )
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 16, 16 )
+script = SubResource( 1 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 0.3, 0.3 )
+
+[node name="PlayerCollider" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -16, -16 )
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Interaction" type="Area2D" parent="."]
+
+[node name="InteractionCollider" type="CollisionShape2D" parent="Interaction"]
+visible = false
+shape = SubResource( 2 )

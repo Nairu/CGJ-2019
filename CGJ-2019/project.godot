@@ -12,37 +12,37 @@ _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "EnemyBase",
 "language": "GDScript",
-"path": "res://Enemies/Enemy.gd"
+"path": "res://_archive/Enemies/Enemy.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "",
 "class": "EnemyBookcase",
 "language": "GDScript",
-"path": "res://Enemies/EnemyBookcase.gd"
+"path": "res://_archive/Enemies/EnemyBookcase.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "",
 "class": "EnemyMimfle",
 "language": "GDScript",
-"path": "res://Enemies/EnemyMimfle.gd"
+"path": "res://_archive/Enemies/EnemyMimfle.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "",
 "class": "EnemySplooge",
 "language": "GDScript",
-"path": "res://Enemies/EnemySplooge.gd"
+"path": "res://_archive/Enemies/EnemySplooge.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "",
 "class": "FinalBoss",
 "language": "GDScript",
-"path": "res://Enemies/FinalBoss.gd"
+"path": "res://_archive/Enemies/FinalBoss.gd"
 }, {
 "base": "Node2D",
 "class": "Item",
 "language": "GDScript",
-"path": "res://Items/Item.gd"
+"path": "res://_archive/Items/Item.gd"
 }, {
 "base": "Node2D",
 "class": "ScreenShake",
 "language": "GDScript",
-"path": "res://Util/ScreenShake.gd"
+"path": "res://_archive/Util/ScreenShake.gd"
 } ]
 _global_script_class_icons={
 "EnemyBase": "",
@@ -57,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="CGJ-2019"
-run/main_scene="res://Scenes/TitleScreen.tscn"
+run/main_scene="res://Scenes/TestScene.tscn"
 
 [autoload]
 
@@ -129,4 +129,3 @@ space={
 [rendering]
 
 environment/default_clear_color=Color( 0.0666667, 0.0666667, 0.0666667, 1 )
-environment/default_environment="res://default_env.tres"

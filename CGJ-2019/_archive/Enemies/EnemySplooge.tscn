@@ -9,7 +9,8 @@
 [ext_resource path="res://_archive/Audio/SFX/Slime Damage 6.ogg" type="AudioStream" id=7]
 [ext_resource path="res://_archive/Audio/SFX/Slime Damage 7.ogg" type="AudioStream" id=8]
 [ext_resource path="res://_archive/Audio/SFX/Slime Damage 8.ogg" type="AudioStream" id=9]
-[ext_resource path="res://_archive/Sprites/splooge-sheet.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/splooge-sheet.png" type="Texture" id=10]
+
 
 
 [sub_resource type="Animation" id=1]

@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://_archive/Features/Lever.gd" type="Script" id=1]
-[ext_resource path="res://_archive/Sprites/lever-up-front.png" type="Texture" id=2]
-[ext_resource path="res://_archive/Sprites/lever-down-front.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/lever-up-front.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/lever-down-front.png" type="Texture" id=3]
+
 
 
 [sub_resource type="RectangleShape2D" id=1]
