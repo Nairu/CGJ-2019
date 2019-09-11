@@ -68,7 +68,7 @@ func _do_movement(delta: float) -> void:
 	move_direction = Vector2.ZERO"
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 8, 12 )
+extents = Vector2( 13, 3 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 16, 16 )
@@ -79,6 +79,7 @@ current = true
 zoom = Vector2( 0.3, 0.3 )
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 6 )
 shape = SubResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
