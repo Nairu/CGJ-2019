@@ -29,6 +29,9 @@ func unlock(item):
 		return "You don't this you can use " + item.name + " on this object."
 
 func interact(player):
+	if destroy:
+		return ""
+	
 	if entrance:
 		if not default_description.empty():
 			return default_description

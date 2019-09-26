@@ -34,6 +34,9 @@ func unlock(item):
 		return "You can't use " + item.name + " on this object."
 		
 func interact(player):
+	if destroy:
+		return ""
+	
 	if locked:
 		return "This object is locked firmly, and requires a key to open"
 	else:

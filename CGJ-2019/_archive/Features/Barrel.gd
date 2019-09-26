@@ -7,6 +7,9 @@ func set_sprite(sprite):
 	.set_sprite(sprite)
 
 func interact(player):
+	if destroy:
+		return ""
+	
 	if randf() <= spawn_chance:
 		var item = food.instance()
 		item.icon = item.get_node("Sprite").texture

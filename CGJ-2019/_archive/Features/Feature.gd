@@ -14,6 +14,9 @@ func set_sprite(sprite):
 		$Sprite.texture = sprite
 	
 func interact(player):
+	if destroy:
+		return
+	
 	return default_description
 	
 func spawn_pop_label(position, text, duration, distance, color=Color.red):
