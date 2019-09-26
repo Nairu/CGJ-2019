@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://Sprites/spooky-skull.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/player-temp.png" type="Texture" id=1]
 
 [sub_resource type="GDScript" id=1]
 script/source = "extends KinematicBody2D
@@ -68,27 +68,29 @@ func _do_movement(delta: float) -> void:
 	move_direction = Vector2.ZERO"
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 13, 3 )
+extents = Vector2( 6, 5 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 16, 16 )
 script = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -16, -16 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+centered = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 zoom = Vector2( 0.3, 0.3 )
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 6 )
+visible = false
+position = Vector2( -8, -3 )
 shape = SubResource( 2 )
-
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( -16, -16 )
-texture = ExtResource( 1 )
-centered = false
 
 [node name="Interaction" type="Area2D" parent="."]
 
 [node name="InteractionCollider" type="CollisionShape2D" parent="Interaction"]
-visible = false
+position = Vector2( -8, -11 )
 shape = SubResource( 2 )
