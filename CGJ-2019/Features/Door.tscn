@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Features/Feature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Features/Door.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/door-front.png" type="Texture" id=3]
+
+[node name="Door" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+swap_sprite = false
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 3 )
+
+[node name="InteractionCollision" parent="." index="1"]
+visible = false
+
+[node name="InteractionTriggerCollision" parent="InteractionTrigger" index="0"]
+position = Vector2( 0, 4 )
+[connection signal="do_action" from="." to="." method="_on_Door_do_action"]
