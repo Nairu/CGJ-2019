@@ -4,7 +4,6 @@ class_name Feature
 
 signal do_action
 
-onready var ColliderBox = $InteractionCollision
 
 export (Globals.Features) var feature_type = Globals.Features.NONE
 export var swap_sprite : bool = true
@@ -19,8 +18,7 @@ func _ready():
 
 func _process(delta : float) -> void:
 	if can_be_used and Input.is_action_just_pressed("use"):
-			emit_signal("do_action")
-			print("do_action")
+		emit_signal("do_action")
 
 
 func _on_InteractionTrigger_body_entered(body : PhysicsBody2D) -> void:
@@ -28,7 +26,7 @@ func _on_InteractionTrigger_body_entered(body : PhysicsBody2D) -> void:
 	if body:
 		can_be_used = true
 		# If the entering body is less than the collider box, then make sure it's above the player.
-		if body.global_position.y < ColliderBox.global_position.y:
+		if body.global_position.y < self.global_position.y:
 			self.z_index = 5
 		else:
 			self.z_index = 0

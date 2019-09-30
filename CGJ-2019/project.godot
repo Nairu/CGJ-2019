@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Feature",
+"class": "Barrel",
+"language": "GDScript",
+"path": "res://Features/Barrel.gd"
+}, {
+"base": "Feature",
+"class": "Chest",
+"language": "GDScript",
+"path": "res://Features/Chest.gd"
+}, {
+"base": "Feature",
 "class": "Door",
 "language": "GDScript",
 "path": "res://Features/Door.gd"
@@ -55,6 +65,8 @@ _global_script_classes=[ {
 "path": "res://_archive/Util/ScreenShake.gd"
 } ]
 _global_script_class_icons={
+"Barrel": "",
+"Chest": "",
 "Door": "",
 "EnemyBase": "",
 "EnemyBookcase": "",
