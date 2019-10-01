@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wardrobe-front.png-dd42b3fda6283e13f210fb359632d4ff.stex"
+path="res://.import/chest-of-drawers-front.png-4b9f6599e49c243d29c48bed3a08ce7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/wardrobe-front.png"
-dest_files=[ "res://.import/wardrobe-front.png-dd42b3fda6283e13f210fb359632d4ff.stex" ]
+source_file="res://Sprites/Features/chest-of-drawers-front.png"
+dest_files=[ "res://.import/chest-of-drawers-front.png-4b9f6599e49c243d29c48bed3a08ce7f.stex" ]
 
 [params]
 

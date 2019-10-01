@@ -5,14 +5,14 @@
 [ext_resource path="res://_archive/NavigationMap.gd" type="Script" id=3]
 [ext_resource path="res://_archive/Player/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://_archive/FeatureManager.gd" type="Script" id=5]
-[ext_resource path="res://Sprites/bookcase-front.png" type="Texture" id=6]
-[ext_resource path="res://Sprites/chest-closed-front.png" type="Texture" id=7]
-[ext_resource path="res://Sprites/chest-of-drawers-front.png" type="Texture" id=8]
-[ext_resource path="res://Sprites/wardrobe-front.png" type="Texture" id=9]
-[ext_resource path="res://Sprites/door-front.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Features/bookcase-front.png" type="Texture" id=6]
+[ext_resource path="res://Sprites/Features/chest-closed-front.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Features/chest-of-drawers-front.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Features/wardrobe-front.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Features/door-front.png" type="Texture" id=10]
 [ext_resource path="res://Sprites/stairs-side-1.png" type="Texture" id=11]
-[ext_resource path="res://Sprites/barrel.png" type="Texture" id=12]
-[ext_resource path="res://Sprites/bed.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Features/barrel.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Features/bed.png" type="Texture" id=13]
 [ext_resource path="res://_archive/Features/Door.tscn" type="PackedScene" id=14]
 [ext_resource path="res://_archive/Features/Stairs.tscn" type="PackedScene" id=15]
 [ext_resource path="res://_archive/Scenes/Level4.tscn" type="PackedScene" id=16]
@@ -33,6 +33,7 @@
 [ext_resource path="res://_archive/UI/UI.tscn" type="PackedScene" id=31]
 [ext_resource path="res://_archive/Themes/Themes.tres" type="Theme" id=32]
 [ext_resource path="res://_archive/Themes/DefaultFont.tres" type="DynamicFont" id=33]
+
 
 
 

@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Features/Chest.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Features/chest-closed-front.png" type="Texture" id=2]
+[ext_resource path="res://Features/FeatureCollisions/FeatureChestCollisions.tres" type="Shape2D" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11, 13 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 13, 13 )
+
+[node name="FeatureChest" type="StaticBody2D"]
+collision_layer = 0
+script = ExtResource( 1 )
+feature_type = 0
+
+[node name="Sprite" type="Sprite" parent="."]
+show_behind_parent = true
+texture = ExtResource( 2 )
+
+[node name="FeatureSpriteCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 0, 3 )
+shape = ExtResource( 3 )
+
+[node name="FeatureDepth" type="Area2D" parent="."]
+visible = false
+collision_layer = 0
+
+[node name="DepthCollision" type="CollisionShape2D" parent="FeatureDepth"]
+position = Vector2( 0, 1 )
+shape = SubResource( 1 )
+
+[node name="FeatureInteraction" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 0
+
+[node name="InteractionCollision" type="CollisionShape2D" parent="FeatureInteraction"]
+shape = SubResource( 2 )
+[connection signal="do_action" from="." to="." method="_on_FeatureChest_do_action"]
+[connection signal="body_entered" from="FeatureDepth" to="." method="_on_FeatureDepth_body_entered"]
+[connection signal="body_exited" from="FeatureDepth" to="." method="_on_FeatureDepth_body_exited"]
+[connection signal="area_entered" from="FeatureInteraction" to="." method="_on_FeatureInteraction_area_entered"]
+[connection signal="area_exited" from="FeatureInteraction" to="." method="_on_FeatureInteraction_area_exited"]

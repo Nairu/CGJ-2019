@@ -9,17 +9,17 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Feature",
+"base": "StaticBody2D",
 "class": "Barrel",
 "language": "GDScript",
 "path": "res://Features/Barrel.gd"
 }, {
-"base": "Feature",
+"base": "StaticBody2D",
 "class": "Chest",
 "language": "GDScript",
 "path": "res://Features/Chest.gd"
 }, {
-"base": "Feature",
+"base": "StaticBody2D",
 "class": "Door",
 "language": "GDScript",
 "path": "res://Features/Door.gd"
@@ -63,6 +63,11 @@ _global_script_classes=[ {
 "class": "ScreenShake",
 "language": "GDScript",
 "path": "res://_archive/Util/ScreenShake.gd"
+}, {
+"base": "StaticBody2D",
+"class": "bed",
+"language": "GDScript",
+"path": "res://Features/Bed.gd"
 } ]
 _global_script_class_icons={
 "Barrel": "",
@@ -75,7 +80,8 @@ _global_script_class_icons={
 "Feature": "",
 "FinalBoss": "",
 "Item": "",
-"ScreenShake": ""
+"ScreenShake": "",
+"bed": ""
 }
 
 [application]

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/door-front.png-626d68f070e63003ccf6a58ff8098d0d.stex"
+path="res://.import/chest-closed-front.png-106b8abd5d25293ea6ffcd94256cda08.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/door-front.png"
-dest_files=[ "res://.import/door-front.png-626d68f070e63003ccf6a58ff8098d0d.stex" ]
+source_file="res://Sprites/Features/chest-closed-front.png"
+dest_files=[ "res://.import/chest-closed-front.png-106b8abd5d25293ea6ffcd94256cda08.stex" ]
 
 [params]
 

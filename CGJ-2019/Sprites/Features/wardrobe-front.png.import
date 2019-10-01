@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chest-closed-front.png-0d188330e9245141c45b7c7a60542738.stex"
+path="res://.import/wardrobe-front.png-9593838de0ab4641ab19240b4a83301f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/chest-closed-front.png"
-dest_files=[ "res://.import/chest-closed-front.png-0d188330e9245141c45b7c7a60542738.stex" ]
+source_file="res://Sprites/Features/wardrobe-front.png"
+dest_files=[ "res://.import/wardrobe-front.png-9593838de0ab4641ab19240b4a83301f.stex" ]
 
 [params]
 

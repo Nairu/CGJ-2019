@@ -1,32 +1,31 @@
 extends Node
 
-enum Features { NONE = -1, CHEST, BARREL, BED, BOOKCASE }
+enum Features { NONE = -1, CHEST, BARREL, BED, WARDROBE }
 
-export (Array, Array) var mapped_features
-export (Array, StreamTexture) var sprite_poole
+export (Array, Dictionary) var feature_swap
+export var mapped_features : Dictionary
 
 func _ready() -> void:
-	_generate_sprite_pool()
+	_generate_randomised_feature_pool()
 
 
-func _generate_sprite_pool() -> void:
-	# Populate the StreamTextureList
-	sprite_poole.push_back(load("res://Sprites/barrel.png"))
-	sprite_poole.push_back(load("res://Sprites/bed.png"))
-	sprite_poole.push_back(load("res://Sprites/bookcase-front.png"))
-	sprite_poole.push_back(load("res://Sprites/chest-closed-front.png"))
-	sprite_poole.push_back(load("res://Sprites/chest-of-drawers-front.png"))
+func _generate_randomised_feature_pool() -> void:
+	# Populate paths for matching Sprite and CollisionShape2D
+	feature_swap.push_back({"res://Sprites/Features/barrel.png": "res://Features/FeatureCollisions/FeatureBarrelCollision.tres"})
+	feature_swap.push_back({"res://Sprites/Features/bed.png": "res://Features/FeatureCollisions/FeatureBedCollisions.tres"})
+	feature_swap.push_back({"res://Sprites/Features/chest-closed-front.png": "res://Features/FeatureCollisions/FeatureChestCollisions.tres"})
 
-	# Now associate a sprite with each unique object type.
+	# Now associate a feature sprite with each unique feature type.
 	for feature in Features:
-		if Features[feature] != Features.NONE:
-			var random = RandomNumberGenerator.new()
-			random.randomize()
-
-			for i in random.randi_range(2, 5):
-				sprite_poole.shuffle()
-
-			if not mapped_features[Features[feature]]:
-				Globals.mapped_features[Features[feature]] = Globals.sprite_list[0]
-				Globals.sprite_list.pop_front()
+		if not feature_swap.empty():
+			if Features[feature] != Features.NONE:
+				var random = RandomNumberGenerator.new()
+				random.randomize()
+	
+				for i in random.randi_range(2, 5):
+					feature_swap.shuffle()
+	
+				if not mapped_features.has(Features[feature]):
+					mapped_features[Features[feature]] = feature_swap[0]
+					feature_swap.pop_front()
 

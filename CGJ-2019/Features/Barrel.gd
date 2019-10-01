@@ -1,9 +1,28 @@
-extends Feature
+extends "res://Features/Feature.gd"
 
 class_name Barrel
 
-func _on_Barrel_do_action():
-	if Input.is_action_just_pressed("use"):
-		pass
-		# TODO: Open Inventory OR take all items
-		# TODO: Animate opening and closing
+
+func _on_FeatureBarrel_do_action() -> void:
+	print("Barrel used")
+	# TODO: Open Inventory OR take all items
+	# TODO: Animate opening and closing
+
+
+func _on_FeatureDepth_body_entered(body : PhysicsBody2D) -> void:
+	_set_z_index($FeatureDepth/DepthCollision, body)
+
+
+# warning-ignore:unused_argument
+func _on_FeatureDepth_body_exited(body : PhysicsBody2D) -> void:
+	_reset_z_index()
+
+
+# warning-ignore:unused_argument
+func _on_FeatureInteraction_area_entered(area):
+	_set_can_be_used(true)
+
+
+# warning-ignore:unused_argument
+func _on_FeatureInteraction_area_exited(area):
+	_set_can_be_used(false)
