@@ -23,7 +23,6 @@ func _process(delta : float) -> void:
 
 
 func _set_z_index(body : CollisionShape2D, other_body : PhysicsBody2D) -> void:
-	print("Entered")
 	# If the entering body is less than the collider box, then make sure it's above the player.
 	if other_body.global_position.y < body.global_position.y:
 		self.z_index = 5

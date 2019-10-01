@@ -3,7 +3,7 @@
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/player-temp.png" type="Texture" id=2]
 [ext_resource path="res://Player/ContextBubble.gd" type="Script" id=3]
-[ext_resource path="res://Sprites/context-bubble.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/DefaultFont.tres" type="DynamicFont" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 1 )
@@ -29,19 +29,35 @@ position = Vector2( 0, 6 )
 shape = SubResource( 1 )
 
 [node name="ContextBubble" type="Area2D" parent="."]
-visible = false
 position = Vector2( 8, 8 )
 collision_layer = 0
 collision_mask = 4
 script = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="ContextBubble"]
-position = Vector2( -17, -30 )
-texture = ExtResource( 4 )
-centered = false
-
 [node name="ContextBubbleCollision" type="CollisionShape2D" parent="ContextBubble"]
 position = Vector2( -8, -2 )
 shape = SubResource( 2 )
-[connection signal="area_entered" from="ContextBubble" to="ContextBubble" method="_on_ContextBubble_area_entered"]
-[connection signal="area_exited" from="ContextBubble" to="ContextBubble" method="_on_ContextBubble_area_exited"]
+
+[node name="Timer" type="Timer" parent="ContextBubble"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ContextBubble"]
+
+[node name="Panel" type="Panel" parent="ContextBubble/CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -128.0
+margin_top = -144.0
+margin_right = 160.0
+margin_bottom = -75.0
+
+[node name="Label" type="Label" parent="ContextBubble/CanvasLayer/Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = ExtResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Use this item"
+align = 1
+valign = 1

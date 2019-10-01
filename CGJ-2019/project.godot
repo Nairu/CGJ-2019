@@ -92,6 +92,7 @@ run/main_scene="res://Scenes/TestScene.tscn"
 [autoload]
 
 Globals="*res://Globals.gd"
+Events="*res://Events.gd"
 MusicPlayer="*res://Globals/MusicPlayer.tscn"
 ProjectGlobals="*res://Globals/ProjectGlobals.gd"
 
