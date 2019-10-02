@@ -2,6 +2,8 @@ extends KinematicBody2D
 
 enum Movements { NORMAL, PACED }
 
+onready var inventory : Control = $CanvasLayer/InventorySystem
+
 export (float) var speed = 200
 export (Movements) var move_mode = Movements.NORMAL
 
@@ -19,6 +21,11 @@ func _input(event):
 	
 	if event.is_action_pressed("use"):
 		pass
+		
+	if event.is_action_pressed("inventory"):
+		if not inventory.visible:
+			inventory.reset_selection()
+		inventory.visible = !inventory.visible
 
 func _physics_process(delta):
 	if move_mode == Movements.NORMAL:

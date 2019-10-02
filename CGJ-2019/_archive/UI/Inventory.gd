@@ -9,7 +9,7 @@ func _ready():
 	items_gui.set_max_columns(8)
 	items_gui.set_fixed_icon_size(Vector2(64, 64))
 	items_gui.set_icon_mode(ItemList.ICON_MODE_TOP)
-	items_gui.set_select_mode(ItemList.SELECT_SINGLE)
+	items_gui.set_select_mode(ItemList.SELECT_MULTI)
 	items_gui.set_same_column_width(true)
 	
 func get_items():

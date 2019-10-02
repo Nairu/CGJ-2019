@@ -1,0 +1,170 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Inventory.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/knife.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/coin-pile.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/gem-pile.png" type="Texture" id=4]
+
+[node name="InventorySystem" type="Control"]
+pause_mode = 2
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -352.0
+margin_bottom = 640.0
+script = ExtResource( 1 )
+
+[node name="Inventory" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = 33.0
+margin_right = -32.0
+margin_bottom = -32.0
+
+[node name="Items" type="Control" parent="Inventory"]
+margin_right = 288.0
+margin_bottom = 159.0
+
+[node name="Title" type="Label" parent="Inventory/Items"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -144.0
+margin_right = 272.0
+margin_bottom = -128.0
+text = "Consumables"
+align = 1
+valign = 1
+
+[node name="ItemList" type="ItemList" parent="Inventory/Items"]
+margin_left = 44.0
+margin_top = 31.0
+margin_right = 244.0
+margin_bottom = 148.0
+same_column_width = true
+
+[node name="Weapons" type="Control" parent="Inventory"]
+editor/display_folded = true
+margin_top = 159.0
+margin_right = 288.0
+margin_bottom = 367.0
+
+[node name="Title" type="Label" parent="Inventory/Weapons"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = -192.0
+margin_right = 272.0
+margin_bottom = -176.0
+text = "Weapons"
+align = 1
+valign = 1
+
+[node name="WeaponList" type="ItemList" parent="Inventory/Weapons"]
+margin_left = 44.0
+margin_top = 32.0
+margin_right = 244.0
+margin_bottom = 117.0
+same_column_width = true
+icon_mode = 0
+
+[node name="Equipped" type="Label" parent="Inventory/Weapons"]
+margin_left = 16.0
+margin_top = 128.0
+margin_right = 272.0
+margin_bottom = 144.0
+text = "Equipped"
+align = 1
+valign = 1
+
+[node name="EquippedItem" type="TextureButton" parent="Inventory/Weapons"]
+margin_left = 128.0
+margin_top = 144.0
+margin_right = 160.0
+margin_bottom = 176.0
+texture_normal = ExtResource( 2 )
+
+[node name="WeaponName" type="Label" parent="Inventory/Weapons"]
+margin_left = 16.0
+margin_top = 175.0
+margin_right = 272.0
+margin_bottom = 191.0
+text = "Dagger"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Details" type="Control" parent="Inventory"]
+editor/display_folded = true
+margin_top = 367.0
+margin_right = 288.0
+margin_bottom = 527.0
+
+[node name=" Title" type="Label" parent="Inventory/Details"]
+margin_left = 16.0
+margin_right = 272.0
+margin_bottom = 16.0
+text = "Information"
+align = 1
+valign = 1
+
+[node name="DetailText" type="RichTextLabel" parent="Inventory/Details"]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 272.0
+margin_bottom = 144.0
+bbcode_enabled = true
+bbcode_text = "[center]This is some example text, for the currently selected item."
+text = "This is some example text, for the currently selected item."
+scroll_active = false
+
+[node name="Loot" type="Control" parent="Inventory"]
+editor/display_folded = true
+margin_top = 527.0
+margin_right = 288.0
+margin_bottom = 575.0
+
+[node name="Coins" type="TextureRect" parent="Inventory/Loot"]
+margin_left = 16.0
+margin_top = 8.0
+margin_right = 48.0
+margin_bottom = 40.0
+texture = ExtResource( 3 )
+
+[node name="Label" type="Label" parent="Inventory/Loot/Coins"]
+margin_left = 32.0
+margin_right = 96.0
+margin_bottom = 32.0
+text = "Coins :"
+align = 1
+valign = 1
+
+[node name="Value" type="Label" parent="Inventory/Loot/Coins"]
+margin_left = 96.0
+margin_right = 160.0
+margin_bottom = 32.0
+text = "100"
+valign = 1
+
+[node name="Gems" type="TextureRect" parent="Inventory/Loot"]
+editor/display_folded = true
+margin_left = 144.0
+margin_top = 8.0
+margin_right = 176.0
+margin_bottom = 40.0
+texture = ExtResource( 4 )
+
+[node name="Label" type="Label" parent="Inventory/Loot/Gems"]
+margin_left = 32.0
+margin_right = 96.0
+margin_bottom = 32.0
+text = "Gems :"
+align = 1
+valign = 1
+
+[node name="Value" type="Label" parent="Inventory/Loot/Gems"]
+margin_left = 96.0
+margin_right = 160.0
+margin_bottom = 32.0
+text = "100"
+valign = 1
