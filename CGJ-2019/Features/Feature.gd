@@ -10,6 +10,7 @@ export (Globals.Features) var feature_type = Globals.Features.NONE
 export var swap_sprite : bool = true
 
 var can_be_used : bool = false
+var hidden : bool = false
 
 func _ready() -> void:
 	if swap_sprite:

@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://Features/Barrel.gd"
 }, {
 "base": "StaticBody2D",
+"class": "Bed",
+"language": "GDScript",
+"path": "res://Features/Bed.gd"
+}, {
+"base": "StaticBody2D",
 "class": "Chest",
 "language": "GDScript",
 "path": "res://Features/Chest.gd"
@@ -63,14 +68,10 @@ _global_script_classes=[ {
 "class": "ScreenShake",
 "language": "GDScript",
 "path": "res://_archive/Util/ScreenShake.gd"
-}, {
-"base": "StaticBody2D",
-"class": "bed",
-"language": "GDScript",
-"path": "res://Features/Bed.gd"
 } ]
 _global_script_class_icons={
 "Barrel": "",
+"Bed": "",
 "Chest": "",
 "Door": "",
 "EnemyBase": "",
@@ -80,8 +81,7 @@ _global_script_class_icons={
 "Feature": "",
 "FinalBoss": "",
 "Item": "",
-"ScreenShake": "",
-"bed": ""
+"ScreenShake": ""
 }
 
 [application]

@@ -22,7 +22,7 @@ tile_data = PoolIntArray( -131073, 6, 0, -196608, 6, 2, -196607, 6, 2, -196606, 
 position = Vector2( 112, 80 )
 
 [node name="FeatureChest" parent="Features" instance=ExtResource( 3 )]
-position = Vector2( 112, -64 )
+position = Vector2( 120, -65 )
 
 [node name="FeatureBarrel" parent="Features" instance=ExtResource( 4 )]
 position = Vector2( 81, -65 )

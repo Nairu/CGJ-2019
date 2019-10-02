@@ -40,8 +40,6 @@ collision_mask = 0
 [node name="InteractionCollision" type="CollisionShape2D" parent="FeatureInteraction"]
 position = Vector2( 0, 4 )
 shape = SubResource( 3 )
-
-[node name="Timer" type="Timer" parent="."]
 [connection signal="do_action" from="." to="." method="_on_FeatureDoor_do_action"]
 [connection signal="body_entered" from="FeatureDepth" to="." method="_on_FeatureDepth_body_entered"]
 [connection signal="body_exited" from="FeatureDepth" to="." method="_on_FeatureDepth_body_exited"]
