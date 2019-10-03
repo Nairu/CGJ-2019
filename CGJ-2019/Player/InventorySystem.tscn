@@ -1,94 +1,241 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Player/Inventory.gd" type="Script" id=1]
-[ext_resource path="res://Sprites/knife.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/coin-pile.png" type="Texture" id=3]
-[ext_resource path="res://Sprites/gem-pile.png" type="Texture" id=4]
+[ext_resource path="res://UI/EquipmentSlot.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/UI/nine-rect-container.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/knife.png" type="Texture" id=4]
+[ext_resource path="res://Sprites/coin-pile.png" type="Texture" id=5]
+[ext_resource path="res://Sprites/gem-pile.png" type="Texture" id=6]
 
 [node name="InventorySystem" type="Control"]
 pause_mode = 2
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -352.0
-margin_bottom = 640.0
-script = ExtResource( 1 )
-
-[node name="Inventory" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 32.0
-margin_top = 33.0
-margin_right = -32.0
-margin_bottom = -32.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource( 1 )
+
+[node name="Equipped" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -124.0
+margin_top = -64.0
+margin_right = 124.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Equipped"]
+margin_right = 250.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
+custom_constants/separation = 50
+
+[node name="EquipmentSlot" parent="Equipped/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot2" parent="Equipped/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 50.0
+margin_top = 0.0
+margin_right = 50.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot3" parent="Equipped/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 100.0
+margin_top = 0.0
+margin_right = 100.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot4" parent="Equipped/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 150.0
+margin_top = 0.0
+margin_right = 150.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot5" parent="Equipped/HBoxContainer" instance=ExtResource( 2 )]
+margin_left = 200.0
+margin_top = 0.0
+margin_right = 200.0
+margin_bottom = 64.0
+
+[node name="Inventory" type="MarginContainer" parent="."]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -310.0
+margin_top = -284.0
+margin_right = -128.0
+margin_bottom = 276.0
+
+[node name="InventoryBackground" type="NinePatchRect" parent="Inventory"]
+margin_right = 182.0
+margin_bottom = 560.0
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 64, 64 )
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="GridContainer" type="GridContainer" parent="Inventory/InventoryBackground"]
+margin_left = -262.0
+margin_top = 108.0
+margin_right = -54.0
+margin_bottom = 300.0
+custom_constants/vseparation = 64
+custom_constants/hseparation = 53
+columns = 4
+
+[node name="EquipmentSlot1" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 0.0
+margin_bottom = 0.0
+
+[node name="EquipmentSlot2" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 53.0
+margin_top = 0.0
+margin_right = 53.0
+margin_bottom = 0.0
+
+[node name="EquipmentSlot3" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 106.0
+margin_top = 0.0
+margin_right = 106.0
+margin_bottom = 0.0
+
+[node name="EquipmentSlot4" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 159.0
+margin_top = 0.0
+margin_right = 159.0
+margin_bottom = 0.0
+
+[node name="EquipmentSlot5" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 64.0
+margin_right = 0.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot6" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 53.0
+margin_top = 64.0
+margin_right = 53.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot7" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 106.0
+margin_top = 64.0
+margin_right = 106.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot8" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 159.0
+margin_top = 64.0
+margin_right = 159.0
+margin_bottom = 64.0
+
+[node name="EquipmentSlot9" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 128.0
+margin_right = 0.0
+margin_bottom = 128.0
+
+[node name="EquipmentSlot10" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 53.0
+margin_top = 128.0
+margin_right = 53.0
+margin_bottom = 128.0
+
+[node name="EquipmentSlot11" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 106.0
+margin_top = 128.0
+margin_right = 106.0
+margin_bottom = 128.0
+
+[node name="EquipmentSlot12" parent="Inventory/InventoryBackground/GridContainer" instance=ExtResource( 2 )]
+margin_left = 159.0
+margin_top = 128.0
+margin_right = 159.0
+margin_bottom = 128.0
 
 [node name="Items" type="Control" parent="Inventory"]
-margin_right = 288.0
-margin_bottom = 159.0
+editor/display_folded = true
+visible = false
+margin_right = 182.0
+margin_bottom = 560.0
 
 [node name="Title" type="Label" parent="Inventory/Items"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = -144.0
-margin_right = 272.0
-margin_bottom = -128.0
+margin_left = 329.0
+margin_top = -257.0
+margin_right = 585.0
+margin_bottom = -241.0
 text = "Consumables"
 align = 1
 valign = 1
 
 [node name="ItemList" type="ItemList" parent="Inventory/Items"]
-margin_left = 44.0
-margin_top = 31.0
-margin_right = 244.0
-margin_bottom = 148.0
+margin_left = 377.0
+margin_top = 201.0
+margin_right = 577.0
+margin_bottom = 318.0
 same_column_width = true
 
 [node name="Weapons" type="Control" parent="Inventory"]
 editor/display_folded = true
-margin_top = 159.0
-margin_right = 288.0
-margin_bottom = 367.0
+visible = false
+margin_right = 182.0
+margin_bottom = 560.0
 
 [node name="Title" type="Label" parent="Inventory/Weapons"]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = -192.0
-margin_right = 272.0
-margin_bottom = -176.0
+margin_left = 330.0
+margin_top = -212.0
+margin_right = 586.0
+margin_bottom = -196.0
 text = "Weapons"
 align = 1
 valign = 1
 
 [node name="WeaponList" type="ItemList" parent="Inventory/Weapons"]
-margin_left = 44.0
-margin_top = 32.0
-margin_right = 244.0
-margin_bottom = 117.0
+margin_left = 329.0
+margin_right = 529.0
+margin_bottom = 85.0
 same_column_width = true
 icon_mode = 0
 
 [node name="Equipped" type="Label" parent="Inventory/Weapons"]
-margin_left = 16.0
+margin_left = 298.0
 margin_top = 128.0
-margin_right = 272.0
+margin_right = 554.0
 margin_bottom = 144.0
 text = "Equipped"
 align = 1
 valign = 1
 
 [node name="EquippedItem" type="TextureButton" parent="Inventory/Weapons"]
-margin_left = 128.0
+margin_left = 410.0
 margin_top = 144.0
-margin_right = 160.0
+margin_right = 442.0
 margin_bottom = 176.0
-texture_normal = ExtResource( 2 )
+texture_normal = ExtResource( 4 )
 
 [node name="WeaponName" type="Label" parent="Inventory/Weapons"]
-margin_left = 16.0
-margin_top = 175.0
-margin_right = 272.0
-margin_bottom = 191.0
+margin_left = 250.0
+margin_top = 156.0
+margin_right = 506.0
+margin_bottom = 172.0
 text = "Dagger"
 align = 1
 valign = 1
@@ -96,23 +243,40 @@ autowrap = true
 
 [node name="Details" type="Control" parent="Inventory"]
 editor/display_folded = true
-margin_top = 367.0
-margin_right = 288.0
-margin_bottom = 527.0
+visible = false
+margin_right = 182.0
+margin_bottom = 560.0
 
-[node name=" Title" type="Label" parent="Inventory/Details"]
-margin_left = 16.0
-margin_right = 272.0
-margin_bottom = 16.0
-text = "Information"
-align = 1
+[node name="NameTitle" type="Label" parent="Inventory/Details"]
+margin_left = 281.0
+margin_top = -52.0
+margin_right = 345.0
+margin_bottom = -36.0
+text = "Name :"
+align = 2
+valign = 1
+
+[node name="NameText" type="Label" parent="Inventory/Details"]
+margin_left = 361.0
+margin_top = -52.0
+margin_right = 505.0
+margin_bottom = -36.0
+valign = 1
+
+[node name="DetailsTitle" type="Label" parent="Inventory/Details"]
+margin_left = 281.0
+margin_top = -36.0
+margin_right = 345.0
+margin_bottom = -20.0
+text = "Details :"
+align = 2
 valign = 1
 
 [node name="DetailText" type="RichTextLabel" parent="Inventory/Details"]
-margin_left = 16.0
-margin_top = 16.0
-margin_right = 272.0
-margin_bottom = 144.0
+margin_left = 362.0
+margin_top = -36.0
+margin_right = 506.0
+margin_bottom = 79.0
 bbcode_enabled = true
 bbcode_text = "[center]This is some example text, for the currently selected item."
 text = "This is some example text, for the currently selected item."
@@ -120,16 +284,15 @@ scroll_active = false
 
 [node name="Loot" type="Control" parent="Inventory"]
 editor/display_folded = true
-margin_top = 527.0
-margin_right = 288.0
-margin_bottom = 575.0
+margin_right = 182.0
+margin_bottom = 560.0
 
 [node name="Coins" type="TextureRect" parent="Inventory/Loot"]
-margin_left = 16.0
-margin_top = 8.0
-margin_right = 48.0
-margin_bottom = 40.0
-texture = ExtResource( 3 )
+margin_left = 249.0
+margin_top = 89.0
+margin_right = 281.0
+margin_bottom = 121.0
+texture = ExtResource( 5 )
 
 [node name="Label" type="Label" parent="Inventory/Loot/Coins"]
 margin_left = 32.0
@@ -147,12 +310,11 @@ text = "100"
 valign = 1
 
 [node name="Gems" type="TextureRect" parent="Inventory/Loot"]
-editor/display_folded = true
-margin_left = 144.0
-margin_top = 8.0
-margin_right = 176.0
-margin_bottom = 40.0
-texture = ExtResource( 4 )
+margin_left = 377.0
+margin_top = 89.0
+margin_right = 409.0
+margin_bottom = 121.0
+texture = ExtResource( 6 )
 
 [node name="Label" type="Label" parent="Inventory/Loot/Gems"]
 margin_left = 32.0
@@ -168,3 +330,6 @@ margin_right = 160.0
 margin_bottom = 32.0
 text = "100"
 valign = 1
+[connection signal="focus_exited" from="Inventory/Items/ItemList" to="." method="_on_itemlist_focus_exited"]
+[connection signal="item_selected" from="Inventory/Items/ItemList" to="." method="_on_ItemList_item_selected"]
+[connection signal="focus_exited" from="Inventory/Weapons/WeaponList" to="." method="_on_itemlist_focus_exited"]

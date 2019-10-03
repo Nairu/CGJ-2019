@@ -1,5 +1,5 @@
 extends Node2D
-class_name Item
+class_name ItemOld
 
 onready var tile = position / ProjectGlobals.TILE_SIZE
 onready var icon = $Sprite.texture
