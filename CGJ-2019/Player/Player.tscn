@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Sprites/player-temp.png" type="Texture" id=2]
 [ext_resource path="res://Player/ContextBubble.gd" type="Script" id=3]
 [ext_resource path="res://Fonts/DefaultFont.tres" type="DynamicFont" id=4]
+[ext_resource path="res://Player/Weapon.gd" type="Script" id=5]
+[ext_resource path="res://Sprites/knife.png" type="Texture" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 1 )
@@ -66,4 +68,18 @@ text = "Use this item"
 align = 1
 valign = 1
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Weapon" type="Position2D" parent="."]
+position = Vector2( 0, -8 )
+scale = Vector2( 0.995804, 1 )
+script = ExtResource( 5 )
+
+[node name="Tween" type="Tween" parent="Weapon"]
+
+[node name="Sprite" type="Sprite" parent="Weapon"]
+position = Vector2( 7, 0 )
+rotation = 0.785398
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 6 )
+
+[node name="WeaponEndpoint" type="Position2D" parent="Weapon"]
+position = Vector2( 15, 0 )

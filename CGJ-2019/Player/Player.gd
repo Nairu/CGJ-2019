@@ -28,6 +28,8 @@ func _input(event):
 		inventory.visible = !inventory.visible
 
 func _physics_process(delta):
+	_handle_weapon()
+	
 	if move_mode == Movements.NORMAL:
 		_do_movement(delta)
 	else:
@@ -75,3 +77,16 @@ func _do_movement(delta: float) -> void:
 		move_direction.y = 0
 	move_and_slide(move_direction)
 	move_direction = Vector2.ZERO
+
+
+onready var weapon_distance = $Weapon.position.length()
+
+
+func _handle_weapon() -> void:
+	var angle = get_local_mouse_position().angle()
+	
+	$Weapon.position.x = cos(angle) * weapon_distance
+	$Weapon.position.y = sin(angle) * weapon_distance
+	$Weapon.rotation = angle
+#	if $Weapon/sprite:
+#		$Weapon/sprite.rotation = -45
